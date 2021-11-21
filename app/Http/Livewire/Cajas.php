@@ -1,0 +1,134 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Caja;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Gasto;
+
+class Cajas extends Component
+{
+    use WithPagination;
+
+	protected $paginationTheme = 'bootstrap';
+    public $selected_id, $keyWord, $name, $fecha, $valor, $status, $gastos_id, $empresa_id;
+    public $updateMode = false;
+    public $fecha_serve, $gastos, $userEmpresa, $value, $id_gasto;
+
+    public function mount()
+	{
+		$this->userEmpresa = Auth::user()->empresa_id;
+		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
+        $this->value = 0;
+        $this->keyWord = $this->fecha_serve;
+
+    }
+    public function render()
+    {
+		$keyWord = '%'.$this->keyWord .'%';
+        $this->userEmpresa = Auth::user()->empresa_id;
+        $this->gastos = Gasto::where('empresa_id', $this->userEmpresa)->get();
+        $this->fecha_serve = date('Y-m-d'); 
+
+
+        return view('livewire.cajas.view', [
+            'cajas' => Caja::latest()
+                        ->Where("empresa_id", Auth::user()->empresa_id)
+                       ->Where('fecha', 'LIKE', $keyWord)
+						->paginate(11),
+        ]);
+
+        $this->emit('combos');
+
+    }
+	
+    public function cancel()
+    {
+        $this->resetInput();
+        $this->updateMode = false;
+    }
+	
+    private function resetInput()
+    {		
+		$this->name = null;
+		//$this->fecha = null;
+		$this->value = null;
+		$this->status = 0;
+		$this->gastos_id = null;
+		//$this->empresa_id = null;
+    }
+
+    public function store()
+    {
+       
+        $this->validate([
+		'value' => 'required',
+		'gastos_id' => 'required',
+        ]);
+
+        Caja::create([ 
+			'name' => $this-> name,
+			'fecha' => $this-> fecha_serve,
+			'valor' => $this-> value,
+			'status' => 0,
+			'gastos_id' => $this-> id_gasto,
+			'empresa_id' => $this-> userEmpresa
+        ]);
+        
+        $this->resetInput();
+		//$this->emit('closeModal');
+		//session()->flash('message', 'Caja Successfully created.');
+        $this->emit('combos');
+    }
+
+    public function edit($id)
+    {
+        $record = Caja::findOrFail($id);
+
+        $this->selected_id = $id; 
+		$this->name = $record-> name;
+		$this->fecha = $record-> fecha;
+		$this->valor = $record-> valor;
+		$this->status = $record-> status;
+		$this->gastos_id = $record-> gastos_id;
+		$this->empresa_id = $record-> empresa_id;
+		
+        $this->updateMode = true;
+    }
+
+    public function update()
+    {
+        $this->validate([
+		'fecha' => 'required',
+		'valor' => 'required',
+		'gastos_id' => 'required',
+        ]);
+
+        if ($this->selected_id) {
+			$record = Caja::find($this->selected_id);
+            $record->update([ 
+			'name' => $this-> name,
+			'fecha' => $this-> fecha,
+			'valor' => $this-> valor,
+			'status' => $this-> status,
+			'gastos_id' => $this-> gastos_id,
+			'empresa_id' => $this-> empresa_id
+            ]);
+
+            $this->resetInput();
+            $this->updateMode = false;
+			session()->flash('message', 'Caja Successfully updated.');
+        }
+    }
+
+    public function destroy($id)
+    {
+        if ($id) {
+            $record = Caja::where('id', $id);
+            $record->delete();
+        }
+    }
+}
