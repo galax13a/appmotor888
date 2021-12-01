@@ -7,7 +7,10 @@
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
 							<h4>
-							Cars Listing </h4>
+							Cars Tipos </h4>
+							<i class="fa fa-motorcycle" aria-hidden="true"></i>
+							<i class="fa fa-bicycle" aria-hidden="true"></i>
+							<i class="fa fa-car" aria-hidden="true"></i>
 						</div>
 				
 						<div class="input-group input-group-lg">
@@ -27,7 +30,8 @@
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
-							<tr> 
+					
+									<tr> 
 								<td>#</td> 
 								<th>Name</th>
 								<th>Status</th>
@@ -38,7 +42,12 @@
 							@foreach($carstypes as $row)
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
-								<td><strong>{{ ucfirst($row->name) }} - {{ ucfirst($row->empresa->name) }}</strong></td>
+								<td>
+									<img src="/css/cars/bike{{$row->icon}}.svg " width="33" height="33"alt="">
+									<strong>{{ ucfirst($row->name) }} - {{ ucfirst($row->empresa->name) }}</strong>
+									
+								</td>
+						
 								<td>
 									<div class="form-check form-switch ml-4">
 								@if($row->status == 0)

@@ -23,6 +23,7 @@ class Gastos extends Component
 
     public function render()
     {
+        $this->valor = 0;
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.gastos.view', [
             'gastos' => Gasto::latest()
@@ -51,7 +52,8 @@ class Gastos extends Component
         $this->validate([
 		'name' => 'required',
 		'empresa_id' => 'required',
-        'natu' => 'required'
+        'natu' => 'required',
+        'value' => 'required'
         ]);
 
         Gasto::create([ 
@@ -87,7 +89,8 @@ class Gastos extends Component
         $this->validate([
 		'name' => 'required',
 		'status' => 'required',
-        'natu' => 'required'
+        'natu' => 'required',
+        'value' => 'required'
         ]);
 
         if ($this->selected_id) {

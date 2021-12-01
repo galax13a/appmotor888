@@ -38,8 +38,12 @@
 							</tr>
 						</thead>
 						<tbody>
+							
+
 							@foreach($gastos as $row)
 							<tr>
+						
+						
 								<td>{{ $loop->iteration }}</td> 
 								<td><strong>{{ ucfirst($row->name) }}</strong></td>
 								<td><strong> $ {{ number_format($row->value) }}</strong></td>

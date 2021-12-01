@@ -23,4 +23,5 @@ class Service extends Model
         return $this->hasOne('App\Models\Carstype', 'id', 'cars_id');
     }
     
+   
 }

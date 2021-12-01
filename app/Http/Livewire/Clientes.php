@@ -9,7 +9,7 @@ use App\Models\Cliente;
 use App\Models\Carstype;
 use App\Models\Mycar;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class Clientes extends Component
 {
@@ -29,7 +29,15 @@ class Clientes extends Component
 
     public function getplaca($id){
     // return 'placa id : ' . $id;
-    return  Mycar::Where("cliente_id", $id)->get();
+//    return  Mycar::Where("cliente_id", $id)->get();
+
+    return  DB::table('mycars')
+			->join('carstypes', 'mycars.carstypes_id', '=', 'carstypes.id')
+			->select('mycars.id as id', 'mycars.name', 'carstypes.icon as icon')
+			->Where("mycars.cliente_id", $id)
+			->orderBy('mycars.name')
+			->get();
+
     }
    
     public function render()
@@ -123,6 +131,14 @@ class Clientes extends Component
             $record = Cliente::where('id', $id);
             $record->delete();
         }
+    }
+
+    public function deleteplaca($id){
+
+            if ($id) {
+                $record = Mycar::where('id', $id);
+                $record->delete();
+            }
     }
 
     public function ckeking($id, $check){

@@ -128,7 +128,7 @@
                                                 </div>
                                             </div>
                                         </td>
-										bn pedo
+									
                                 @endforeach
                             </tbody>
                         </table>

@@ -16,7 +16,7 @@ class CreateGastosTable extends Migration
         Schema::create('gastos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name',60);
-            $table->integer('value')->default(0);
+            $table->integer('value')->default(0)->nullable();
             $table->boolean('status')->nullable();
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');

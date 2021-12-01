@@ -21,6 +21,9 @@ class Mycar extends Model
         return $this->hasOne('App\Models\Cliente', 'id', 'cliente_id');
     }
 
+    public function icon(){
+        return $this->hasOne('App\Models\Carstype', 'id', 'carstypes_id ');
+    }
 
 }
 

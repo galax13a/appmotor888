@@ -15,9 +15,10 @@ class Carstypes extends Component
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $name, $status;
     public $updateMode = false;
-    public $empresa_id;
+    public $empresa_id, $color_select, $selected_id_img, $icon;
 
     public function mount(){
+      //  $this->color_select = "secondary";
         $this->empresa_id = Auth::user()->empresa_id;
     }
     public function updatingKeyWord(){ // resetea la busqueda url 
@@ -26,6 +27,8 @@ class Carstypes extends Component
 
     public function render()
     {
+       
+
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.carstypes.view', [
             'carstypes' => Carstype::latest()
@@ -49,6 +52,7 @@ class Carstypes extends Component
 
     public function store()
     {
+       
         $this->validate([
 		'name' => 'required'
         ]);
@@ -71,6 +75,7 @@ class Carstypes extends Component
         $this->selected_id = $id; 
 		$this->name = $record-> name;
 		$this->status = $record-> status;
+        $this->icon = $record-> icon;
 		
         $this->updateMode = true;
     }
@@ -86,7 +91,8 @@ class Carstypes extends Component
 			$record = Carstype::find($this->selected_id);
             $record->update([ 
 			'name' => $this-> name,
-			'status' => $this-> status
+			'status' => $this-> status,
+            'icon' => $this->selected_id_img
             ]);
 
             $this->resetInput();
@@ -101,6 +107,22 @@ class Carstypes extends Component
             $record = Carstype::where('id', $id);
             $record->delete();
         }
+    }
+    public function select_img($id , $id_car) {
+        if($id) {
+            $this->color_select = "danger";
+            $this->selected_id_img = $id;
+
+            $this->icon = $id;
+            $record = Carstype::find($id_car);
+            $record->update([ 
+            'icon' => $this->selected_id_img
+            ]);
+
+            $this->emit('closeModal');
+           
+        }
+        //session()->flash('message', 'Icon updated.');
     }
     public function ckeking($id, $check){
         $record = Carstype::find($id);

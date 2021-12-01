@@ -52,10 +52,14 @@
 							</td> 
 								<td><strong>{{ Str::ucfirst($row->name) }}</strong> </td>
 								<td>
-								
+							
 								@foreach($this->getplaca($row->id) as $placa)
-										<span class="badge rounded-pill bg-success">	{{ Str::upper($placa->name) }}</span>
-								@endforeach
+								
+										<img src="/css/cars/bike{{$placa->icon}}.svg "  width="33" height="33" alt="">
+										<span class="badge rounded-pill ">	{{ Str::upper($placa->name) }}
+										<a class="btn btn-light " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-trash" title="Eliminar ({{$placa->name}})"></i>  </a>   
+								</span>
+										@endforeach
 							</td>
 								<td><strong>{{ $row->wsp1 }}</strong></td>
 							

@@ -13,7 +13,7 @@ class Carstype extends Model
 
     protected $table = 'carstypes';
 
-    protected $fillable = ['name','status','empresa_id'];
+    protected $fillable = ['name','status','empresa_id', 'icon'];
 
     public function empresa()
         {

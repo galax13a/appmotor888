@@ -23,6 +23,8 @@
                 </select>  
                       @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
+<hr>
+                     
 
                 </form>
             </div>

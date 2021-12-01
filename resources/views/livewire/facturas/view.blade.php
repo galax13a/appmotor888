@@ -14,8 +14,9 @@
                         @endif
 						<div class="container">
 
-                            <div class="container">
-                                <div class="row m-2 ">
+                            
+                            <div class=" grid grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-4">
+                                <div class="row m-2 md:grid-cols-2">
                                     @foreach ($operarios as $operario)
                                   <div class="col float-right" data-toggle="modal" data-target="#exampleModal" wire:click="servicios_operador({{$operario->id}}, '{{$operario->name}}')">
                                     <button type="button" class="btn btn-dark float-center" style=" margin-top: -15px;">
@@ -33,10 +34,11 @@
                               </div>
                         </div>
                         <div class="container lg">
-                            <div class="row">
+                            <div class="row align-items-start">
+                              <div class="row">
                                 <div class="col">
                                     <div class="form-group" wire:ignore>
-                                        <select class="select2" id="servicio_id" wire:model="servicio_id">
+                                        <select class="form-select" id="servicio_id" wire:model="servicio_id">
 											<option value=""> Seleccione Servicio: </option>
                                             @foreach ($servicios as $servicio)
                                                 <option value="{{ $servicio->id }}-{{$servicio->value}}-{{$servicio->porcentaje}}">
@@ -78,7 +80,7 @@
 								<div class="col">
 									<button wire:click="save()" type="button" class="btn btn-outline-info btn-sm">Save</button>
 								</div>
-					
+                              </div>
                             </div>
                         </div>
 
@@ -119,10 +121,19 @@
                                 @foreach ($facturas as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td><strong>{{ Str::upper($row->placa) }}</strong></td>
+                                        <td>
+                                            <img src="/css/cars/bike{{ $row->service->carstype->icon }}.svg " width="33" height="33"alt="">
+                                            <strong>{{ Str::upper($row->placa) }}</strong>
+                                        </td>
                                         <td><strong> {{ number_format($row->value, 2) }}</strong></td>
                                         <td> {{ number_format($row->empresa, 2) }}</td>
-                                        <td>{{ number_format($row->operario, 2) }}</td>
+                                        <td>{{ number_format($row->operario, 2) }} 
+                                            
+                                            @if ($row->service->porcentaje == 100)
+                                            <button type="button" class="btn btn-warning">Free Service</button>
+                                            @else % {{ $row->service->porcentaje }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="form-check form-switch ml-4">
                                                 @if ($row->status == 0)
@@ -140,7 +151,9 @@
                                         </td>
                                         <td>{{ Str::substr($row->cliente->name,0,6) }}</td>
                                         <td>{{ $row->cliente->wsp1 }}</td>
-                                        <td>{{ Str::upper($row->service->name) }}</td>
+                                        <td>{{ Str::upper($row->service->name) }}
+                                            
+                                            </td>
                                         <td>{{ substr(Str::upper($row->operarios->name),0,6) }} </td>
                                         <td>{{ $row->fecha }}</td>
                                         <td width="90">
