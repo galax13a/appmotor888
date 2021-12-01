@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::view('admin/gastos', 'livewire.gastos.index')->middleware('auth');
 	Route::view('admin/empresa', 'livewire.empresa.index')->middleware('auth');
 	Route::view('admin/services', 'livewire.services.index')->middleware('auth');
-	Route::view('admin/cars', 'livewire.CarsTypes.index')->middleware('auth');
+	Route::view('admin/cars', 'livewire.carstypes.index')->middleware('auth');
    
     
 
