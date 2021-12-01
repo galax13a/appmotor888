@@ -45,10 +45,9 @@
 							@foreach($clientes as $row)
 							<tr>
 								<td>
-								<i  style="cursor: pointer;" class="fa fa-car" aria-hidden="true" data-toggle="modal" data-target="#addModal" wire:click="addcars({{$row->id}}, '{{$row->name}}')">
-								<i class="fa fa-plus p-2 btn-success"></i>
+								<i class="fa fa-car p-2"></i>
 								</i>
-							
+							<button type="button" class="btn btn-dark"><i class="fa fa-plus-circle p-1 bg-info" data-toggle="modal" data-target="#addModal"  wire:click="addcars({{$row->id}}, '{{$row->name}}')"></i></button>
 							</td> 
 								<td><strong>{{ Str::ucfirst($row->name) }}</strong> </td>
 								<td>
