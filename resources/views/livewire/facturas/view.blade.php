@@ -24,7 +24,7 @@
                                          <span class="badge bg-danger" >
                                              @foreach ($this->get_servicios($operario->id) as $dato )
                                             {{ $dato->allservice }}
-                                    @endforeach
+                                             @endforeach
                                         
                                         </span>
                                       </button>

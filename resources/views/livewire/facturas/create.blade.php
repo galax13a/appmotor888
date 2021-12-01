@@ -31,11 +31,15 @@
                       </div>
                      
                       <div class="col">
-                        <button type="button" class="btn btn-light">  {{ Str::upper($service->cars)}}</button>
+                        <button type="button" class="btn btn-light">  
+                          <img src="/css/cars/bike{{$service->icon}}.svg " width="33" height="33"alt="">
+                                           
+                          {{ Str::upper($service->cars)}}
+                        </button>
                       </div>
-                      <div class="col">
+                      <div class="col"> 
                         <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="{{$service->porcentaje}} %">
-                           <strong> {{ Str::upper($service->placa)}} </strong>
+                           <strong>{{ Str::upper($service->placa)}} </strong>
                           </button>
                       
                       </div>
