@@ -49,9 +49,14 @@
 						<li class="nav-item">
                             <a href="{{ url('admin/operarios') }}" class="nav-link"><i class="fa fa-user-plus @if(Request::path() === 'admin/operarios') text-info @endif aria-hidden="true"></i> Operarios</a> 
                         </li>
-						<li class="nav-item">
+                        @php
+                        /*
+                            	<li class="nav-item">
                             <a href="{{ url('admin/myusers') }}" class="nav-link"><i class="fa fa-user @if(Request::path() === 'admin/myusers') text-info @endif" aria-hidden="true"></i> Users</a> 
                         </li>
+                        */
+                        @endphp
+					
 				
 						<li class="nav-item">
                             <a href="{{ url('admin/clientes') }}" class="nav-link"><i class="fa fa-users @if(Request::path() === 'admin/clientes') text-info @endif" aria-hidden="true"></i> Clientes</a> 

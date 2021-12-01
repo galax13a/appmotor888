@@ -37,6 +37,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::view('admin/cajas', 'livewire.cajas.index')->middleware('auth');
 	Route::view('admin/facturas', 'livewire.facturas.index')->middleware('auth');
 	Route::view('admin/operarios', 'livewire.operarios.index')->middleware('auth');
-	Route::view('admin/myusers', 'livewire.myusers.index')->middleware('auth');
+	//Route::view('admin/myusers', 'livewire.myusers.index')->middleware('auth');
 
 	Route::view('admin/placa/', 'livewire.placas.index');
