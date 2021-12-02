@@ -23,6 +23,12 @@
                 <label for="wsp2"></label>
                 <input wire:model="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
+
+            <div class="form-group">
+                <label for="Cumple"></label>
+                <input wire:model="cumple" type="text" class="form-control" id="cumple" placeholder="Cumpleaños">@error('cumple') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+
             <div class="form-group d-none">
                 <label for="status"></label>
                 <input wire:model="status" type="text" class="form-control hidden "  id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -45,5 +51,15 @@
 <script>
          document.addEventListener('livewire:load', function(){
                     @this.set('empresa_id', {{Auth::user()->empresa_id}});
+                    $.noConflict();
+                    
+                    $( "#cumple" ).datepicker({
+                                dateFormat : 'mm/dd/yy',
+                                changeMonth : true,
+                                changeYear : true,
+                                yearRange: '-100y:c+nn',
+                                maxDate: '-1d'
+                            });
             })
 </script>
+

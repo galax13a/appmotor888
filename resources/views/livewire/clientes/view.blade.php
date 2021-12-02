@@ -33,10 +33,13 @@
 								<td>+</td></td> 
 								<th>Name</th>
 								<th>placas</th>
-								<th>Wsp1</th>
-								
+								<th>Phone</th>
 								<th>Status</th>
-								<th>Empresa Id</th>
+							@php /*
+									<th>Empresa Id</th>
+									*/
+							@endphp
+							
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
@@ -53,8 +56,8 @@
 								<td>
 							
 								@foreach($this->getplaca($row->id) as $placa)
-										<span class="badge  btn btn-secondary "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="33" height="33" alt="">	{{ Str::upper($placa->name) }}
-										<a class="btn btn-danger " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
+										<span class="badge  btn btn-success "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="36" height="36" alt="">	{{ Str::upper($placa->name) }}
+										<a class="btn btn-dark " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
 								</span>
 										@endforeach
 							</td>
@@ -70,7 +73,12 @@
 							</div>
 							</div>
 								</td>
+								@php
+									
+							 	/*
 								<td>{{$row->empresa_id}} - <strong>{{ $row->empresa->name }}</strong></td>
+								*/
+								@endphp
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
