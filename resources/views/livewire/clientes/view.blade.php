@@ -53,7 +53,7 @@
 								<td>
 							
 								@foreach($this->getplaca($row->id) as $placa)
-										<span class="badge  btn btn-dark "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="33" height="33" alt="">	{{ Str::upper($placa->name) }}
+										<span class="badge  btn btn-secondary "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="33" height="33" alt="">	{{ Str::upper($placa->name) }}
 										<a class="btn btn-danger " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
 								</span>
 										@endforeach
