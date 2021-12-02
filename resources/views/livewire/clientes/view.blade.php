@@ -45,17 +45,15 @@
 							@foreach($clientes as $row)
 							<tr>
 								<td>
-								<i class="fa fa-car p-2"></i>
+								<i class="fa fa-car p-2  "></i>
 								</i>
-							<button type="button" class="btn btn-dark"><i class="fa fa-plus-circle p-1 bg-info" data-toggle="modal" data-target="#addModal"  wire:click="addcars({{$row->id}}, '{{$row->name}}')"></i></button>
+							<button type="button" class="btn btn-dark"><i class="fa fa-plus-circle p-1 bg-dark" data-toggle="modal" data-target="#addModal"  wire:click="addcars({{$row->id}}, '{{$row->name}}')"></i></button>
 							</td> 
 								<td><strong>{{ Str::ucfirst($row->name) }}</strong> </td>
 								<td>
 							
 								@foreach($this->getplaca($row->id) as $placa)
-								
-										<img src="/css/cars/bike{{$placa->icon}}.svg "  width="33" height="33" alt="">
-										<span class="badge  btn btn-dark ">	{{ Str::upper($placa->name) }}
+										<span class="badge  btn btn-dark "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="33" height="33" alt="">	{{ Str::upper($placa->name) }}
 										<a class="btn btn-danger " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
 								</span>
 										@endforeach
