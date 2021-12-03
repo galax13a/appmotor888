@@ -2,8 +2,9 @@
 <div wire:ignore.self class="modal fade" id="vistaModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> Services Payment</h5>
+            <div class="modal-header bg-danger text-light">
+                <i class="fa fa-car" aria-hidden="true"></i> MotorBike App 
+                <h5 class="modal-title" id="exampleModalLabel">. Services Payment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -52,7 +53,7 @@
                     </div>
                     <hr>
                     @endforeach
-                    <div class="container p-1 bg-danger shadown">
+                    <div class="container p-1  shadown">
                         <div class="row">
                           <div class="col">
                             <strong>
@@ -63,7 +64,7 @@
                           <strong> Servicios sin pagar </strong>  
                           </div>
                           <div class="col"> 
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" class="btn btn-danger">
                                 <strong>$ {{ number_format($total_all) }}
                                 </strong> 
                             </button>
@@ -83,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Pagar</button>
+             
             </div>
         </div>
     </div>

@@ -2,8 +2,10 @@
 <div wire:ignore.self class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> {{ Str::upper($operario_name)}} :: Services</h5>
+          
+              <div class="modal-header bg-warning text-dark">
+                <i class="fa fa-car" aria-hidden="true"></i> MotorBike App 
+                <h5 class="modal-title" id="exampleModalLabel">. #Services <i class="fa fa-user" aria-hidden="true"></i> {{Str::upper($operario_name)}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
