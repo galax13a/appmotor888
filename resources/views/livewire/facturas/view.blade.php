@@ -83,15 +83,16 @@
                               </div>
                               <div class="col">
                            
-                                  <button type="button" class="btn btn-light">{{ $fecha}}</button>
+                             
+                               <span class="badge rounded-pill bg-warning text-dark">  {{ $fecha}}</span>
                              
                               </div>
 
                               <div class="col">
-                                <button type="button" class="btn btn-success" >
+                                <button type="button" class="btn btn-success btn-sm" >
                                     <i class="fa fa-arrow-up" wire:click="newdate(1)" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger" wire:click="newdate(0)">
+                                    <button type="button" class="btn btn-danger btn-sm" wire:click="newdate(0)">
                                     <i class="fa fa-arrow-down" aria-hidden="true "></i>
                                   </button>
 
