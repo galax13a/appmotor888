@@ -21,7 +21,7 @@ class Facturas extends Component
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
 	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
-    public  $array_nopayment, $nopayment, $contador;
+    public  $array_nopayment, $nopayment, $contador ,$daty;
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -74,6 +74,7 @@ class Facturas extends Component
 	{
 		$this->userEmpresa = Auth::user()->empresa_id;
 		$this->fecha = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
+		$this->daty =date('Y-m-d');
 		$this->fecha_server =  date('Y-m-d h:i:s');
 		$this->operario_name = null;
 		$this->total = null;

@@ -38,7 +38,7 @@
                               <div class="row">
                                 <div class="col">
                                     <div class="form-group" wire:ignore>
-                                        <select class="form-select" id="servicio_id" wire:model="servicio_id">
+                                        <select class="form-select form-select-lg mb-3"" id="servicio_id" wire:model="servicio_id">
 											<option value=""> Seleccione Servicio: </option>
                                             @foreach ($servicios as $servicio)
                                                 <option value="{{ $servicio->id }}-{{$servicio->value}}-{{$servicio->porcentaje}}">
@@ -78,23 +78,23 @@
                                 </div>
 																
 								<div class="col">
-									<button wire:click="save()" type="button" class="btn btn-outline-info btn-sm">Save</button>
-								</div>
+			
+                                    <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-danger"><i class="fa fa-plus-circle p-1 bg-danger" ></i></button>
+                                </div>
                               </div>
                               <div class="col">
                            
-                             
-                               <span class="badge rounded-pill bg-warning text-dark">  {{ $fecha}}</span>
+                               
+                               <span  class="badge rounded-pill bg-warning text-dark ">  {{ $fecha}}</span>
                              
                               </div>
 
                               <div class="col">
-                                <button type="button" class="btn btn-success btn-sm" >
-                                    <i class="fa fa-arrow-up" wire:click="newdate(1)" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-sm" wire:click="newdate(0)">
-                                    <i class="fa fa-arrow-down" aria-hidden="true "></i>
-                                  </button>
+                                <div class="input-group input-group-sm">
+                                   
+                                    <input size="2" wire:model="daty" type="text" class="input-group-text-sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+
 
                               </div>
                             </div>
@@ -245,6 +245,8 @@
 <script>
     document.addEventListener('livewire:load', function() {
        
+     
+
 		$("#servicio_id").select2();
         $("#placa").select2();
 		$("#operario_id").select2();
@@ -261,14 +263,40 @@
 		$("#operario_id").on("change", function() {
             @this.set('operario_id', this.value);
         })
+        
+       
+        $("#daty").on('keypress',function(e) {
+            if(e.which == 13) {
+               // alert('Change Date');
+                //@this.set('fecha', $("#daty").val());
+            }
+        });
+
+      
 
 		window.livewire.on('combos', () => {
 		//$('#exampleModal').modal('hide');
-		$("#servicio_id").select2();
-		$("#placa").select2();
-		$("#operario_id").select2();
-		//alert('combos');
-	});
+                $("#servicio_id").select2();
+                $("#placa").select2();
+                $("#operario_id").select2();
+                //alert('combos');
+            });
+
+                $.noConflict();
+                    
+              $( "#daty" ).datepicker({
+                                dateFormat : 'yy/mm/dd',
+                                changeMonth : true,
+                                changeYear : true,
+                                yearRange: '-100y:c+nn',
+                                maxDate: '+1d'
+                            });
+
+                            $('#daty').change(function(){
+                                var thisDate = $(this).val();
+                                 @this.set('fecha', thisDate);
+                            });
+                        
 
     })
 </script>
