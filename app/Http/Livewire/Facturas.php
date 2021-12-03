@@ -22,7 +22,7 @@ class Facturas extends Component
 	public $updateMode = false;
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
-	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales;
+	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax;
 
 	public function updatingKeyWord()
 	{
@@ -118,7 +118,7 @@ class Facturas extends Component
 	public function render()
 	{
 		$keyWord = '%' . $this->keyWord . '%';
-		$this->fecha = date('Y-m-d'); 
+		//$this->fecha = date('Y-m-d'); 
 		
 
 		$this->mycarrs  = DB::table('clientes')
@@ -212,7 +212,12 @@ class Facturas extends Component
 		$this->emit('closeModal');
 		session()->flash('message', 'Factura Successfully created.');
 	}
+  public function newdate($id){
 
+	if($id ==1){ // es por que va aumentar la fecha
+		$this->fecha = date("Y-m-d",strtotime("+ 1 days")); 
+	}else $this->fecha = date("Y-m-d",strtotime("- 1 days")); 
+  }
 	public function edit($id)
 	{
 		$record = Factura::findOrFail($id);
@@ -227,6 +232,7 @@ class Facturas extends Component
 		$this->servicio_id = $record->servicio_id;
 		$this->operario_id = $record->operario_id;
 		$this->empresa_id = $record->empresa_id;
+		$this->fechax = $record->fecha;
 
 		$this->updateMode = true;
 	}
@@ -256,7 +262,8 @@ class Facturas extends Component
 				'cliente_id' => $this->cliente_id,
 				'servicio_id' => $this->servicio_id,
 				'operario_id' => $this->operario_id,
-				'empresa_id' => $this->empresa_id
+				'empresa_id' => $this->empresa_id,
+				'fecha' => $this->fechax
 			]);
 
 			$this->resetInput();

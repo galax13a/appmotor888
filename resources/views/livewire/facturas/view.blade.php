@@ -81,6 +81,21 @@
 									<button wire:click="save()" type="button" class="btn btn-outline-info btn-sm">Save</button>
 								</div>
                               </div>
+                              <div class="col">
+                           
+                                  <button type="button" class="btn btn-light">{{ $fecha}}</button>
+                             
+                              </div>
+
+                              <div class="col">
+                                <button type="button" class="btn btn-success" wire:click="newdate(1)">
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" wire:click="newdate(0)">
+                                    <i class="fa fa-arrow-down" aria-hidden="true "></i>
+                                  </button>
+
+                              </div>
                             </div>
                         </div>
 

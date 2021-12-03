@@ -20,7 +20,7 @@ class Factura extends Model
      */
     public function cliente()
     {
-        return $this->hasOne('App\Models\Cliente', 'id', 'cliente_id');
+        return $this->hasOne('App\Models\Cliente', 'id', 'cliente_id', 'fecha');
     }
     
     /**

@@ -20,6 +20,10 @@
                 <input wire:model="value" type="text" class="form-control" id="value" placeholder="Value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
+                <label for="fecha"></label>
+                <input wire:model="fechax" type="text" class="form-control" id="fechax" placeholder="Fecha ">@error('fechax') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
                 <label for="empresa"></label>
                 <input wire:model="empresa" type="text" class="form-control" id="empresa" placeholder="Empresa">@error('empresa') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
