@@ -33,6 +33,30 @@
                                 </div>
                               </div>
                         </div>
+
+                      
+                          <div class="container p-1">
+                            <div class="row">
+                              <div class="col">
+                                #Factory
+                              </div>
+                              <div class="col">
+                                Date
+                              </div>
+                              <div class="col">
+                                <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha}}</span>
+                           
+                              </div>
+                              <div class="col">
+                                <div class="input-group input-group-sm">
+                               
+                                    <input size="6" wire:model="daty" type="text" class="input-group-text sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
                         <div class="container lg">
                             <div class="row align-items-start">
                               <div class="row">
@@ -85,18 +109,10 @@
                               <div class="col">
                            
                                
-                               <span  class="badge rounded-pill bg-warning text-dark ">  {{ $fecha}}</span>
-                             
+                              
                               </div>
 
-                              <div class="col">
-                                <div class="input-group input-group-sm">
-                                   
-                                    <input size="2" wire:model="daty" type="text" class="input-group-text-sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-
-                              </div>
+                            
                             </div>
                         </div>
 
