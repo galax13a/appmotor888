@@ -8,10 +8,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         </div>
-                        @if (session()->has('message'))
-                            <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
-                                {{ session('message') }} </div>
-                        @endif
+                      
 						<div class="container">
 
                             
@@ -20,7 +17,7 @@
                                     @foreach ($operarios as $operario)
                                   <div class="col float-right" data-toggle="modal" data-target="#exampleModal" wire:click="servicios_operador({{$operario->id}}, '{{$operario->name}}')">
                                     <button type="button" class="btn btn-dark float-center" style=" margin-top: -15px;">
-                                        {{ substr(Str::upper($operario->name),0,8) }} 
+                                        {{ substr(Str::upper($operario->name),0,6) }} 
                                          <span class="badge bg-danger" >
                                              @foreach ($this->get_servicios($operario->id) as $dato )
                                             {{ $dato->allservice }}
@@ -35,23 +32,38 @@
                         </div>
 
                       
-                          <div class="container p-1">
+                          <div class="container m-22 p-2">
                             <div class="row">
                               <div class="col">
-                                #Factory
+                                <strong>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  <i class="fa fa-ban" aria-hidden="true"></i> No Payment</button>
+                                </strong>
                               </div>
                               <div class="col">
-                                Date Server <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha_server}}</span>
+                                <strong>
+                                    <button type="button" class="btn btn-success" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Payment To</button>
+                                </strong>
+                                @if (session()->has('message'))
+                                <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
+                                    {{ session('message') }} </div>
+                            @endif
                               </div>
+
+                              <div class="col">
+                                <div class="input-group input-group-sm">
+                                   <input size="6" wire:model="daty" type="text" style="cursor: pointer;" class="input-group-text sm bg-primary text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
+                              </div>
+
                               <div class="col">
                                 <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha}}</span>
                            
-                              </div>
+                               </div>
                               <div class="col">
-                                <div class="input-group input-group-sm">
-                                   <input size="6" wire:model="daty" type="text" class="input-group-text sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha_server}}</span>
+                              
                               </div>
+                             
                             </div>
                           </div>
 
@@ -102,18 +114,10 @@
 																
 								<div class="col">
 			
-                                    <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-danger"><i class="fa fa-plus-circle p-1 bg-danger" ></i></button>
+                                    <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i></button>
                                 </div>
                               </div>
-                              <div class="col">
                            
-                               
-                              
-                              </div>
-
-                            
-                            </div>
-                        </div>
 
                         <div class="input-group input-group-lg">
                             <input wire:model='keyWord' type="text" class="form-control input-lg" name="search"
@@ -239,10 +243,9 @@
                       </div>
 
                       <div class="col order">
+                        <strong>
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  No Payment</button>
-                  <strong>
-                    
-                  </strong>
+                         </strong>
                     </div>
                       
 

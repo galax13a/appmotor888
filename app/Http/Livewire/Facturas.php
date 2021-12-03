@@ -21,7 +21,7 @@ class Facturas extends Component
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
 	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
-    public  $array_nopayment, $nopayment, $contador ,$daty;
+    public  $array_nopayment, $nopayment, $contador ,$daty, $filtro;
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -31,6 +31,11 @@ class Facturas extends Component
 	{
 		// return 'placa id : ' . $id;
 		return  Mycar::Where("id", $id)->get();
+	}
+	public function get_payment(){
+
+		$this->filtro = true;
+		session()->flash('message', 'Change Date Payment');
 	}
 	public function get_nopayment(){
 	
@@ -164,18 +169,29 @@ class Facturas extends Component
 			->get();
 
 		}
+ if(!$this->filtro) {
+					return view('livewire.facturas.view', [
+						'facturas' => Factura::latest()
+							->Where('empresa_id', $this->userEmpresa)
+							->Where('placa', 'LIKE', $keyWord)
+							->Where("facturas.empresa_id", Auth::user()->empresa_id)
+							->orderBy('created_at', 'desc')
+							->paginate(45)
+					]);
 
-		return view('livewire.facturas.view', [
-			'facturas' => Factura::latest()
-				->Where('empresa_id', $this->userEmpresa)
-				->Where('placa', 'LIKE', $keyWord)
-				->Where("facturas.empresa_id", Auth::user()->empresa_id)
-				->orderBy('created_at', 'desc')
-				->paginate(45),
-			'servicios' => $this->servicios
-		]);
-
-		$this->emit('combos');
+					   $this->emit('combos');
+			     	}else {
+						return view('livewire.facturas.view', [
+							'facturas' => Factura::latest()
+								->Where('empresa_id', $this->userEmpresa)
+								->Where('placa', 'LIKE', $keyWord)
+								->Where("facturas.empresa_id", Auth::user()->empresa_id)
+								->Where('facturas.fecha', $this->fecha)
+								->orderBy('created_at', 'desc')
+								->paginate(70)
+						]);
+						$this->emit('combos');
+					 }
 	}
 
 	public function cancel()
