@@ -41,7 +41,7 @@
                                 #Factory
                               </div>
                               <div class="col">
-                                Date
+                                Date Server <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha_server}}</span>
                               </div>
                               <div class="col">
                                 <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha}}</span>
@@ -49,8 +49,7 @@
                               </div>
                               <div class="col">
                                 <div class="input-group input-group-sm">
-                               
-                                    <input size="6" wire:model="daty" type="text" class="input-group-text sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                                   <input size="6" wire:model="daty" type="text" class="input-group-text sm" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                               </div>
                             </div>
