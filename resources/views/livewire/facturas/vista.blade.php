@@ -13,8 +13,9 @@
 				<form>
             <div class="form-group" >
                 <h5 class="text-center">Services Today {{ $this->fecha}} </h5> 
-                <div wire:loading>
+                <div wire:loading class="text-center">
                     Processing Payment...
+                    <img src="/css/login.gif" alt="Loanding..">
                 </div>
                 <div class="container m-2 p-2" >
                     @if($array_nopayment)
