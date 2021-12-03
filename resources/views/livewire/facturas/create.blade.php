@@ -14,6 +14,9 @@
 				<form>
             <div class="form-group" >
                 <h5 class="text-center">Services Today {{ $this->fecha}} </h5> 
+                <div wire:loading class="text-center">
+                  Processing Database...
+              </div>
                 <div class="container m-2 p-2" >
                     @if($myservicios)
                     @foreach ($myservicios as $service)
