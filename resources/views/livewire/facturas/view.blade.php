@@ -51,7 +51,7 @@
 
                               <div class="col">
                                 <div class="input-group input-group-sm">
-                                   <input size="6" wire:model="daty" type="text" style="cursor: pointer;" class="input-group-text sm bg-primary text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                                   <input size="6" wire:model="daty" type="text" style="cursor: pointer;" title="Change Date" class="input-group-text sm bg-primary text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                               </div>
 

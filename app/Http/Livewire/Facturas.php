@@ -33,9 +33,9 @@ class Facturas extends Component
 		return  Mycar::Where("id", $id)->get();
 	}
 	public function get_payment(){
-
+		session()->flash('message', 'Change Date Payment ' . $this->fecha);
 		$this->filtro = true;
-		session()->flash('message', 'Change Date Payment');
+		
 	}
 	public function get_nopayment(){
 	
