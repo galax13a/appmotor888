@@ -88,8 +88,8 @@
                               </div>
 
                               <div class="col">
-                                <button type="button" class="btn btn-success" wire:click="newdate(1)">
-                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                <button type="button" class="btn btn-success" >
+                                    <i class="fa fa-arrow-up" wire:click="newdate(1)" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger" wire:click="newdate(0)">
                                     <i class="fa fa-arrow-down" aria-hidden="true "></i>

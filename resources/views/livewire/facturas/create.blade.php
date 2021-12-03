@@ -17,6 +17,8 @@
                     @foreach ($myservicios as $service)
                     @php
                         $total = $service->operario + $total;
+                        $total_empresa = $service->empresa + $total_empresa;
+                        $total_all = $service->value + $total_all;
                     @endphp
                     <div class="row">
                       
@@ -46,22 +48,62 @@
                     </div>
                     <hr>
                     @endforeach
-                    <div class="container">
+                    <div class="container p-1 bg-warning shadown">
                         <div class="row">
                           <div class="col">
+                            <strong>
                             {{$operario_name}}
+                          </strong>
+                          </div>
+                          <div class="col">
+                             Total @ pagar
+                          </div>
+                          <div class="col"> 
+                            <button type="button" class="btn btn-success">
+                                <strong>$ {{ number_format($total) }}
+                                </strong> 
+                            </button>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="container p-1">
+                        <div class="row">
+                          <div class="col">
+                            Empresa : 
                           </div>
                           <div class="col">
                              Total
                           </div>
                           <div class="col"> 
-                            <button type="button" class="btn btn-outline-success">
-                                <strong>$ {{ number_format($total,2) }}
-                        </strong> 
-                    </button>
+                            <button type="button" class="btn btn-outline-warning">
+                                <strong>$ {{ number_format($total_empresa,2) }}
+                                </strong> 
+                            </button>
                           </div>
+                          
                         </div>
                       </div>
+
+                      <div class="container p-1">
+                        <div class="row">
+                          <div class="col">
+                           Services Totals :
+                          </div>
+                          <div class="col">
+                             Total
+                          </div>
+                          <div class="col"> 
+                            <button type="button" class="btn btn-outline-danger">
+                                <strong>$ {{ number_format($total_all,2) }}
+                                </strong> 
+                            </button>
+                          </div>
+                          
+                        </div>
+                      </div>
+
                     @endif
                   </div>
             

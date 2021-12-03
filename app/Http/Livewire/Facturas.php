@@ -22,7 +22,7 @@ class Facturas extends Component
 	public $updateMode = false;
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
-	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax;
+	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
 
 	public function updatingKeyWord()
 	{
