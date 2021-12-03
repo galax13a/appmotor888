@@ -23,7 +23,7 @@ class Facturas extends Component
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
 	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
-
+    public  $array_nopayment, $nopayment, $contador;
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -33,6 +33,18 @@ class Facturas extends Component
 	{
 		// return 'placa id : ' . $id;
 		return  Mycar::Where("id", $id)->get();
+	}
+	public function get_nopayment(){
+	
+		$this->array_nopayment  = DB::table('facturas')
+			->join('services', 'facturas.servicio_id', '=', 'services.id')
+			->join('carstypes','services.cars_id', '=', 'carstypes.id')
+			->select('facturas.placa', 'services.porcentaje' ,'carstypes.name as cars', 'carstypes.icon as icon', 'services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
+			->Where("facturas.empresa_id", Auth::user()->empresa_id)
+			->where('facturas.status', 0)
+			->where('facturas.fecha', $this->fecha)
+			->orderBy('facturas.created_at', 'desc')
+			->get();
 	}
 	public function servicios_operador($id,$name){
 		$this->operario_name = $name;
@@ -120,6 +132,10 @@ class Facturas extends Component
 		$keyWord = '%' . $this->keyWord . '%';
 		//$this->fecha = date('Y-m-d'); 
 		
+		if($this->array_nopayment) 
+		{
+			$this->get_nopayment();
+		}
 
 		$this->mycarrs  = DB::table('clientes')
 			->join('mycars', 'clientes.id', '=', 'mycars.cliente_id')

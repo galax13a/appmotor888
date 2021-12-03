@@ -112,6 +112,7 @@
                     @include('livewire.facturas.create')
                     @include('livewire.facturas.update')
                     @include('livewire.facturas.new')
+                    @include('livewire.facturas.vista')
                    
                  
                     <div class="table-responsive">
@@ -220,6 +221,15 @@
                       
                     </strong>
                       </div>
+
+                      <div class="col order">
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  No Payment</button>
+                  <strong>
+                    
+                  </strong>
+                    </div>
+                      
+
                       @endforeach
 
                     </div>
