@@ -19,23 +19,32 @@
                   <img src="/css/login.gif" alt="Loanding..">
               </div>
                 <div class="container m-2 p-2" >
+                 
                     @if($myservicios)
                     @foreach ($myservicios as $service)
                     @php
                         $total = $service->operario + $total;
                         $total_empresa = $service->empresa + $total_empresa;
                         $total_all = $service->value + $total_all;
+                        $contador = $contador + 1;
                     @endphp
                     <div class="row">
                       
                       <div class="col">
-                        {{$service->servicio}}
+                        {{ $contador}} 
+                       ) {{ Str::upper($service->servicio)}}
+                      
                       </div>
                       <div class="col">
                         <button type="button"class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title=" $ {{number_format($service->value,2)}}">
                             {{ number_format($service->operario,2)}}
                           </button>
-                        
+                          <br>
+                          <p class="text-center text-bold">
+                            <strong>
+                            Hace {{ \Carbon\Carbon::parse($service->created_at)->diffForHumans() }}
+                          </strong>
+                          </p>
                       </div>
                      
                       <div class="col">
@@ -49,8 +58,10 @@
                         <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="{{$service->porcentaje}} %">
                            <strong>{{ Str::upper($service->placa)}} </strong>
                           </button>
-                      
+                         
                       </div>
+
+
                     </div>
                     <hr>
                     @endforeach
@@ -62,7 +73,7 @@
                           </strong>
                           </div>
                           <div class="col">
-                             Total @ pagar
+                           <strong> Total @ Pagar </strong> 
                           </div>
                           <div class="col"> 
                             <button type="button" class="btn btn-success">
@@ -120,7 +131,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Pagar</button>
+                <button type="button" wire:click.prevent="pay({{$idoperario}})" class="btn btn-primary close-modal">Pagar</button>
             </div>
         </div>
     </div>

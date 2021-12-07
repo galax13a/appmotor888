@@ -5,19 +5,27 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Operario;
+use App\Models\Gasto;
+use Illuminate\Support\Facades\Auth;
 
 class Operarios extends Component
 {
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $name, $dni, $wsp, $status, $empresa_id;
+    public $selected_id, $keyWord, $name, $dni, $wsp, $status;
     public $updateMode = false;
+    public $gastos, $gasto_id, $empresa_id;
 
     public function updatingKeyWord(){
         $this->resetPage();
     }
     
+    public function  mount(){
+        $this->empresa_id = Auth::user()->empresa_id;
+        $this->gastos =  Gasto::Where('empresa_id', $this->empresa_id)->get();
+    }
+
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -73,6 +81,7 @@ class Operarios extends Component
 		$this->wsp = $record-> wsp;
 		$this->status = $record-> status;
 		//$this->empresa_id = $record-> empresa_id;
+        $this->gasto_id = $record-> gasto_id;
 		
         $this->updateMode = true;
     }
@@ -81,6 +90,7 @@ class Operarios extends Component
     {
         $this->validate([
 		'name' => 'required',
+        'gasto_id' => 'required'
         ]);
 
         if ($this->selected_id) {
@@ -89,7 +99,8 @@ class Operarios extends Component
 			'name' => $this-> name,
 			'dni' => $this-> dni,
 			'wsp' => $this-> wsp,
-			'status' => $this-> status
+			'status' => $this-> status,
+            'gasto_id' =>$this->gasto_id
             ]);
 
             $this->resetInput();

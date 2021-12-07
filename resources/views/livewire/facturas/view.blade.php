@@ -16,7 +16,7 @@
                                 <div class="row m-2 md:grid-cols-2">
                                     @foreach ($operarios as $operario)
                                   <div class="col float-right" data-toggle="modal" data-target="#exampleModal" wire:click="servicios_operador({{$operario->id}}, '{{$operario->name}}')">
-                                    <button type="button" class="btn btn-dark float-center" style=" margin-top: -15px;">
+                                    <button type="button" class="btn btn-dark float-center m-1" style=" margin-top: -15px;">
                                         {{ substr(Str::upper($operario->name),0,6) }} 
                                          <span class="badge bg-danger" >
                                              @foreach ($this->get_servicios($operario->id) as $dato )
@@ -43,19 +43,17 @@
                                 <strong>
                                     <button type="button" class="btn btn-success" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Payment To</button>
                                 </strong>
-                                @if (session()->has('message'))
-                                <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
-                                    {{ session('message') }} </div>
-                            @endif
+                              
                               </div>
 
-                              <div class="col">
+                              <div class="col m-1">
                                 <div class="input-group input-group-sm">
                                    <input size="6" wire:model="daty" type="text" style="cursor: pointer;" title="Change Date" class="input-group-text sm bg-primary text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                               </div>
 
-                              <div class="col">
+                              <div class="col m-1">
+                                  
                                 <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha}}</span>
                            
                                </div>
@@ -67,13 +65,14 @@
                             </div>
                           </div>
 
+                      
 
                         <div class="container lg">
                             <div class="row align-items-start">
                               <div class="row">
                                 <div class="col">
                                     <div class="form-group" wire:ignore>
-                                        <select class="form-select form-select-lg mb-3"" id="servicio_id" wire:model="servicio_id">
+                                        <select class="select2"" id="servicio_id" wire:model="servicio_id">
 											<option value=""> Seleccione Servicio: </option>
                                             @foreach ($servicios as $servicio)
                                                 <option value="{{ $servicio->id }}-{{$servicio->value}}-{{$servicio->porcentaje}}">
@@ -116,6 +115,10 @@
 			
                                     <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i></button>
                                 </div>
+                                @if (session()->has('message'))
+                                <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
+                                    {{ session('message') }} </div>
+                            @endif
                               </div>
                            
 
@@ -134,7 +137,7 @@
                     @include('livewire.facturas.new')
                     @include('livewire.facturas.vista')
                    
-                 
+            
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
                             <thead class="thead">
@@ -236,10 +239,10 @@
                     </strong>
                       </div>
                       <div class="col order-first">
-                          <button type="button" class="btn btn-outline-dark">  Operarios  : $ {{ number_format($empresa_total->operario,2)}}</button>
-                    <strong>
-                      
-                    </strong>
+                       
+                          <button type="button" class="btn btn-outline-dark">  <strong> Operarios  : $ {{ number_format($empresa_total->operario,2)}}   </strong>
+                        </button>                   
+                  
                       </div>
 
                       <div class="col order">

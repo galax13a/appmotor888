@@ -20,7 +20,7 @@ class Clientes extends Component
     public $updateMode = false;
     public $empresas, $carsmotor,$mycars;
     public $userEmpresa, $name_cliente;
-    public $placa_id, $cars_id;
+    public $placa_id, $cars_id, $placa_busca;
 
 
     public function updatingKeyWord(){
@@ -43,16 +43,30 @@ class Clientes extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
+        $placa_busca = '%'.$this->placa_busca .'%';
       
         $this->cars = Carstype::Where('empresa_id', $this->userEmpresa)->get();
         $this->userEmpresa = Auth::user()->empresa_id;
 
-        return view('livewire.clientes.view', [
-            'clientes' => Cliente::latest()
-                        ->Where('empresa_id', $this->userEmpresa)
-						->Where('name', 'LIKE', $keyWord)
-						->paginate(10),
-        ]);
+        if(empty($this->placa_busca)){
+            return view('livewire.clientes.view', [
+                'clientes' => Cliente::latest()
+                            ->Where('empresa_id', $this->userEmpresa)
+                            ->Where('name', 'LIKE', $keyWord)
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(50)
+            ]);
+        }else {
+            return view('livewire.clientes.view', [
+                'clientes' => Cliente::latest()
+                            ->Where('empresa_id', $this->userEmpresa)
+                            ->Where('name', 'LIKE', $keyWord)
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(50)
+
+                        ]);
+                        
+        }
     }
 	
     public function cancel()

@@ -13,7 +13,7 @@ class Operario extends Model
 
     protected $table = 'operarios';
 
-    protected $fillable = ['name','dni','wsp','status','empresa_id'];
+    protected $fillable = ['name','dni','wsp','status','empresa_id','gasto_id'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

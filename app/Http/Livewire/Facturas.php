@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
+
 class Facturas extends Component
 {
 	use WithPagination;
@@ -37,12 +38,17 @@ class Facturas extends Component
 		$this->filtro = true;
 		
 	}
+	public function pay($id, $gasto_id=null){
+
+	}
+
+
 	public function get_nopayment(){
 	
 		$this->array_nopayment  = DB::table('facturas')
 			->join('services', 'facturas.servicio_id', '=', 'services.id')
 			->join('carstypes','services.cars_id', '=', 'carstypes.id')
-			->select('facturas.placa', 'services.porcentaje' ,'carstypes.name as cars', 'carstypes.icon as icon', 'services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
+			->select('facturas.created_at','facturas.placa', 'services.porcentaje' ,'carstypes.name as cars', 'carstypes.icon as icon', 'services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
 			->Where("facturas.empresa_id", Auth::user()->empresa_id)
 			->where('facturas.status', 0)
 			->where('facturas.fecha', $this->fecha)
@@ -56,7 +62,7 @@ class Facturas extends Component
 		$this->myservicios  = DB::table('facturas')
 			->join('services', 'facturas.servicio_id', '=', 'services.id')
 			->join('carstypes','services.cars_id', '=', 'carstypes.id')
-			->select('facturas.placa', 'services.porcentaje' ,'carstypes.name as cars', 'carstypes.icon as icon', 'services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
+			->select('facturas.created_at','facturas.placa', 'services.porcentaje' ,'carstypes.name as cars', 'carstypes.icon as icon', 'services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
 			->Where("facturas.empresa_id", Auth::user()->empresa_id)
 			->where('facturas.operario_id',$this->idoperario)
 			->where('facturas.fecha', $this->fecha)
@@ -74,6 +80,7 @@ class Facturas extends Component
 				 	   ->get();      
 
 	}
+
 
 	public function mount()
 	{
@@ -127,7 +134,9 @@ class Facturas extends Component
 			'fecha' => $this->fecha
 		]);
 
-		$this->resetInput();
+		session()->flash('message', 'Save Register ') . $idplaca;
+		//$this->resetInput();
+		$this->placa = null;
 		$this->emit('combos');
 	}
 
@@ -161,7 +170,7 @@ class Facturas extends Component
 			$this->myservicios  = DB::table('facturas')
 			->join('services', 'facturas.servicio_id', '=', 'services.id')
 			->join('carstypes','services.cars_id', '=', 'carstypes.id')
-			->select('facturas.placa', 'services.porcentaje', 'carstypes.name as cars', 'carstypes.icon as icon','services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
+			->select('facturas.created_at','facturas.placa', 'services.porcentaje', 'carstypes.name as cars', 'carstypes.icon as icon','services.name as servicio', 'facturas.value', 'facturas.empresa','facturas.operario','facturas.fecha','facturas.operario_id')
 			->Where("facturas.empresa_id", Auth::user()->empresa_id)
 			->where('facturas.operario_id',$this->idoperario)
 			->where('facturas.fecha', $this->fecha)
@@ -188,7 +197,7 @@ class Facturas extends Component
 								->Where("facturas.empresa_id", Auth::user()->empresa_id)
 								->Where('facturas.fecha', $this->fecha)
 								->orderBy('created_at', 'desc')
-								->paginate(70)
+								->paginate(100)
 						]);
 						$this->emit('combos');
 					 }

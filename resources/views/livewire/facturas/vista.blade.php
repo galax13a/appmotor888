@@ -29,13 +29,19 @@
                       
                       <div class="col">
                           {{ $contador}} )
-                        {{$service->servicio}}
+                        {{ Str::upper($service->servicio)}}
+                       
                       </div>
                       <div class="col">
                         <button type="button"class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title=" $ {{number_format($service->value,2)}}">
                             {{ number_format($service->value,2)}}
                           </button>
-                        
+                          <br>
+                          <p class="text-center text-bold">
+                            <strong>
+                            Hace {{ \Carbon\Carbon::parse($service->created_at)->diffForHumans() }}
+                          </strong>
+                          </p>
                       </div>
                      
                       <div class="col">
@@ -49,8 +55,11 @@
                         <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="{{$service->porcentaje}} %">
                            <strong>{{ Str::upper($service->placa)}} </strong>
                           </button>
-                      
+
                       </div>
+                    
+                      
+                      
                     </div>
                     <hr>
                     @endforeach

@@ -37,6 +37,18 @@
                 <input wire:model="empresa_id" type="text" class="form-control" id="empresa_id" placeholder="Empresa Id">@error('empresa_id') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
+            <div class="form-group">
+               
+                <label for="gasto_id">Asigne Gasto Operario</label>
+                @error('gasto_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select    class="form-control"  id="gasto_id" wire:model="gasto_id">
+                    <option value=""> Seleccione  : </option>
+                    @foreach ($gastos as $gasto)
+                    <option  value="{{ $gasto->id }}" > {{ Str::upper($gasto->name) }} </option>
+                    @endforeach    
+                </select>
+            </div>
+
                 </form>
             </div>
             <div class="modal-footer">

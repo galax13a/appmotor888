@@ -12,6 +12,9 @@
 						<div class="input-group input-group-lg">
 							<input wire:model='keyWord' type="text" class="form-control input-lg" name="search" id="search" placeholder="Search">
 						</div>
+						<div class="input-group input-group-lg p-2">
+							<input wire:model='placa_busca' type="text" class="form-control input-lg" name="placa_busca" id="placa_busca" placeholder="Search Placa">
+						</div>
 						<div class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#exampleModal">
 							<i class="fa fa-plus p-2 btn-success data-bs-toggle="tooltip" data-bs-placement="top" title="Create New"></i>  
 							</div>
