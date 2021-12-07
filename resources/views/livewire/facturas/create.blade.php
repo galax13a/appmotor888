@@ -22,8 +22,7 @@ background: linear-gradient(to bottom, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, 
             <div class="form-group" >
                 <h5 class="text-center">Services Today {{ $this->fecha}} </h5> 
                 <div wire:loading class="text-center">
-                  
-                  <img src="/css/login.gif" alt="Loanding..">
+                              <p>Loanding..</p>
               </div>
                 <div class="container m-2 p-2" >
                  
