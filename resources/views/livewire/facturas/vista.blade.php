@@ -1,7 +1,15 @@
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="vistaModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+      <div class="modal-content"
+      style="
+background: #DAD299;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #B0DAB9, #DAD299);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      "
+      >
+
             <div class="modal-header bg-danger text-light">
                 <i class="fa fa-car" aria-hidden="true"></i> MotorBike App 
                 <h5 class="modal-title" id="exampleModalLabel">. Services Payment</h5>
