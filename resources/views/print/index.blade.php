@@ -55,5 +55,9 @@
     </div>
     <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
 
+<script>
 
+imprimir();
+
+</script>
 </body></html>
