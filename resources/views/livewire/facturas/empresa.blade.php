@@ -62,7 +62,7 @@
                              Facturacion <br>
                             </strong> <br>
                             <h6> Una Vez configurado puede liquidar el ingreso a las ventas</h6>
-                            <?php $this->btn_pay = false; ?>
+                            <?php $this->btn_pay = 888; ?>
               @endif
            
 
@@ -73,11 +73,17 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button"
-                 @if (!$this->btn_pay ) disabled="disabled" @endif  
+           
+            @if ( !empty($this->btn_pay == 88))
 
-                 wire:click.prevent="pay_empresa({{$this->contable_service_id}},'{{$this->contable_service_name[0]->name}}', {{$total_liquidar}})"
-                  class="btn btn-primary close-modal">Enviar a Caja</button>
+            <button type="button"
+            @if (!$this->btn_pay ) disabled="disabled" @endif  
+            wire:click.prevent="pay_empresa({{$this->contable_service_id}},'{{$this->contable_service_name[0]->name}}', {{$total_liquidar}})"
+             class="btn btn-primary close-modal">Enviar a Caja
+           </button>
+      
+            @endif
+               
             </div>
         </div>
     </div>
