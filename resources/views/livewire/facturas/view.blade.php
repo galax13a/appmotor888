@@ -134,7 +134,7 @@
                 <div class="card-body">
                     @include('livewire.facturas.operario')
                     @include('livewire.facturas.update')
-                    @include('livewire.facturas.closefactory')
+                  
                     @include('livewire.facturas.payment')
                    
             
