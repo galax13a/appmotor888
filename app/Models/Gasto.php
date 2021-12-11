@@ -13,7 +13,7 @@ class Gasto extends Model
 
     protected $table = 'gastos';
 
-    protected $fillable = ['name','status','empresa_id', 'natu', 'value'];
+    protected $fillable = ['name','status','empresa_id', 'natu', 'value','contable'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -132,10 +132,10 @@
 			
 
                 <div class="card-body">
-                    @include('livewire.facturas.create')
+                    @include('livewire.facturas.operario')
                     @include('livewire.facturas.update')
-                    @include('livewire.facturas.new')
-                    @include('livewire.facturas.vista')
+                    @include('livewire.facturas.close_factory')
+                    @include('livewire.facturas.payment')
                    
             
                     <div class="table-responsive">
@@ -159,9 +159,11 @@
                             <tbody>
                                 @foreach ($facturas as $row)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration }}
+                                          
+                                        </td>
                                         <td>
-                                            <img src="/css/cars/bike{{ $row->service->carstype->icon }}.svg " width="33" height="33"alt="">
+                                            <img src="/css/cars/bike{{ $row->service->carstype->icon }}.svg" width="33" height="33"alt="">
                                             <strong>{{ Str::upper($row->placa) }}</strong>
                                         </td>
                                         <td><strong> {{ number_format($row->value, 2) }}</strong></td>
@@ -194,7 +196,16 @@
                                             
                                             </td>
                                         <td>{{ substr(Str::upper($row->operarios->name),0,6) }} </td>
-                                        <td>{{ $row->fecha }}</td>
+                                        <td>{{ $row->fecha }} 
+                                            <a href="{{ url('/imprimir/') }}/333/{{Str::upper($row->operarios->name)}}/{{ Str::upper($row->service->name) }}/{{ Str::upper($row->placa) }}/{{ number_format($row->value, 0) }}/{{ Str::substr($row->cliente->name,0,6) }}/{{ $row->service->carstype->icon }}.svg
+
+                                                " 
+                                                target="_blank" >
+                                            <button type="button" title="imprimir servicio" class="btn btn-sm btn-outline-dark">
+                                                 <i class="fa fa-print" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
+                                        </td>
                                         <td width="90">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-info btn-sm dropdown-toggle"
@@ -224,7 +235,7 @@
                     <div class="row">
                      @foreach ($empresa_totales as $empresa_total)
                       <div class="col order-last">
-                        <button type="button" class="btn btn-outline-info">
+                        <button type="button" title="Hacer Cierre de caja" data-toggle="modal" data-target="#closefactura" class="btn btn-outline-info">
                             <strong>
                                 Totales : $ {{ number_format($empresa_total->total,2)}}
                               </strong>
@@ -233,8 +244,12 @@
                       </div>
                    
                       <div class="col">
-                        <button type="button" class="btn btn-outline-success">
+                        <button type="button"  class="btn btn-outline-success">
                             <strong>
+                                <?php
+                                    $this->total_liquidar = $empresa_total->empresa;
+                                ?>
+
                                    Empresa : $ {{  number_format($empresa_total->empresa,2)}}</button>
                     </strong>
                       </div>
@@ -247,7 +262,7 @@
 
                       <div class="col order">
                         <strong>
-                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  No Payment</button>
+                        <button type="button"  class="btn btn-outline-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  No Payment</button>
                          </strong>
                     </div>
                       

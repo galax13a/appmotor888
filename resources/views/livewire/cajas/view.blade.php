@@ -4,6 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                    <div wire:poll.60s>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <h4 class="mr-2">
@@ -20,7 +21,7 @@
                     <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
                         {{ session('message') }} </div>
                 @endif
-                <div class="container">
+                <div id="contaner" class="container">
                     <div class="row">
                         <div class="col">
                             Contable : 
@@ -80,6 +81,14 @@
                             </thead>
                             <tbody>
                                 @foreach ($cajas as $row)
+                                <?php 
+                                if($row->gasto->natu == 0)  {
+                                    $total_gasto = $row->valor + $total_gasto;
+                                }else{
+                                    $total_ingreso = $row->valor + $total_ingreso;
+                                }
+                                
+                                ?>
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->name }}</td>
@@ -130,16 +139,33 @@
                                         </td>
 									
                                 @endforeach
+                                <?php
+                                  $total_caja = $total_ingreso - $total_gasto;
+                                ?>
                             </tbody>
                         </table>
                         {{ $cajas->links() }}
                     </div>
+
+                    <div id="totales" class="card text-right align-right m-3" style="width: 22rem; float:right; margin-right:24px;">
+                        <div class="card-header bg-warning">
+                          <h4>Estadisticas Caja {{ $this->fecha_serve}}</h4>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-danger-50"><h5>Cierre Gastos / {{ number_format($total_gasto) }} </h5></li>
+                          <li class="list-group-item bg-indigo-50"><h5>Cierre Ingresos / {{number_format($total_ingreso) }}</h5> </li>
+                          <li class="list-group-item bg-success"><h4>Totales  / $ {{ number_format($total_caja)}}</h4> </li>
+                        </ul>
+                      </div>
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        </div>
+            </div>
+        </div>
 
+       
 
 <script>
     document.addEventListener('livewire:load', function() {
@@ -151,12 +177,10 @@
             @this.set('gastos_id', this.value);
             var res = this.value.split("-")[1];
 			var cod = this.value.split("-")[0];
-            //alert('helo cb ' + res);
+          
             @this.set('value', res);
 			@this.set('id_gasto', cod);
 
-			//$("#value").focus();
-			
 			
         })
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IprintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +27,23 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::view('admin/clientes', 'livewire.clientes.index')->middleware('auth');
-	Route::view('admin/gastos', 'livewire.gastos.index')->middleware('auth');
+	Route::view('admin/contable', 'livewire.gastos.index')->middleware('auth');
 	Route::view('admin/empresa', 'livewire.empresa.index')->middleware('auth');
 	Route::view('admin/services', 'livewire.services.index')->middleware('auth');
 	Route::view('admin/cars', 'livewire.carstypes.index')->middleware('auth');
-   
+
     
 
 //Route Hooks - Do not delete//
 	Route::view('admin/cajas', 'livewire.cajas.index')->middleware('auth');
-	Route::view('admin/facturas', 'livewire.facturas.index')->middleware('auth');
+	Route::view('admin/factury', 'livewire.facturas.index')->middleware('auth');
 	Route::view('admin/operarios', 'livewire.operarios.index')->middleware('auth');
 	//Route::view('admin/myusers', 'livewire.myusers.index')->middleware('auth');
 
 	Route::view('admin/placa/', 'livewire.placas.index');
+	Route::view('admin/inventario', 'livewire.cajas.index')->middleware('auth');
+	Route::view('admin/proveedores', 'livewire.cajas.index')->middleware('auth');
+
+	Route::get('imprimir/{factory}/{operario}/{servicio}/{placa}/{valor}/{cliente}/{icon}', [IprintController::class, 'xprint']);
+
+	Route::post('imprimir/',[IprintController::class, 'xsprint']);

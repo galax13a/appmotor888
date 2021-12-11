@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Actualizar Gastos</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Contable</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span wire:click.prevent="cancel()" aria-hidden="true">×</span>
                 </button>
@@ -41,6 +41,20 @@
             <div class="form-group d-none ">
                 <label for="empresa_id"></label>
                 <input wire:model="empresa_id" type="text" class="form-control" id="empresa_id" placeholder="Empresa Id">@error('empresa_id') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <h4>Marque si es modulo de Factury </h4>
+                <h6>Solo se permite una asignacion de  cierre de caja</h6>
+                @if (session()->has('message'))
+				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+				@endif
+                <div class="form-check form-switch">
+                        @if($this->contable == 0)
+                               <input class="form-check-input btn-danger m-4" type="checkbox" role="switch" id="contable" wire:click="ckeking_contable({{$this->selected_id}}, 1)">
+                               @elseif ($contable == 1)
+                                 <input class="form-check-input m-4" type="checkbox" role="switch" id="contable" checked wire:click="ckeking_contable({{$this->selected_id}}, 0)">      
+                        @endif 
+                </div>
             </div>
 
                 </form>

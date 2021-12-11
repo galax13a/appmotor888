@@ -7,7 +7,7 @@
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
 							<h4 class="mr-2">
-							Gastos </h4>
+							Contable </h4>
 						</div>
 						<div class="input-group input-group-lg">
 							<input wire:model='keyWord' type="text" class="form-control input-lg" name="search" id="search" placeholder="Search">
@@ -45,7 +45,12 @@
 						
 						
 								<td>{{ $loop->iteration }}</td> 
-								<td><strong>{{ ucfirst($row->name) }}</strong></td>
+								<td><strong>{{ ucfirst($row->name) }}</strong>
+								@if ($row->contable == 1)
+								<span style="cursor: hand" title="Esta cuenta te permite hacer cierre de caja, solo debe de haber 1 cuenta configurada"class="badge bg-warning text-dark">Cuenta Factory</span>
+									
+								@endif
+								</td>
 								<td><strong> $ {{ number_format($row->value) }}</strong></td>
 								<td>
 								<div class="form-check form-switch ml-4">

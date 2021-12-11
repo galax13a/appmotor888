@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Gasto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Contable</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -11,19 +11,19 @@
            <div class="modal-body">
 				<form>
             <div class="form-group">
-                <label for="name"></label>
+                <label for="name">Describa Nombre Contable</label>
                 <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
-                <label for="value">Valor</label>
+                <label for="value">Valor Contable</label>
                 <input wire:model="value"  type="text" class="form-control" id="value" placeholder="value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
-               
+                <label for="natu">Describa la Naturaleza Contable</label>
                <select wire:model="natu" id="natu" required="" name="natu" class="form-control">
-                <option  value=""  select > Select Gasto </option> 
+                <option  value=""  select > Select Contable </option> 
                   <option  value="1"  select > Ingreso </option> 
                   <option  value="0" > Gasto </option> 
                 </select>  

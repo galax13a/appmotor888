@@ -28,7 +28,7 @@
             <div class="container">
                 <i class="fa fa-motorcycle m-1" aria-hidden="true"></i>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Motorbike') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
                             <a href="{{ url('admin/cajas') }}" class="nav-link"><i class="fa fa-university text-warning"></i> Caja</a> 
                         </li>
 						<li class="nav-item">
-                            <a href="{{ url('admin/facturas') }}" class="nav-link"><i class="fa fa-bookmark   @if(Request::path() === 'admin/facturas') text-info @endif  "></i> Facturas</a> 
+                            <a href="{{ url('admin/factury') }}" class="nav-link"><i class="fa fa-bookmark   @if(Request::path() === 'admin/factury') text-info @endif  "></i> Factury</a> 
                         </li>
 						<li class="nav-item">
                             <a href="{{ url('admin/operarios') }}" class="nav-link"><i class="fa fa-user-plus @if(Request::path() === 'admin/operarios') text-info @endif aria-hidden="true"></i> Operarios</a> 
@@ -63,7 +63,7 @@
                         </li>
 					
 						<li class="nav-item">
-                            <a href="{{ url('admin/gastos') }}" class="nav-link"><i class="fa fa-calendar @if(Request::path() === 'admin/gastos') text-info @endif" aria-hidden="true"></i> Contable</a> 
+                            <a href="{{ url('admin/contable') }}" class="nav-link"><i class="fa fa-calendar @if(Request::path() === 'admin/contable') text-info @endif" aria-hidden="true"></i> Contable</a> 
                         </li>
 						<li class="nav-item">
                             <a href="{{ url('admin/empresa') }}" class="nav-link"><i class="fa fa-briefcase @if(Request::path() === 'admin/empresa') text-info @endif"></i> Empresa</a> 
@@ -85,6 +85,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
+                             
                             @endif
                             
                             @if (Route::has('register'))
@@ -99,6 +100,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                 
+                                        <a class="dropdown-item"  href="{{ url('admin/inventario') }}">Inventario</a>
+                                   
+                                        <a class="dropdown-item" href="{{ url('admin/proveedores') }}">Proveedores</a>
+                                   
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

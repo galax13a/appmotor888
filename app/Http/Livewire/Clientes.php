@@ -172,12 +172,12 @@ class Clientes extends Component
 
     public function save_add($id){
         $this->validate([
-            'placa_id' => 'required|unique:mycars,name,'. $id,
+            'placa_id' => 'required|unique:mycars,name,'. strtoupper($id),
             'cars_id' => 'required'
             ]);
 
             Mycar::create([ 
-                'name' => $this-> placa_id,
+                'name' =>  strtoupper($this->placa_id),
                 'cliente_id' => $id,
                 'carstypes_id' => $this->cars_id
             ]);

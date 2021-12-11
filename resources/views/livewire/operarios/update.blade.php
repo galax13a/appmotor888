@@ -39,7 +39,7 @@
 
             <div class="form-group">
                
-                <label for="gasto_id">Asigne Gasto Operario</label>
+                <label for="gasto_id">Asigne Contable a Operario</label>
                 @error('gasto_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select    class="form-control"  id="gasto_id" wire:model="gasto_id">
                     <option value=""> Seleccione  : </option>

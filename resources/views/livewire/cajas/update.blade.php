@@ -19,19 +19,23 @@
                 <label for="fecha"></label>
                 <input wire:model="fecha" type="text" class="form-control" id="fecha" placeholder="Fecha">@error('fecha') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="valor"></label>
                 <input wire:model="valor" type="text" class="form-control" id="valor" placeholder="Valor">@error('valor') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="status"></label>
-                <input wire:model="status" type="text" class="form-control" id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
+                <label for="status"> Status</label>
+                <select wire:model="status" id="status" required="" name="status" class="form-control">
+                   <option  value="1"  select > Verificado </option> 
+                   <option  value="0" > Sin verificar </option> 
+                 </select>  
+                       @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
+                       </div>
+            <div class="form-group d-none">
                 <label for="gastos_id"></label>
                 <input wire:model="gastos_id" type="text" class="form-control" id="gastos_id" placeholder="Gastos Id">@error('gastos_id') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="empresa_id"></label>
                 <input wire:model="empresa_id" type="text" class="form-control" id="empresa_id" placeholder="Empresa Id">@error('empresa_id') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>

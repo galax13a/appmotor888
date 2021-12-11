@@ -10,6 +10,8 @@ use App\Models\Mycar;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
+use App\Models\Caja;
+use App\Models\Gasto;
 
 
 class Facturas extends Component
@@ -22,7 +24,8 @@ class Facturas extends Component
 	public $userEmpresa, $servicios, $mycarrs, $operarios, $fecha, $operario_name, $myservicios;
 
 	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
-    public  $array_nopayment, $nopayment, $contador ,$daty, $filtro;
+    public  $array_nopayment, $nopayment, $contador ,$daty, $filtro, $contables, $btn_pay, $gasto_id;
+	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -30,18 +33,85 @@ class Facturas extends Component
 
 	public function getplaca($id)
 	{
-		// return 'placa id : ' . $id;
 		return  Mycar::Where("id", $id)->get();
 	}
 	public function get_payment(){
 		session()->flash('message', 'Change Date Payment ' . $this->fecha);
 		$this->filtro = true;
+	}
+	
+	public function get_caja($id,$name)
+	{
+		/*
+		return  Caja::Where("name","'$name'" )	
+					->Where("fecha", "'$this->fecha'"  )
+		            ->get(); */
+					return  Caja::Where("name",$name)	
+					->Where("fecha",$this->fecha)
+		            ->get();
+	}
+	public function get_caja_factory($id) {
+			// busca en caja si existe un pago de cierre de caja de factory 
+					return  Caja::Where("gastos_id",$id)	
+					->Where("fecha",$this->fecha)
+					->get();
+
+	}
+	public function get_name_liquis() {
+
+		return  Gasto::Where("contable",1)	
+									->Where("empresa_id", $this->userEmpresa)
+									->get();
+
+	}
+	
+	public function pay_empresa($gasto_id,$name,$valor){
 		
+	
+		Caja::create([ 
+			'name' => $name,
+			'fecha' => $this->fecha,
+			'valor' => $valor,
+			'status' => 0,
+			'gastos_id' => $gasto_id,
+			'empresa_id' => $this->userEmpresa
+		]);
+		session()->flash('message', 'Exito! Pago Empresa ' . $this->fecha);
 	}
-	public function pay($id, $gasto_id=null){
+	public function pay($gasto_id,$name,$valor){
+		
+		$data = $this->get_caja($gasto_id, $name);
 
+		if (!empty($data->count()>0)){
+		//	session()->flash('message_pay_error', 'Error !!! Ya existe un pago Realizado! ' .$name );
+			$this->btn_pay = false;
+		}else {
+
+				if(!empty($gasto_id)) { 
+					Caja::create([ 
+						'name' => $name,
+						'fecha' => $this->fecha,
+						'valor' => $valor,
+						'status' => 0,
+						'gastos_id' => $gasto_id,
+						'empresa_id' => $this->userEmpresa
+					]);
+				}
+
+				//session()->flash('message_pay', 'Exito!!  Se genero Pago y Registro en Caja ' . $name);
+	        }
+		
+	//	$this->emit('closeModal');
 	}
 
+	public function get_contable($id){
+
+		 $this->contables  = DB::table('operarios')
+			->join('gastos', 'operarios.gasto_id', '=', 'gastos.id')
+			->select('operarios.gasto_id as id_gasto','operarios.id','operarios.name', 'gastos.name as contable')
+			->where('operarios.id', $id)
+			->get();
+	}
 
 	public function get_nopayment(){
 	
@@ -84,9 +154,10 @@ class Facturas extends Component
 
 	public function mount()
 	{
+		date_default_timezone_set("America/Bogota");
 		$this->userEmpresa = Auth::user()->empresa_id;
 		$this->fecha = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
-		$this->daty =date('Y-m-d');
+		$this->daty = date('Y-m-d');
 		$this->fecha_server =  date('Y-m-d h:i:s');
 		$this->operario_name = null;
 		$this->total = null;
@@ -161,10 +232,14 @@ class Facturas extends Component
 		$this->operarios  = Operario::where('empresa_id', $this->userEmpresa)
 							  ->where('status',1)
 		                      ->get();
+
+
 		$this->empresa_totales =DB::table('facturas')
 							->select(DB::raw("SUM(facturas.empresa) as empresa, SUM(facturas.value) as total, SUM(facturas.operario) as operario"))
 							->where('facturas.fecha', $this->fecha)
 							->get();
+
+	      $this->total_liquidar = $this->empresa_totales[0]->total;					
 							
 		if($this->myservicios){
 			$this->myservicios  = DB::table('facturas')
@@ -199,8 +274,10 @@ class Facturas extends Component
 								->orderBy('created_at', 'desc')
 								->paginate(100)
 						]);
-						$this->emit('combos');
+						//$this->emit('combos');
 					 }
+
+					// $this->emit('combos');
 	}
 
 	public function cancel()

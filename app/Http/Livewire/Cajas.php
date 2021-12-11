@@ -17,7 +17,7 @@ class Cajas extends Component
     public $selected_id, $keyWord, $name, $fecha, $valor, $status, $gastos_id, $empresa_id;
     public $updateMode = false;
     public $fecha_serve, $gastos, $userEmpresa, $value, $id_gasto;
-
+    public $total_gasto, $total_ingreso, $total_caja;
     public function mount()
 	{
 		$this->userEmpresa = Auth::user()->empresa_id;

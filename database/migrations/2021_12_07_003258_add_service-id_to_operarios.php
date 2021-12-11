@@ -29,7 +29,7 @@ class AddServiceIdToOperarios extends Migration
     {
         Schema::table('operarios', function (Blueprint $table) {
             //
-            $table->dropColumn('service_id');
+            $table->dropColumn('gasto_id');
         });
     }
 }
