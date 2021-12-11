@@ -38,7 +38,7 @@
                 <tr>
                     <td class="cantidad">A:</td>
                     <td class="producto">{{$cliente}}</td>
-                    <td class="precio">{{$placa}}</td>
+                    <td class="precio">cliente</td>
                 </tr>
                 <tr>
                     

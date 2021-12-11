@@ -215,6 +215,7 @@ class Facturas extends Component
 	{
 		$keyWord = '%' . $this->keyWord . '%';
 		//$this->fecha = date('Y-m-d'); 
+		date_default_timezone_set("America/Bogota");
 		
 		if($this->array_nopayment) 
 		{
