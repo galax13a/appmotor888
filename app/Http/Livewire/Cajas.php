@@ -18,13 +18,20 @@ class Cajas extends Component
     public $updateMode = false;
     public $fecha_serve, $gastos, $userEmpresa, $value, $id_gasto;
     public $total_gasto, $total_ingreso, $total_caja;
+    public $entre1, $entre2, $buscar;
+
     public function mount()
 	{
+        date_default_timezone_set("America/Bogota");
 		$this->userEmpresa = Auth::user()->empresa_id;
 		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
         $this->value = 0;
         $this->keyWord = $this->fecha_serve;
+       // $this->entre2 = $this->fecha_serve;
 
+    }
+    public function buscar() {
+            $this->buscar = true;
     }
     public function render()
     {
@@ -32,14 +39,25 @@ class Cajas extends Component
         $this->userEmpresa = Auth::user()->empresa_id;
         $this->gastos = Gasto::where('empresa_id', $this->userEmpresa)->get();
         $this->fecha_serve = date('Y-m-d'); 
+       
 
+        if($this->buscar){
+          //  $data = Modelo::whereBetween('created_at', ['2018/11/10 12:00:00', '2018/11/11 10:30:00'])->get();
+            return view('livewire.cajas.view', [
+                'cajas' => Caja::Where("empresa_id", Auth::user()->empresa_id)
+                            ->whereBetween('fecha', [$this->entre1, $this->entre2])
+                            ->orderBy('fecha')
+                            ->paginate(200)
+            ]);
 
-        return view('livewire.cajas.view', [
-            'cajas' => Caja::latest()
-                        ->Where("empresa_id", Auth::user()->empresa_id)
-                       ->Where('fecha', 'LIKE', $keyWord)
-						->paginate(11),
-        ]);
+        }else{
+            return view('livewire.cajas.view', [
+                'cajas' => Caja::latest()
+                            ->Where("empresa_id", Auth::user()->empresa_id)
+                        ->Where('fecha', 'LIKE', $keyWord)
+                            ->paginate(200)
+            ]);
+    }
 
         $this->emit('combos');
 
@@ -71,7 +89,7 @@ class Cajas extends Component
 
         Caja::create([ 
 			'name' => $this-> name,
-			'fecha' => $this-> fecha_serve,
+			'fecha' => $this-> keyWord,
 			'valor' => $this-> value,
 			'status' => 0,
 			'gastos_id' => $this-> id_gasto,

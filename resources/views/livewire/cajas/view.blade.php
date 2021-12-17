@@ -10,13 +10,31 @@
                             <h4 class="mr-2">
                                 Caja </h4>
                         </div>
-                        <div class="input-group input-group-lg">
+                        <div class="input-group input-group-lg p-1">
                             <input wire:model='keyWord' type="text" class="form-control input-lg" name="search"
                                 id="search" placeholder="Buscar por Fecha">
                         </div>
-                       
+                        
+                        <div class="container" class="form-group bg-danger">
+                            <strong>Desde</strong>
+                                <div class="input-group input-group-lg m-1 p-1">
+                                
+                                    <input wire:model='entre1' type="text" class="form-control input-lg" name="entre1"
+                                        id="entre1" placeholder="Buscar por Inicio">
+                                </div>
+                                <strong>Hasta</strong>
+                                <div class="input-group input-group-lg m-1">
+                            
+                                    <input wire:model='entre2' type="text" class="form-control input-lg" name="entre2"
+                                        id="entre2" placeholder="Buscar por Fecha">
+                                </div>
+                                <button type="button"  wire:click.prevent="buscar()" title="Buscar x Fechas" class="btn btn-warning m-3">Buscar</button>
+                                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+                            </div>
                     </div>
                 </div>
+                <hr>
+                
                 @if (session()->has('message'))
                     <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
                         {{ session('message') }} </div>
@@ -190,6 +208,36 @@
             $("#gastos_id").select2();
 
         });
+
+        $.noConflict();
+                    
+                    $( "#entre1" ).datepicker({
+                                dateFormat : 'yy-mm-dd',
+                                changeMonth : true,
+                                changeYear : true,
+                                yearRange: '-100y:c+nn',
+                                maxDate: '-1d'
+                            });
+
+                            $( "#entre2" ).datepicker({
+                                dateFormat : 'yy-mm-dd',
+                                changeMonth : true,
+                                changeYear : true,
+                                yearRange: '-100y:c+nn',
+                                maxDate: '-1d'
+                            });
+
+                            $('#entre1').change(function(){
+                                var thisDate = $(this).val();
+                                 @this.set('entre1', thisDate);
+                            });
+                        
+                            $('#entre2').change(function(){
+                                var thisDate = $(this).val();
+                                 @this.set('entre2', thisDate);
+                            });
+                        
+          
 
     })
 </script>
