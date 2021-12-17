@@ -38,7 +38,7 @@
                 <tr>
                     <td class="cantidad">A:</td>
                     <td class="producto">{{$cliente}}</td>
-                    <td class="precio">cliente</td>
+                    <td class="precio">Cliente</td>
                 </tr>
                 <tr>
                     
@@ -48,16 +48,27 @@
                 </tr>
             </tbody>
         </table>
-        <p class="centrado">¡GRACIAS POR SU COMPRA!
+        <p class="centrado">¡Una vez entregado el servicio no nos hacemos responsables!
             <br>  {{ config('app.url', 'Motorbike') }}</p>
-            <p class="centrado">Contacto y sugerencias!
-                <br>#</p><br> <br>
+            <p class="centrado">Gracias por su Compra!
+        
     </div>
     <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
 
 <script>
 
+
+
+const ke = new KeyboardEvent("keydown", {
+    bubbles: true, cancelable: true, keyCode: 13
+});
 imprimir();
+
+setTimeout(function(){
+  
+  //alert("Ready Print ")
+   document.body.dispatchEvent(ke);
+}, 2000);
 
 </script>
 </body></html>

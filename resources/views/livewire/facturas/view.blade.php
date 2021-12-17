@@ -11,7 +11,8 @@
                       
 						<div class="container">
 
-                            
+                          
+
                             <div class=" grid grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-4">
                                 <div class="row m-2 md:grid-cols-2">
                                     @foreach ($operarios as $operario)
@@ -112,13 +113,14 @@
                                 </div>
 																
 								<div class="col">
-			
+                                  
                                     <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i></button>
                                 </div>
                                 @if (session()->has('message'))
                                 <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
                                     {{ session('message') }} </div>
                             @endif
+                          
                               </div>
                            
 
