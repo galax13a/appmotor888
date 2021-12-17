@@ -180,8 +180,9 @@
                 
 
             <div class="modal-footer">
-              <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="">
+             
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="">Pagando.....
                 <button type="button"
                    @if (!$this->btn_pay ) disabled="disabled" 
                    @endif 
