@@ -79,9 +79,9 @@
             <button type="button"
             @if (!$this->btn_pay ) disabled="disabled" @endif  
             wire:click.prevent="pay_empresa({{$this->contable_service_id}},'{{$this->contable_service_name[0]->name}}', {{$total_liquidar}})"
-             class="btn btn-primary close-modal">Enviar a Caja
+             class="btn btn-primary close-modal">Pagar a Caja
            </button>
-      
+           <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="">
             @endif
                
             </div>
