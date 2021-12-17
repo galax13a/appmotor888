@@ -78,8 +78,9 @@
 
                  wire:click.prevent="pay_empresa({{$this->contable_service_id}},'{{$this->contable_service_name[0]->name}}', {{$total_liquidar}})"
                   class="btn btn-primary close-modal">Enviar a Caja
-                  <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+         
                 </button>
+                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
             </div>
         </div>
     </div>
