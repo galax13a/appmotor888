@@ -81,7 +81,7 @@
                   class="btn btn-primary close-modal">Pagar en Caja
          
                 </button>
-                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="">
             </div>
         </div>
     </div>
