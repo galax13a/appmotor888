@@ -147,7 +147,7 @@
                       <strong>Contable / {{ $this->contables[0]->contable }} /  {{Str::upper($operario_name)}} /
                       
                         @if (!empty($data->count()>0)) <button type="button" class="btn btn-sm btn-success">Pagado</button>
-                        <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+                      
                         <?php $this->btn_pay = false; ?>
                         @else     <button type="button" class="btn btn-sm btn-danger">Sin Pago</button>
                         <?php $this->btn_pay = true; ?>
@@ -192,10 +192,7 @@
                   wire:click.prevent="pay({{$this->gasto_id}}, '{{Str::upper($operario_name)}}', {{$total}} )" 
                    class="btn btn-primary close-modal">Pagar
             </button>
-                
-                   
-              
-               
+            <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
         </form>
             </div>
         </div>
