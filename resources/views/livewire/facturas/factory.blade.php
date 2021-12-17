@@ -42,6 +42,7 @@
               <?php $this->btn_pay = true; ?>
               @else 
               <button type="button" class="btn btn-success">Pago</button>
+              <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
               <?php $this->btn_pay = false; ?>
               @endif
             
@@ -80,7 +81,7 @@
                   class="btn btn-primary close-modal">Enviar a Caja
          
                 </button>
-                <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+               
             </div>
         </div>
     </div>
