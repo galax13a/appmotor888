@@ -184,11 +184,11 @@
                 <button type="button"
                    @if (!$this->btn_pay ) disabled="disabled" 
                    @endif 
-                   @if ($total <button 1 ) disabled="disabled" title="No hay nada que pagar"  
+                   @if ($total < 1 ) disabled="disabled" title="No hay nada que pagar"  
                    @endif 
                   wire:click.prevent="pay({{$this->gasto_id}}, '{{Str::upper($operario_name)}}', {{$total}} )" 
                    class="btn btn-primary close-modal">Pagar
-                   </button
+            </>
                    <div wire:loading class="text-center">
                     <img src="/css/icons/save.gif" width="30%" height="30%"alt="">
                 </div>
