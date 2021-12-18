@@ -142,7 +142,7 @@ class Facturas extends Component
 	}
 
 	public function get_servicios($id){
-		DB::enableQueryLog(); 
+		//DB::enableQueryLog(); 
 				return  DB::table('facturas')
                        ->select(DB::raw('count(*) as allservice'))     
 					  ->where('operario_id', $id)

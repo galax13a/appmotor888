@@ -21,10 +21,15 @@ class Clientes extends Component
     public $empresas, $carsmotor,$mycars;
     public $userEmpresa, $name_cliente;
     public $placa_id, $cars_id, $placa_busca;
-
+    public $mys_carros, $cumple,$cumple2;
 
     public function updatingKeyWord(){
         $this->resetPage();
+    }
+
+    public function mount(){
+
+        $this->userEmpresa = Auth::user()->empresa_id;
     }
 
     public function getplaca($id){
@@ -39,6 +44,19 @@ class Clientes extends Component
 			->get();
 
     }
+
+    public function get_mycars() {
+
+
+          return  DB::table('carstypes')
+			->join('mycars', 'mycars.carstypes_id', '=', 'carstypes.id')
+			->select(DB::raw("COUNT(carstypes.name) as cuantos, carstypes.name, carstypes.icon as icon"))
+            ->groupBy('carstypes.name')
+            ->groupBy('carstypes.icon')            
+			->Where("carstypes.empresa_id", Auth::user()->empresa_id)
+			->get();
+    }
+
    
     public function render()
     {
@@ -47,6 +65,8 @@ class Clientes extends Component
       
         $this->cars = Carstype::Where('empresa_id', $this->userEmpresa)->get();
         $this->userEmpresa = Auth::user()->empresa_id;
+
+        $this->mys_carros = $this->get_mycars();
 
         if(empty($this->placa_busca)){
             return view('livewire.clientes.view', [
@@ -112,6 +132,7 @@ class Clientes extends Component
 		$this->wsp1 = $record-> wsp1;
 		$this->wsp2 = $record-> wsp2;
 		$this->status = $record-> status;
+        $this->cumple2 = $record-> cumple;
 		//$this->empresa_id = $record-> empresa_id;
 		
         $this->updateMode = true;
@@ -130,7 +151,8 @@ class Clientes extends Component
 			'name' => $this-> name,
 			'wsp1' => $this-> wsp1,
 			'wsp2' => $this-> wsp2,
-			'status' => $this-> status
+			'status' => $this-> status,
+            'cumple' => $this-> cumple2,
             ]);
 
             $this->resetInput();

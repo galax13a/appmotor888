@@ -30,6 +30,8 @@ class Cajas extends Component
        // $this->entre2 = $this->fecha_serve;
 
     }
+
+  
     public function buscar() {
             $this->buscar = true;
     }

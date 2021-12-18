@@ -31,6 +31,12 @@
                 </select>  
                       @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
+
+            <div class="form-group">
+                <label for="Cumple2"></label>
+                <input wire:model="cumple2" type="text" class="form-control" id="cumple2" placeholder="Cumpleaños">@error('cumple') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+
             <div class="form-group d-none">
                 <label for="empresa_id"></label>
                 <input wire:model="empresa_id" type="text" class="form-control" id="empresa_id" placeholder="Empresa Id">@error('empresa_id') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -45,3 +51,23 @@
        </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:load', function(){
+              
+               $.noConflict();
+                    
+                    $( "#cumple2" ).datepicker({
+                                dateFormat : 'yy-mm-dd',
+                                changeMonth : true,
+                                changeYear : true,
+                                yearRange: '-100y:c+nn',
+                                maxDate: '-1d'
+                            });
+
+                            $('#cumple2').change(function(){
+                                var thisDate = $(this).val();
+                                 @this.set('cumple2', thisDate);
+                            });
+       })
+</script>

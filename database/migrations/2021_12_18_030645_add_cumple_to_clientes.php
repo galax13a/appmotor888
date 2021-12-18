@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIconToCarstypes extends Migration
+class AddCumpleToClientes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddIconToCarstypes extends Migration
      */
     public function up()
     {
-        Schema::table('carstypes', function (Blueprint $table) {
-           // $table->string('icon')->nullable();
+        Schema::table('clientes', function (Blueprint $table) {
             //
+            $table->date('cumple')->nullable();
         });
     }
 
@@ -26,9 +26,9 @@ class AddIconToCarstypes extends Migration
      */
     public function down()
     {
-        Schema::table('carstypes', function (Blueprint $table) {
+        Schema::table('clientes', function (Blueprint $table) {
             //
-            //$table->dropColumn('icon');
+            $table->dropColumn('cumple');
         });
     }
 }

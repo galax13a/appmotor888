@@ -25,11 +25,26 @@
 				@endif
 				
 				<div class="card-body">
+					@include('livewire.clientes.update')
 						@include('livewire.clientes.create')
-						@include('livewire.clientes.update')
+					
 						@include('livewire.clientes.addmycars')
 				<div class="table-responsive">
-				
+			
+			<div class="container m-2 p-2">
+			
+				@foreach ($mys_carros as $carros)
+					
+				<button type="button" class="btn btn-primary">
+					<img src="/css/cars/bike{{$carros->icon}}.svg " class="shadown"  width="36" height="36" alt="">
+					{{$carros->name}} <span class="badge bg-danger">{{$carros->cuantos}}</span>
+				  </button>
+
+				@endforeach
+
+			</div>
+
+
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
 							<tr> 
