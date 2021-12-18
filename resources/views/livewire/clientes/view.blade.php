@@ -42,6 +42,10 @@
 
 				@endforeach
 
+		<button type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
+			Clientes <span class="badge bg-light">{{ $this->mis_clientes()[0]->cuantos }}</span>
+		</button>
+
 			</div>
 
 

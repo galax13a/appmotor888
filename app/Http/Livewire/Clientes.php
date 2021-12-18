@@ -45,6 +45,17 @@ class Clientes extends Component
 
     }
 
+    public function mis_clientes(){
+
+        //SELECT COUNT(`clientes`.`id`) as cuantos from clientes where clientes.empresa_id = 1;
+
+        return DB::table('clientes')
+                ->select(DB::raw("COUNT(clientes.id) as cuantos"))
+                ->where('clientes.empresa_id', Auth::user()->empresa_id)
+                ->get();
+
+    }
+
     public function get_mycars() {
 
 
