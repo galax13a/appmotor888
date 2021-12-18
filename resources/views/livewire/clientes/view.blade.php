@@ -37,9 +37,9 @@
 			
 				@foreach ($mys_carros as $carros)
 					
-				<button type="button" class="btn btn-primary m-1">
+				<button type="button" class="btn btn-light  m-1">
 					<img src="/css/cars/bike{{$carros->icon}}.svg " class="shadown"  width="36" height="36" alt="">
-					{{$carros->name}} <span class="badge bg-danger">{{$carros->cuantos}}</span>
+					{{$carros->name}} <span class="badge bg-primary">{{$carros->cuantos}}</span>
 				  </button>
 
 				@endforeach
