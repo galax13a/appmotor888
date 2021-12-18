@@ -13,7 +13,9 @@
 							<input wire:model='keyWord' type="text" class="form-control input-lg" name="search" id="search" placeholder="Search">
 						</div>
 						<div class="input-group input-group-lg p-2">
-							<input wire:model='placa_busca' type="text" class="form-control input-lg" name="placa_busca" id="placa_busca" placeholder="Search Placa">
+							<button type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
+								Clientes # <span class="badge bg-light">{{ $this->mis_clientes()[0]->cuantos }}</span>
+							</button>
 						</div>
 						<div class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#exampleModal">
 							<i class="fa fa-plus p-2 btn-success data-bs-toggle="tooltip" data-bs-placement="top" title="Create New"></i>  
@@ -35,16 +37,14 @@
 			
 				@foreach ($mys_carros as $carros)
 					
-				<button type="button" class="btn btn-primary">
+				<button type="button" class="btn btn-primary m-1">
 					<img src="/css/cars/bike{{$carros->icon}}.svg " class="shadown"  width="36" height="36" alt="">
 					{{$carros->name}} <span class="badge bg-danger">{{$carros->cuantos}}</span>
 				  </button>
 
 				@endforeach
 
-		<button type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
-			Clientes <span class="badge bg-light">{{ $this->mis_clientes()[0]->cuantos }}</span>
-		</button>
+
 
 			</div>
 
