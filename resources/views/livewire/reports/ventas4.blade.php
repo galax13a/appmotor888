@@ -41,15 +41,22 @@
 
 
    <div class="card m-2 p-2">
-    <div class="card-body">
+    <div class="card-body p-1">
         <button type="button" class="btn btn-info">
             Ventas Ingresos <span class="badge bg-danger"> $ {{ number_format($this->data_total,0)}}</span>
           </button>
           <button type="button" class="btn btn-danger">
             Ventas Gastos <span class="badge bg-danger"> $ {{ number_format($this->empresa_gasto,0)}}</span>
           </button>
-        
-      
+          <button type="button" class="btn btn-success">
+           Saldos Ventas <span class="badge bg-danger"> $
+             <?php
+               $this->total_ventas = $this->data_total - $this->empresa_gasto;
+             ?>
+              {{ number_format($this->total_ventas,0) }}
+          </span>
+          </button>
+         
     </div>
   </div>
 </div>

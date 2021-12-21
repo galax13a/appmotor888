@@ -15,7 +15,7 @@ class Reports extends Component
     public $entre1, $entre2, $menu;
     public $data1, $data_total,$data_buscar;
     public $data2,$empresa_value, $operario_value, $empresa_gasto;
-    public $data3, $data4;
+    public $data3, $data4, $total_ventas;
 
     public function render()
     {
@@ -24,6 +24,7 @@ class Reports extends Component
         $this->empresa_value = 0;
         $this->operario_value = 0;
         $this->empresa_gasto = 0;
+        $this->total_ventas = 0;
 
         if($this->menu == 1) $this->data1 = $this->get_menu1();
         if($this->menu == 2) $this->data2 = $this->get_menu2();
