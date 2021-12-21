@@ -14,7 +14,7 @@ class Reports extends Component
     public $userEmpresa, $fecha_serve;
     public $entre1, $entre2, $menu;
     public $data1, $data_total,$data_buscar;
-    public $data2;
+    public $data2,$empresa_value;
     
     public function render()
     {
@@ -30,6 +30,7 @@ class Reports extends Component
         $this->data_buscar = false;
         date_default_timezone_set("America/Bogota");
         $this->data_total = 0;
+        $this->empresa_value = 0;
         $this->menu  = 1;
 		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
         $this->userEmpresa = Auth::user()->empresa_id;

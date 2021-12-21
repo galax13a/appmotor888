@@ -11,10 +11,12 @@
         </thead>
         <tbody>
           <tr>
-        
+            valor
+        {{ $this->empresa_value }}
          @foreach ($data2 as $row) 
         <?php 
                $this->data_total = $row->value + $this->data_total;
+               $this->empresa_value = $row->empresa + $this->empresa_value;
         ?>
             <th scope="row">{{ $loop->iteration }}</th>
            
@@ -34,6 +36,9 @@
     <div class="card-body">
         <button type="button" class="btn btn-warning">
             Ventas Totales <span class="badge bg-danger"> $ {{ number_format($this->data_total,0)}}</span>
+          </button>
+          <button type="button" class="btn btn-primary">
+            Venta x Empresa <span class="badge bg-danger"> $ {{ number_format($this->empresa_value,0)}}</span>
           </button>
           <?php
                 $this->data_total = 0;
