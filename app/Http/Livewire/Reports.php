@@ -15,7 +15,8 @@ class Reports extends Component
     public $entre1, $entre2, $menu;
     public $data1, $data_total,$data_buscar;
     public $data2,$empresa_value, $operario_value;
-    
+    public $data3;
+
     public function render()
     {
         //$this->data_total = 0;
@@ -25,6 +26,7 @@ class Reports extends Component
 
         if($this->menu == 1) $this->data1 = $this->get_menu1();
         if($this->menu == 2) $this->data2 = $this->get_menu2();
+        if($this->menu == 3) $this->data3 = $this->get_menu3();
 
         return view('livewire.reports.view');
     }
@@ -49,6 +51,39 @@ class Reports extends Component
     }
     public function buscar(){
         $this->data_buscar = true;
+    }
+
+    public function get_menu3(){
+        /* SELECT carstypes.icon as icon, `carstypes`.`name` as cars, SUM( `facturas`.`value` ) as value,
+         SUM( `facturas`.`empresa` ) as empresa FROM `carstypes` 
+         INNER JOIN `services` 
+         ON `services`.`cars_id` = `carstypes`.`id`
+          INNER JOIN `facturas` ON `facturas`.`servicio_id` = `services`.`id` GROUP BY 
+          carstypes.name, carstypes.icon; */
+   
+        if(!$this->data_buscar) {
+            return  DB::table('carstypes')
+              ->join('services', 'services.cars_id', '=', 'carstypes.id')
+              ->join('facturas', 'facturas.servicio_id', '=', 'services.id')
+              ->select(DB::raw(" SUM(facturas.value) as value, SUM(facturas.empresa) as empresa, SUM(facturas.operario) as operario, carstypes.name as name, carstypes.icon as icon"))
+              ->groupBy('carstypes.icon') 
+              ->groupBy('carstypes.name')      
+              ->orderBy('value', 'desc')
+              ->Where("facturas.empresa_id", Auth::user()->empresa_id)
+              ->get();
+          }else {
+            return  DB::table('carstypes')
+            ->join('services', 'services.cars_id', '=', 'carstypes.id')
+            ->join('facturas', 'facturas.servicio_id', '=', 'services.id')
+            ->select(DB::raw(" SUM(facturas.value) as value, SUM(facturas.empresa) as empresa, SUM(facturas.operario) as operario, carstypes.name as name, carstypes.icon as icon"))
+            ->groupBy('carstypes.icon') 
+            ->groupBy('carstypes.name')      
+            ->orderBy('value', 'desc')
+              ->Where("facturas.empresa_id", Auth::user()->empresa_id)
+               ->whereBetween('facturas.fecha', [$this->entre1, $this->entre2])
+            ->get();
+          }
+
     }
 
     public function get_menu2(){
