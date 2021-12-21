@@ -14,8 +14,8 @@ class Reports extends Component
     public $userEmpresa, $fecha_serve;
     public $entre1, $entre2, $menu;
     public $data1, $data_total,$data_buscar;
-    public $data2,$empresa_value, $operario_value;
-    public $data3;
+    public $data2,$empresa_value, $operario_value, $empresa_gasto;
+    public $data3, $data4;
 
     public function render()
     {
@@ -23,10 +23,12 @@ class Reports extends Component
         $this->data_total = 0;
         $this->empresa_value = 0;
         $this->operario_value = 0;
+        $this->empresa_gasto = 0;
 
         if($this->menu == 1) $this->data1 = $this->get_menu1();
         if($this->menu == 2) $this->data2 = $this->get_menu2();
         if($this->menu == 3) $this->data3 = $this->get_menu3();
+        if($this->menu == 4) $this->data4 = $this->get_menu4();
 
         return view('livewire.reports.view');
     }
@@ -52,7 +54,35 @@ class Reports extends Component
     public function buscar(){
         $this->data_buscar = true;
     }
+public function get_menu4(){
+/*SELECT SUM(`cajas`.`valor`) as valor, `gastos`.`name` as name, gastos.natu FROM `cajas` 
+INNER JOIN `gastos` ON `cajas`.`gastos_id` = `gastos`.`id` WHERE cajas.empresa_id = 1 
+GROUP BY gastos.name;
 
+*/
+
+        if(!$this->data_buscar) {
+            return  DB::table('cajas')
+            ->join('gastos', 'cajas.gastos_id', '=', 'gastos.id')
+            ->select(DB::raw(" SUM(cajas.valor) as value,  gastos.name as name, gastos.natu as natu"))
+            ->groupBy('gastos.name')      
+            ->groupBy('gastos.natu')   
+            ->orderBy('value', 'desc')
+            ->Where("cajas.empresa_id", Auth::user()->empresa_id)
+            ->get();
+        }else {
+            return  DB::table('cajas')
+            ->join('gastos', 'cajas.gastos_id', '=', 'gastos.id')
+            ->select(DB::raw(" SUM(cajas.valor) as value,  gastos.name as name, gastos.natu as natu"))
+            ->groupBy('gastos.name')      
+            ->groupBy('gastos.natu')   
+            ->orderBy('value', 'desc')
+            ->Where("cajas.empresa_id", Auth::user()->empresa_id)
+            ->whereBetween('cajas.created_at', [$this->entre1, $this->entre2])
+            ->get();
+        }
+
+}
     public function get_menu3(){
         /* SELECT carstypes.icon as icon, `carstypes`.`name` as cars, SUM( `facturas`.`value` ) as value,
          SUM( `facturas`.`empresa` ) as empresa FROM `carstypes` 

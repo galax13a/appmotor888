@@ -29,7 +29,7 @@
                                 <a class="nav-link @if ($menu ==4)  active @endif" 
                                 href="javascript:void(0)"
                                 wire:click="menu(4)"
-                                >Ventas x Fechas</a>
+                                >Ventas vs Gastos</a>
                                 </li>
                             </ul>
 
@@ -91,7 +91,7 @@
                                       @include('livewire.reports.ventas3')
                                   @break
                                   @case(4)
-                                  <h3>Este Modulo esta Pendiente</h3>
+                                         @include('livewire.reports.ventas4')
                                   @break
                               @default
                                   
