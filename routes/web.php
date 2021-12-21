@@ -44,6 +44,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::view('admin/inventario', 'livewire.cajas.index')->middleware('auth');
 	Route::view('admin/proveedores', 'livewire.cajas.index')->middleware('auth');
 
-	Route::get('imprimir/{factory}/{operario}/{servicio}/{placa}/{valor}/{cliente}/{icon}', [IprintController::class, 'xprint']);
+	Route::get('imprimir/{factory}/{operario}/{servicio}/{placa}/{valor}/{cliente}/{icon}', [IprintController::class, 'xprint'])->middleware('auth');
+	
+	Route::get('admin/reportes/', [ReportesController::class, 'reportes']);
+	Route::view('admin/reports/', 'livewire.reports.index');
 
-	Route::post('imprimir/',[IprintController::class, 'xsprint']);

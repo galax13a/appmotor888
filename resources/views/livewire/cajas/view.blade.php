@@ -19,13 +19,13 @@
                             <strong>Desde</strong>
                                 <div class="input-group input-group-lg m-1 p-1">
                                 
-                                    <input wire:model='entre1' type="text" class="form-control input-lg" name="entre1"
+                                    <input autocomplete="off" wire:model='entre1' type="text" class="form-control input-lg" name="entre1"
                                         id="entre1" placeholder="Buscar por Inicio">
                                 </div>
                                 <strong>Hasta</strong>
                                 <div class="input-group input-group-lg m-1">
                             
-                                    <input wire:model='entre2' type="text" class="form-control input-lg" name="entre2"
+                                    <input autocomplete="off" wire:model='entre2' type="text" class="form-control input-lg" name="entre2"
                                         id="entre2" placeholder="Buscar por Fecha">
                                 </div>
                                 <button type="button"  wire:click.prevent="buscar()" title="Buscar x Fechas" class="btn btn-warning m-3">Buscar</button>
