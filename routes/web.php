@@ -47,5 +47,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::get('imprimir/{factory}/{operario}/{servicio}/{placa}/{valor}/{cliente}/{icon}', [IprintController::class, 'xprint'])->middleware('auth');
 	
 	Route::get('admin/reportes/', [ReportesController::class, 'reportes']);
-	Route::view('admin/reports/', 'livewire.reports.index');
+	Route::view('admin/reports/', 'livewire.reports.index')->middleware('auth');
 

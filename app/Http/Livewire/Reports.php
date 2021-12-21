@@ -23,12 +23,14 @@ class Reports extends Component
     }
 
     public function mount(){
+
         $this->data_buscar = false;
         date_default_timezone_set("America/Bogota");
         $this->data_total = 0;
         $this->menu  = 1;
 		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
         $this->userEmpresa = Auth::user()->empresa_id;
+
     }
 
     public function menu($data){
@@ -50,6 +52,7 @@ class Reports extends Component
           ->groupBy('services.name')
           ->groupBy('carstypes.icon') 
           ->groupBy('facturas.value')              
+          ->orderBy('total', 'desc')
           ->Where("carstypes.empresa_id", Auth::user()->empresa_id)
           ->get();
       }else {
@@ -60,6 +63,7 @@ class Reports extends Component
         ->groupBy('services.name')
         ->groupBy('carstypes.icon') 
         ->groupBy('facturas.value')              
+        ->orderBy('total', 'desc')
         ->Where("carstypes.empresa_id", Auth::user()->empresa_id)
         ->whereBetween('facturas.fecha', [$this->entre1, $this->entre2])
         ->get();

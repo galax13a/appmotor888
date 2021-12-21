@@ -75,11 +75,11 @@
                                   <div class="col">
                                   
                                     <button type="button"  wire:click.prevent="buscar()" title="Buscar x Fechas" class="btn btn-warning btn-lg m-4 w-100">Buscar</button>
-                                    <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
+                                  
                                   </div>
                                 </div>
                               </div>
-
+                              <img wire:loading src="/css/icons/save.gif" width="120px" height="90px"alt="" >
                               @switch($menu)
                                  @case(1)
                                      @include('livewire.reports.ventas1')
@@ -125,7 +125,7 @@
                                 changeMonth : true,
                                 changeYear : true,
                                 yearRange: '-100y:c+nn',
-                                maxDate: '-1d'
+                                maxDate: '+1d'
                             });
 
                             $('#entre1').change(function(){
