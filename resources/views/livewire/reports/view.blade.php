@@ -85,7 +85,8 @@
                                      @include('livewire.reports.ventas1')
                                   @break
                                   @case(2)
-                                  <h3>Ventas Pendiente</h3>
+                                 
+                                  @include('livewire.reports.ventas2')
                                   @break
                                   @case(3)
                                   <h3>Ventas Pendientes</h3>
