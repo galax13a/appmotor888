@@ -138,22 +138,17 @@
 									   @endif
 										<td>{{ Str::upper($row->empresa->name) }}</td>
                                         <td width="90">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-info btn-sm dropdown-toggle"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Actions
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a data-toggle="modal" data-target="#updateModal"
-                                                        class="dropdown-item"
-                                                        wire:click="edit({{ $row->id }})"><i
-                                                            class="fa fa-edit"></i> Edit </a>
-                                                    <a class="dropdown-item"
-                                                        onclick="confirm('Confirm Delete Caja id {{ $row->id }}? \nDeleted Cajas cannot be recovered!')||event.stopImmediatePropagation()"
-                                                        wire:click="destroy({{ $row->id }})"><i
-                                                            class="fa fa-trash"></i> Delete </a>
-                                                </div>
-                                            </div>
+                                            <a class="" data-toggle="modal" data-target="#updateModal"
+                                            wire:click="edit({{ $row->id }})"> 
+                                            <li class="fa fa-edit"></li> Edit</a>
+                                            <a @if (1 == 2)
+                                            wire:click="destroy({{ $row->id }})" 
+                                            @endif 
+                                            onclick="confirm('Confirm Delete Caja id {{ $row->id }}? \nDeleted Cajas cannot be recovered!')||event.stopImmediatePropagation()"
+                                             class="">
+                                             <li class="fa fa-trash">         
+                                                </li> </a>
+                                           
                                         </td>
 									
                                 @endforeach
