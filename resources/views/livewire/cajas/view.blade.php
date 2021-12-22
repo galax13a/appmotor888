@@ -141,7 +141,7 @@
                                             <a class="" data-toggle="modal" data-target="#updateModal"
                                             wire:click="edit({{ $row->id }})"> 
                                             <li class="fa fa-edit"></li> Edit</a>
-                                            <a @if (1 == 2)
+                                            <a @if (2 == 2)
                                             wire:click="destroy({{ $row->id }})" 
                                             @endif 
                                             onclick="confirm('Confirm Delete Caja id {{ $row->id }}? \nDeleted Cajas cannot be recovered!')||event.stopImmediatePropagation()"

@@ -65,7 +65,7 @@ GROUP BY gastos.name;
         if(!$this->data_buscar) {
             return  DB::table('cajas')
             ->join('gastos', 'cajas.gastos_id', '=', 'gastos.id')
-            ->select(DB::raw(" SUM(cajas.valor) as value,  gastos.name as name, gastos.natu as natu"))
+            ->select(DB::raw("SUM(cajas.valor) as value,  gastos.name as name, gastos.natu as natu"))
             ->groupBy('gastos.name')      
             ->groupBy('gastos.natu')   
             ->orderBy('value', 'desc')
@@ -79,7 +79,7 @@ GROUP BY gastos.name;
             ->groupBy('gastos.natu')   
             ->orderBy('value', 'desc')
             ->Where("cajas.empresa_id", Auth::user()->empresa_id)
-            ->whereBetween('cajas.created_at', [$this->entre1, $this->entre2])
+            ->whereBetween('cajas.fecha', [$this->entre1, $this->entre2])
             ->get();
         }
 
