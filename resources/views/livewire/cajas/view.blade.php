@@ -219,7 +219,7 @@
                                 changeMonth : true,
                                 changeYear : true,
                                 yearRange: '-100y:c+nn',
-                                maxDate: '-1d'
+                                maxDate: '+1d'
                             });
 
                             $('#entre1').change(function(){
