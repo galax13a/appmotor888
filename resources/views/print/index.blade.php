@@ -9,7 +9,7 @@
 
 <body>
     <div class="ticket">
-        <img src="/css/cars/bike{{$icon}}" width="80" height="60"alt="Logotipo">
+        <img src="/css/cars/bike{{$icon}}.svg" width="80" height="60"alt="Logotipo">
         <p class="centrado">TICKET DE VENTA 
             Placa/{{$placa}}
             <br>
