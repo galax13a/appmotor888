@@ -229,7 +229,8 @@ class Facturas extends Component
 			->orderBy('mycars.name')
 			->get();
 
-		$this->servicios = Service::where('empresa_id', $this->userEmpresa)->get();
+		$this->servicios = Service::where('empresa_id', $this->userEmpresa)->where('status',1)->get();
+
 		$this->operarios  = Operario::where('empresa_id', $this->userEmpresa)
 							  ->where('status',1)
 		                      ->get();
