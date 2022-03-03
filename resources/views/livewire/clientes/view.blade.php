@@ -13,8 +13,10 @@
 							<input wire:model='keyWord' type="text" class="form-control input-lg" name="search" id="search" placeholder="Search">
 						</div>
 						<div class="input-group input-group-lg p-2">
-							<button type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
-								Clientes # <span class="badge bg-light">{{ $this->mis_clientes()[0]->cuantos }}</span>
+							<button wire:click="menu(0, 'Todos los Cars')" type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
+								<span class="badge bg-light bold">{{ $this->mis_clientes()[0]->cuantos }}</span> Clientes 
+								@All
+								
 							</button>
 						</div>
 						<div class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#exampleModal">
@@ -37,9 +39,10 @@
 			
 				@foreach ($mys_carros as $carros)
 					
-				<button type="button" class="btn btn-light  m-1">
+				<button type="button" class="btn btn-light  m-1" wire:click="menu({{$carros->id}},'{{$carros->name}}')">
 					<img src="/css/cars/bike{{$carros->icon}}.svg " class="shadown"  width="36" height="36" alt="">
 					{{$carros->name}} <span class="badge bg-primary">{{$carros->cuantos}}</span>
+					
 				  </button>
 
 				@endforeach
@@ -56,6 +59,7 @@
 								<th>Name</th>
 								<th>placas</th>
 								<th>Phone</th>
+								<th>Cumpleaños</th>
 								<th>Status</th>
 							@php /*
 									<th>Empresa Id</th>
@@ -66,7 +70,7 @@
 							</tr>
 						</thead>
 						<tbody>
-					
+					     {{$this->nuevo_clientes}}
 							@foreach($clientes as $row)
 							<tr>
 								<td>
@@ -74,16 +78,17 @@
 								</i>
 							<button type="button" class="btn btn-dark"><i class="fa fa-plus-circle p-1 bg-dark" data-toggle="modal" data-target="#addModal"  wire:click="addcars({{$row->id}}, '{{$row->name}}')"></i></button>
 							</td> 
-								<td><strong>{{ Str::ucfirst($row->name) }}</strong> </td>
+								<td><strong>{{ $loop->iteration }} - {{ Str::ucfirst($row->name) }}</strong> </td>
 								<td>
 							
 								@foreach($this->getplaca($row->id) as $placa)
 										<span class="badge  btn btn-success "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="36" height="36" alt="">	{{ Str::upper($placa->name) }}
 										<a class="btn btn-dark " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
-								</span>
-										@endforeach
+										</span>
+								@endforeach
 							</td>
 								<td><strong>{{ $row->wsp1 }}</strong></td>
+								<td><strong>{{ $row->cumple }}</strong></td>
 							
 							<td>
 							<div class="form-check form-switch ml-4">

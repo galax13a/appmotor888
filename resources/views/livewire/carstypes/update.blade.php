@@ -25,7 +25,7 @@
                       @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
            <h3>Seleccione un Icono :</h3> <hr>
-            @for ($i = 1; $i <=44; $i++)
+            @for ($i = 1; $i <=45; $i++)
                 <button type="button" class="btn btn-@if ($icon == $i)danger @endif">
                     <img wire:click.prevent="select_img({{$i}},{{ $selected_id}})" src="/css/cars/bike{{$i}}.svg " width="85" height="85"  title="{{ $i}}" alt="...">
                 </button>

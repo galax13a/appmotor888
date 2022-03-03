@@ -42,7 +42,7 @@ class Reports extends Component
         $this->empresa_value = 0;
         $this->operario_value = 0;
         $this->menu  = 1;
-		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
+	    	$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
         $this->userEmpresa = Auth::user()->empresa_id;
 
     }

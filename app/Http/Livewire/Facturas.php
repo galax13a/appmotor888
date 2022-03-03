@@ -26,18 +26,67 @@ class Facturas extends Component
 	public $row_count_operario, $fecha_server,$idoperario, $total, $empresa_totales, $fechax,$total_empresa, $total_all;
     public  $array_nopayment, $nopayment, $contador ,$daty, $filtro, $contables, $btn_pay, $gasto_id;
 	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
+	public $calificar_id, $calificar_puntaje, $calificar_name, $calificar_name_servicio;
+	
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
+	}
+
+	public function mount()
+	{
+		date_default_timezone_set("America/Bogota");
+		$this->userEmpresa = Auth::user()->empresa_id;
+		$this->fecha = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
+		$this->daty = date('Y-m-d');
+		$this->fecha_server =  date('Y-m-d h:i:s');
+		$this->operario_name = null;
+		$this->total = null;
+		$this->calificar_id = 0;
+		$this->calificar_puntaje = 0;
+		$calificar_name = null;
+
+		$this->filtro = true;
+
 	}
 
 	public function getplaca($id)
 	{
 		return  Mycar::Where("id", $id)->get();
 	}
+	public function votar($id,$valor)
+		{
+			$this->calificar_id = $id;
+			$this->calificar_puntaje = $valor;
+
+			$record = Factura::find($id);
+
+				$record->update([
+					'voto' => $valor
+				]);
+		
+
+			session()->flash('message', 'Gracias por su voto ' . $valor);
+
+		}	
+		public function carga_voto($id,$operario,$puntaje,$servicio_name='none'){
+
+			$this->calificar_name = $operario;
+			$this->calificar_id = $id;
+			$this->calificar_puntaje = $puntaje;
+			$this->calificar_name_servicio = $servicio_name;
+
+			session()->flash('message', 'cargando voto de . ' . $this->calificar_puntaje);
+		}
+   public function calificar($id, $valor){
+		$this->calificar_puntaje = $valor;
+		$this->calificar_id = $id;
+		session()->flash('message', 'Change voto ' . $this->calificar_puntaje);
+	}
+	
 	public function get_payment(){
 		session()->flash('message', 'Change Date Payment ' . $this->fecha);
-		$this->filtro = true;
+		$this->filtro = false;
 	}
 	
 	public function get_caja($id,$name)
@@ -152,17 +201,7 @@ class Facturas extends Component
 	}
 
 
-	public function mount()
-	{
-		date_default_timezone_set("America/Bogota");
-		$this->userEmpresa = Auth::user()->empresa_id;
-		$this->fecha = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
-		$this->daty = date('Y-m-d');
-		$this->fecha_server =  date('Y-m-d h:i:s');
-		$this->operario_name = null;
-		$this->total = null;
 
-	}
 	public function save()
 	{
 		$this->validate([
@@ -215,8 +254,9 @@ class Facturas extends Component
 	{
 		$keyWord = '%' . $this->keyWord . '%';
 		//$this->fecha = date('Y-m-d'); 
-		date_default_timezone_set("America/Bogota");
-		
+		//date_default_timezone_set("America/Bogota");
+		$this->fecha_server =  date('Y-m-d h:i:s');
+
 		if($this->array_nopayment) 
 		{
 			$this->get_nopayment();
@@ -257,12 +297,12 @@ class Facturas extends Component
 		}
  if(!$this->filtro) {
 					return view('livewire.facturas.view', [
-						'facturas' => Factura::latest()
+						'facturas' => Factura::orderBy('fecha', 'desc')
 							->Where('empresa_id', $this->userEmpresa)
 							->Where('placa', 'LIKE', $keyWord)
 							->Where("facturas.empresa_id", Auth::user()->empresa_id)
-							->orderBy('created_at', 'desc')
-							->paginate(45)
+							->orderBy('facturas.fecha', 'desc')
+							->paginate(50)
 					]);
 
 					   $this->emit('combos');
@@ -273,7 +313,6 @@ class Facturas extends Component
 								->Where('placa', 'LIKE', $keyWord)
 								->Where("facturas.empresa_id", Auth::user()->empresa_id)
 								->Where('facturas.fecha', $this->fecha)
-								->orderBy('created_at', 'desc')
 								->paginate(100)
 						]);
 						//$this->emit('combos');
@@ -314,7 +353,7 @@ class Facturas extends Component
 			'operario_id' => 'required',
 			'empresa_id' => 'required',
 		]);
-
+		//date_default_timezone_set("America/Bogota");
 		Factura::create([
 			'placa' => $this->placa,
 			'value' => $this->value,
@@ -404,8 +443,5 @@ class Facturas extends Component
 		$record->update([
 			'status' => $check
 		]);
-
-		//$this->emit('combos');
-		//session()->flash('message', 'Factura Actualizada !');
 	}
 }

@@ -43,9 +43,16 @@
                 <label for="servicio_id"></label>
                 <input wire:model="servicio_id" type="text" class="form-control" id="servicio_id" placeholder="Servicio Id">@error('servicio_id') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group d-none">
-                <label for="operario_id"></label>
-                <input wire:model="operario_id" type="text" class="form-control" id="operario_id" placeholder="Operario Id">@error('operario_id') <span class="error text-danger">{{ $message }}</span> @enderror
+            <div class="form-group ">
+                <label for="operario_id">Cambiar Operario</label>
+               @error('operario_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select class="form-control" name ="operario_id" id="operario_id" wire:model="operario_id">
+           
+                    @foreach ($operarios as $operario)
+                    <option  value="{{ $operario->id }}" >{{ $operario->name }} </option>   
+                    @endforeach    
+                </select>
+            
             </div>
             <div class="form-group d-none">
                 <label for="empresa_id"></label>

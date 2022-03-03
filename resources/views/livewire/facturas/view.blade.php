@@ -5,16 +5,14 @@
             <div class="card">
                 <div class="card-header">
                     <div wire:poll.60s>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; ">
 
                         </div>
                       
-						<div class="container">
+						<div class="container  ">
 
-                          
-
-                            <div class=" grid grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-4">
-                                <div class="row m-2 md:grid-cols-2">
+                            <div class=" grid grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-4 ">
+                                <div class="row m-1 md:grid-cols-2">
                                     @foreach ($operarios as $operario)
                                   <div class="col float-right" data-toggle="modal" data-target="#exampleModal" wire:click="servicios_operador({{$operario->id}}, '{{$operario->name}}')">
                                     <button type="button" class="btn btn-dark float-center m-1" style=" margin-top: -15px;">
@@ -33,43 +31,13 @@
                         </div>
 
                       
-                          <div class="container m-22 p-2">
-                            <div class="row">
-                              <div class="col">
-                                <strong>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  <i class="fa fa-ban" aria-hidden="true"></i> No Payment</button>
-                                </strong>
-                              </div>
-                              <div class="col">
-                                <strong>
-                                    <button type="button" class="btn btn-success" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Payment To</button>
-                                </strong>
-                              
-                              </div>
-
-                              <div class="col m-1">
-                                <div class="input-group input-group-sm">
-                                   <input size="6" wire:model="daty" type="text" style="cursor: pointer;" title="Change Date" class="input-group-text sm bg-primary text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
-                              </div>
-
-                              <div class="col m-1">
-                                  
-                                <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha}}</span>
-                           
-                               </div>
-                              <div class="col">
-                                <span  class="badge rounded-pill bg-warning text-dark p-2">  {{ $fecha_server}}</span>
-                              
-                              </div>
-                             
-                            </div>
-                          </div>
-
                       
+                      
+                        <div class="container-fluid bg-secondary border  rounded-top rounded-right ">
+                          
 
-                        <div class="container lg">
-                            <div class="row align-items-start">
+                        <div class="container lg bg-secondary m-2 p-1 ">
+                            <div class="row align-items-start  m-1 ">
                               <div class="row">
                                 <div class="col">
                                     <div class="form-group" wire:ignore>
@@ -114,44 +82,85 @@
 																
 								<div class="col">
                                   
-                                    <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i></button>
+                                    <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i> Crear Factura</button>
                                 </div>
                                 @if (session()->has('message'))
                                 <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
                                     {{ session('message') }} </div>
                             @endif
-                          
+                    
                               </div>
                            
 
-                        <div class="input-group input-group-lg">
-                            <input wire:model='keyWord' type="text" class="form-control input-lg" name="search"
-                                id="search" placeholder="Search">
+                        <div class="input-group input-group-lg ">
+                            <input wire:model='keyWord' type="text" class="form-control input-lg bg-dark" name="search"
+                                id="search" placeholder="Buscar x Placa">
                         </div>
                        
                     </div>
+
+
+                    <div class="container m-2 p-1 ">
+                        <div class="row">
+                          <div class="col">
+                            <strong>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  <i class="fa fa-ban" aria-hidden="true"></i> No Pagos</button>
+                            </strong>
+                          </div>
+                          <div class="col">
+                            <strong>
+                                <button type="button" class="btn btn-dark" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Pagos Factory!</button>
+                            </strong>
+                          
+                          </div>
+
+                          <div class="col m-1">
+                            <div class="input-group input-group-sm">
+                               <input size="6" wire:model="daty" type="text" style="cursor: pointer;" title="Change Date" class="input-group-text lg bg-light text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
+                             
+                            </div>
+                          </div>
+
+                          <div class="col m-1">
+                              
+                            <span  class="badge rounded-pill bg-danger p-2 text-light">  Facturacion de {{ $fecha}} </span>
+                       
+                           </div>
+                          <div class="col">
+                            <span  class="badge rounded-pill bg-light text-dark p-2">  {{ $fecha_server}} </span>
+                          
+                          </div>
+                      
+                        </div>
+                      </div>
+
+                      <hr>
+                     
+
                 </div>
 			
+            </div>
 
                 <div class="card-body">
                     @include('livewire.facturas.operario')
                     @include('livewire.facturas.update')
                     @include('livewire.facturas.empresa')
                     @include('livewire.facturas.payment')
+                    @include('livewire.facturas.star')
                    
             
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-sm">
-                            <thead class="thead">
+                    <div class="table-responsive" style="margin-top:-55px;">
+                        <table class="table table-bordered table-sm table-dark ">
+                            <thead class="thead ">
                                 <tr>
                                     <td>#</td>
-                                    <th>Placa</th>
+                                    <th>Placa Cliente</th>
                                     <th>Precio</th>
                                     <th>Empresa</th>
                                     <th>Operario</th>
                                     <th>Status</th>
                                     <th>Cliente</th>
-                                    <th>Wsp</th>
+                                    <th>Whatsap</th>
                                     <th>Servicio</th>
                                     <th>Operario</th>
                                     <th>Date</th>
@@ -164,17 +173,29 @@
                                         <td>{{ $loop->iteration }}
                                           
                                         </td>
-                                        <td>
-                                            <img src="/css/cars/bike{{ $row->service->carstype->icon }}.svg" width="33" height="33"alt="">
-                                            <strong>{{ Str::upper($row->placa) }}</strong>
+                                        <td class="text-lg-left">
+                                       
+                                         @if ($row->voto ==0)
+                                                 <i class="btn btn-light fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}}, '{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
+                                        @elseif($row->voto <= 5)
+                                                 <i class="btn btn-danger fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}},'{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
+                                        @elseif($row->voto>=9)
+                                                <i class="btn btn-primary fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}},'{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
+                                        @elseif($row->voto >= 6 )
+                                                 <i class="btn btn-warning fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}},'{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
+                                         @endif
+                                         
+                                    <img class=" btn-light p-1 rounded" src="/css/cars/bike{{ $row->service->carstype->icon }}.svg" width="33" height="33"alt="">
+                                    <strong>{{ Str::upper($row->placa) }}</strong>
+                                           
                                         </td>
-                                        <td><strong> {{ number_format($row->value, 2) }}</strong></td>
-                                        <td> {{ number_format($row->empresa, 2) }}</td>
-                                        <td>{{ number_format($row->operario, 2) }} 
+                                        <td><strong> {{ number_format($row->value, 0) }}</strong></td>
+                                        <td> {{ number_format($row->empresa, 0) }}</td>
+                                        <td>{{ number_format($row->operario, 0) }} 
                                             
                                             @if ($row->service->porcentaje == 100)
                                             <button type="button" class="btn btn-warning">Free Service</button>
-                                            @else % {{ $row->service->porcentaje }}
+                                            @else x {{ $row->service->porcentaje }}%
                                             @endif
                                         </td>
                                         <td>
@@ -188,25 +209,44 @@
                                                     <input class="form-check-input btn-warning" type="checkbox"
                                                         role="switch" id="status" checked
                                                         wire:click="ckeking({{ $row->id }}, 0)">
-                                                    <span class="badge bg-warning  p-1">Pagado!</span>
+                                                    <span class="badge bg-warning text-dark  p-1">Pagado!</span>
                                                 @endif
+
+                                                
                                             </div>
                                         </td>
-                                        <td>{{ Str::substr($row->cliente->name,0,6) }}</td>
-                                        <td>{{ $row->cliente->wsp1 }}</td>
+                                        <td>{{ Str::upper($row->cliente->name,0,6) }}</td>
+                                        <td class="text-center">
+                                            @if ($row->cliente->wsp1 > 0)
+                                           
+                                           <p> {{ $row->cliente->wsp1 }} </p>
+                                             @else <p> Sin Contacto </p>
+                                            @endif
+                                           
+                                            <a href="https://api.whatsapp.com/send?phone=57{{ $row->cliente->wsp1 }}&text=Hola,%20Somos%20MotorBike!%20,%20%20%20%20Su%20vehiculo%20ya%20se%20encuentra%20en%20proceso%20de%20limpieza,%20no%20olvides%20calificar%20nuestro%20servicio,%20Le%20notificaremos%20cuando%20este%20listo%20%20su%20vehiculo%20!!!" 
+                                                target="_blank" >
+                                            <button type="button" title="Enviar un mensaje Whatsap" class="btn btn-sm btn-outline-success">
+                                                 <i class="fa fa-phone text-center" aria-hidden="true"></i>
+                                                Mensaje
+                                                </button>
+                                               
+                                            </a>
+                                            
+                                           
+                                        </td>
                                         <td>{{ Str::upper($row->service->name) }}
                                             
                                             </td>
                                         <td>{{ substr(Str::upper($row->operarios->name),0,6) }} </td>
-                                        <td>{{ $row->fecha }} 
-                                            <a href="{{ url('/imprimir/') }}/333/{{Str::upper($row->operarios->name)}}/{{ Str::upper($row->service->name) }}/{{ Str::upper($row->placa) }}/{{ number_format($row->value, 0) }}/{{ Str::substr($row->cliente->name,0,6) }}/{{ $row->service->carstype->icon }}
-
-                                                " 
+                                        <td class="text-center">
+                                            {{ $row->fecha }} 
+                                            <a href="{{ url('/imprimir/') }}/333/{{Str::upper($row->operarios->name)}}/{{ Str::upper($row->service->name) }}/{{ Str::upper($row->placa) }}/{{ number_format($row->value, 0) }}/{{ Str::substr($row->cliente->name,0,6) }}/{{ $row->service->carstype->icon }}" 
                                                 target="_blank" >
-                                            <button type="button" title="imprimir servicio" class="btn btn-sm btn-outline-dark">
+                                            <button type="button" title="imprimir servicio" class="btn btn-sm btn-outline-light">
                                                  <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             </a>
+                                          
                                         </td>
                                         <td width="90">
                                             <div class="btn-group">
@@ -323,7 +363,7 @@
                 $.noConflict();
                     
               $( "#daty" ).datepicker({
-                                dateFormat : 'yy/mm/dd',
+                                dateFormat : 'yy-mm-dd',
                                 changeMonth : true,
                                 changeYear : true,
                                 yearRange: '-100y:c+nn',

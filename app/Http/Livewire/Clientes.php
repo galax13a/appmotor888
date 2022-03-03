@@ -22,6 +22,8 @@ class Clientes extends Component
     public $userEmpresa, $name_cliente;
     public $placa_id, $cars_id, $placa_busca;
     public $mys_carros, $cumple,$cumple2;
+    public $key_car, $nuevo_clientes;
+
 
     public function updatingKeyWord(){
         $this->resetPage();
@@ -30,6 +32,8 @@ class Clientes extends Component
     public function mount(){
 
         $this->userEmpresa = Auth::user()->empresa_id;
+        $key_car = 0;
+        $this->nuevo_clientes = null;
     }
 
     public function getplaca($id){
@@ -52,8 +56,15 @@ class Clientes extends Component
         return DB::table('clientes')
                 ->select(DB::raw("COUNT(clientes.id) as cuantos"))
                 ->where('clientes.empresa_id', Auth::user()->empresa_id)
+                ->where('clientes.status',1)
                 ->get();
 
+    }
+    public function menu($id,$name) {
+
+        $this->key_car = $id;
+       session()->flash('message', 'Cambiado a '  . $name);
+     
     }
 
     public function get_mycars() {
@@ -61,9 +72,10 @@ class Clientes extends Component
 
           return  DB::table('carstypes')
 			->join('mycars', 'mycars.carstypes_id', '=', 'carstypes.id')
-			->select(DB::raw("COUNT(carstypes.name) as cuantos, carstypes.name, carstypes.icon as icon"))
+			->select(DB::raw("COUNT(carstypes.name) as cuantos, carstypes.name, carstypes.icon as icon, carstypes.id"))
             ->groupBy('carstypes.name')
-            ->groupBy('carstypes.icon')            
+            ->groupBy('carstypes.icon')    
+            ->groupBy('carstypes.id')        
 			->Where("carstypes.empresa_id", Auth::user()->empresa_id)
 			->get();
     }
@@ -79,25 +91,41 @@ class Clientes extends Component
 
         $this->mys_carros = $this->get_mycars();
 
-        if(empty($this->placa_busca)){
+        if($this->key_car == 0){
+         
             return view('livewire.clientes.view', [
-                'clientes' => Cliente::latest()
-                            ->Where('empresa_id', $this->userEmpresa)
-                            ->Where('name', 'LIKE', $keyWord)
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(50)
+                'clientes' => DB::table('clientes')
+                ->leftJoin('mycars', 'mycars.cliente_id', '=', 'clientes.id')
+                ->select('clientes.name','clientes.id', 'clientes.wsp1', 'clientes.status','clientes.cumple')
+                ->Where('empresa_id', $this->userEmpresa)
+                ->groupBy('clientes.name') 
+                ->groupBy('clientes.id') 
+                ->groupBy('clientes.wsp1') 
+                ->groupBy('clientes.status') 
+                ->groupBy('clientes.cumple') 
+                ->orderBy('cliente_id', 'asc')
+                ->paginate(50)
             ]);
-        }else {
+        } else{
+         
             return view('livewire.clientes.view', [
-                'clientes' => Cliente::latest()
-                            ->Where('empresa_id', $this->userEmpresa)
-                            ->Where('name', 'LIKE', $keyWord)
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(50)
-
-                        ]);
-                        
+                'clientes' => DB::table('clientes')
+                ->join('mycars', 'mycars.cliente_id', '=', 'clientes.id')
+                ->select('clientes.name','clientes.id', 'clientes.wsp1', 'clientes.status','clientes.cumple')
+                ->Where('empresa_id', $this->userEmpresa)
+                ->where('mycars.carstypes_id',$this->key_car)
+                ->groupBy('clientes.name') 
+                ->groupBy('clientes.id') 
+                ->groupBy('clientes.wsp1') 
+                ->groupBy('clientes.status') 
+                ->groupBy('clientes.cumple') 
+                ->orderBy('cliente_id', 'desc')
+                ->paginate(50)
+            ]);
         }
+        
+
+     
     }
 	
     public function cancel()
