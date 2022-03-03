@@ -60,7 +60,7 @@
 								<th>placas</th>
 								<th>Phone</th>
 								<th>Cumpleaños</th>
-								<th>Status</th>
+								<th>Eliminar</th>
 							@php /*
 									<th>Empresa Id</th>
 									*/
