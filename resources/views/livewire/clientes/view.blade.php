@@ -93,9 +93,9 @@
 							<td>
 							<div class="form-check form-switch ml-4">
 								@if($row->status == 0)
-								<input class="form-check-input btn-danger" type="checkbox" role="switch" id="status" wire:click="ckeking({{$row->id}}, 1)" >
+								<input  class="form-check-input btn-danger" type="checkbox" role="switch" id="status" wire:click="ckeking({{$row->id}}, 1)" >
 								@elseif ($row->status == 1)
-								<input class="form-check-input" type="checkbox" role="switch" id="status" checked wire:click="ckeking({{$row->id}}, 0)">
+								<input onclick="confirm('Confirm Delete Factura id {{ $row->id }}? \nDeleted cliente cannot be recovered!')||event.stopImmediatePropagation()" class="form-check-input" type="checkbox" role="switch" id="status" checked wire:click="ckeking({{$row->id}}, 0)">
 								@endif
 							</div>
 							</div>
