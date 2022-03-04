@@ -16,7 +16,7 @@
             <div class="form-group " >
                 <h5 class="text-right"> Calificar Nuestro Servicio 
                     
-                    <i class="btn btn-primary fa fa-star  " ></i> {{$this->calificar_puntaje}} a 10</h5> 
+                    <i class="btn btn-primary fa fa-star  " wire:click='votar({{$this->calificar_id}},0 )'' ></i> {{$this->calificar_puntaje}} a 10</h5> 
                     <hr>
                 <div class="container m-2 p-2" >
                  
