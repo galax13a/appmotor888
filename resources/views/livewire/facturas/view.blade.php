@@ -95,6 +95,8 @@
                         <div class="input-group input-group-lg ">
                             <input wire:model='keyWord' type="text" class="form-control input-lg bg-dark" name="search"
                                 id="search" placeholder="Buscar x Placa">
+                                <button type="button" class="btn btn-light m-1" wire:click="cambiar_tema()" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
+                               
                         </div>
                        
                     </div>
@@ -150,7 +152,7 @@
                    
             
                     <div class="table-responsive" style="margin-top:-55px;">
-                        <table class="table table-bordered table-sm table-dark ">
+                        <table class="table table-bordered table-sm table-{{ $this->thema_factu}}">
                             <thead class="thead ">
                                 <tr>
                                     <td>#</td>

@@ -27,7 +27,7 @@ class Facturas extends Component
     public  $array_nopayment, $nopayment, $contador ,$daty, $filtro, $contables, $btn_pay, $gasto_id;
 	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
 	public $calificar_id, $calificar_puntaje, $calificar_name, $calificar_name_servicio;
-	
+	public $thema_factu = "light";
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -45,9 +45,15 @@ class Facturas extends Component
 		$this->calificar_id = 0;
 		$this->calificar_puntaje = 0;
 		$calificar_name = null;
-
+		//$this->thema_factu = "light";
 		$this->filtro = true;
 
+	}
+
+	public function cambiar_tema(){
+		
+		if($this->thema_factu == "dark") $this->thema_factu = "light";
+		else $this->thema_factu = "dark";
 	}
 
 	public function getplaca($id)
@@ -297,11 +303,10 @@ class Facturas extends Component
 		}
  if(!$this->filtro) {
 					return view('livewire.facturas.view', [
-						'facturas' => Factura::orderBy('fecha', 'desc')
+						'facturas' => Factura::orderBy('created_at', 'desc')
 							->Where('empresa_id', $this->userEmpresa)
 							->Where('placa', 'LIKE', $keyWord)
 							->Where("facturas.empresa_id", Auth::user()->empresa_id)
-							->orderBy('facturas.fecha', 'desc')
 							->paginate(50)
 					]);
 

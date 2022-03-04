@@ -98,6 +98,7 @@ class Clientes extends Component
                 ->leftJoin('mycars', 'mycars.cliente_id', '=', 'clientes.id')
                 ->select('clientes.name','clientes.id', 'clientes.wsp1', 'clientes.status','clientes.cumple')
                 ->Where('empresa_id', $this->userEmpresa)
+                ->Where('clientes.name', 'LIKE', $keyWord)
                 ->where('clientes.status', 1)
                 ->groupBy('clientes.name') 
                 ->groupBy('clientes.id') 
