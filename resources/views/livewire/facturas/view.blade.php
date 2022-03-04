@@ -33,7 +33,7 @@
                       
                       
                       
-                        <div class="container-fluid bg-secondary border  rounded-top rounded-right ">
+                        <div class="container-fluid bg-secondary border  rounded ">
                           
 
                         <div class="container lg bg-secondary m-2 p-1 ">
@@ -151,7 +151,7 @@
                     @include('livewire.facturas.star')
                    
             
-                    <div class="table-responsive" style="margin-top:-55px;">
+                    <div class="table-responsive rounded" style="margin-top:-55px;">
                         <table class="table table-bordered table-sm table-{{ $this->thema_factu}}">
                             <thead class="thead ">
                                 <tr>
@@ -271,6 +271,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <hr>
                         {{ $facturas->links() }}
                     </div>
                 </div>
