@@ -82,7 +82,7 @@ class Facturas extends Component
 			$this->calificar_puntaje = $puntaje;
 			$this->calificar_name_servicio = $servicio_name;
 
-			session()->flash('message', 'cargando voto de . ' . $this->calificar_puntaje);
+			//session()->flash('message', 'cargando voto de . ' . $this->calificar_puntaje);
 		}
    public function calificar($id, $valor){
 		$this->calificar_puntaje = $valor;

@@ -165,7 +165,7 @@
                                     <th>Whatsap</th>
                                     <th>Servicio</th>
                                     <th>Operario</th>
-                                    <th>Date</th>
+                                    <th>Fecha Factory</th>
                                     <td>ACTIONS</td>
                                 </tr>
                             </thead>
