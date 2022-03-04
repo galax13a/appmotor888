@@ -44,8 +44,8 @@
                                         <select class="select2"" id="servicio_id" wire:model="servicio_id">
 											<option value=""> Seleccione Servicio: </option>
                                             @foreach ($servicios as $servicio)
-                                                <option value="{{ $servicio->id }}-{{$servicio->value}}-{{$servicio->porcentaje}}">
-                                                    {{ Str::upper($servicio->name) }} - {{ number_format($servicio->value,2) }}
+                                                <option value="{{ $servicio->id }}/{{$servicio->value}}/{{$servicio->porcentaje}}">
+                                                    {{ Str::upper($servicio->name) }} / {{ number_format($servicio->value,2) }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -175,7 +175,7 @@
                                         <td>{{ $loop->iteration }}
                                           
                                         </td>
-                                        <td class="text-lg-left">
+                                        <td class="text-sm-left">
                                        
                                          @if ($row->voto ==0)
                                                  <i class="btn btn-light fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}}, '{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
@@ -193,11 +193,12 @@
                                         </td>
                                         <td><strong> {{ number_format($row->value, 0) }}</strong></td>
                                         <td> {{ number_format($row->empresa, 0) }}</td>
-                                        <td>{{ number_format($row->operario, 0) }} 
+                                        <td>
+                                            @if($row->operario>0) {{ number_format($row->operario, 0) }}  @endif
                                             
                                             @if ($row->service->porcentaje == 100)
-                                            <button type="button" class="btn btn-warning">Free Service</button>
-                                            @else x {{ $row->service->porcentaje }}%
+                                            <button type="button" class="btn btn-warning"> <strong> Free ❤ </strong></button>
+                                            @else x{{ $row->service->porcentaje }}
                                             @endif
                                         </td>
                                         <td>
@@ -236,10 +237,10 @@
                                             
                                            
                                         </td>
-                                        <td>{{ Str::upper($row->service->name) }}
+                                        <td>{{ substr(Str::upper($row->service->name),0,15) }}
                                             
                                             </td>
-                                        <td>{{ substr(Str::upper($row->operarios->name),0,6) }} </td>
+                                        <td>{{ substr(Str::upper($row->operarios->name),0,7) }} </td>
                                         <td class="text-center">
                                             {{ $row->fecha }} 
                                             <a href="{{ url('/imprimir/') }}/333/{{Str::upper($row->operarios->name)}}/{{ Str::upper($row->service->name) }}/{{ Str::upper($row->placa) }}/{{ number_format($row->value, 0) }}/{{ Str::substr($row->cliente->name,0,6) }}/{{ $row->service->carstype->icon }}" 
@@ -267,6 +268,7 @@
                                                             class="fa fa-trash"></i> Delete </a>
                                                 </div>
                                             </div>
+                                         
                                         </td>
                                 @endforeach
                             </tbody>

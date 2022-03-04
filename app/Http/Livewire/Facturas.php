@@ -223,7 +223,7 @@ class Facturas extends Component
 		$this->status = 0;
 		$this->cliente_id = 2;
 		$this->empresa_id = $this->userEmpresa; // id de la empresa_id
-		$tags_servicio = explode("-", $this->servicio_id); // id servicio_id y valor del servicios
+		$tags_servicio = explode("/", $this->servicio_id); // id servicio_id y valor del servicios
 		$this->value = $tags_servicio[1]; // Valor del Servicio
 		$idservicio = $tags_servicio[0]; // id del servicios
 		$tags_placas = explode("-", $this->placa); // la placa y id cliente
@@ -232,9 +232,16 @@ class Facturas extends Component
 		$porcentaje = $tags_servicio[2];
 
 		$this->operario = $this->value * $porcentaje/100;
+
 		$empresa_porcentaje = 100 - $porcentaje;
 		$this->empresa =  $this->value * $empresa_porcentaje/100;
 
+		if($this->operario < 0 ) {
+
+			$this->empresa = $this->operario; // paso a volver negativo el valor de empresa
+			$this->operario = abs($this->operario ); // paso de negativo a positivo
+			
+		}
 
 
 		Factura::create([
@@ -285,6 +292,7 @@ class Facturas extends Component
 		$this->empresa_totales =DB::table('facturas')
 							->select(DB::raw("SUM(facturas.empresa) as empresa, SUM(facturas.value) as total, SUM(facturas.operario) as operario"))
 							->where('facturas.fecha', $this->fecha)
+							->where('facturas.empresa', '>' ,0)
 							->get();
 
 	      $this->total_liquidar = $this->empresa_totales[0]->total;					
