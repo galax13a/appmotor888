@@ -237,7 +237,7 @@
                                             
                                            
                                         </td>
-                                        <td>{{ substr(Str::upper($row->service->name),0,15) }}
+                                        <td>{{ substr(Str::upper($row->service->name),0,26) }}
                                             
                                             </td>
                                         <td>{{ substr(Str::upper($row->operarios->name),0,7) }} </td>
