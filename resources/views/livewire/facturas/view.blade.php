@@ -111,7 +111,7 @@
                           </div>
                           <div class="col">
                             <strong>
-                                <button type="button" class="btn btn-dark" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Pagos Factory!</button>
+                                <button type="button" class="btn btn-dark" wire:click="get_payment()">  <i class="fa fa-credit-card" aria-hidden="true"></i> Pagos Factory</button>
                             </strong>
                           
                           </div>
