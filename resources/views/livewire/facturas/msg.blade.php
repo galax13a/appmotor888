@@ -15,7 +15,7 @@
             <div class="form-group " >
                 <h5 class="text-right"> Envia un mensaje a {{$this->msg_cliente;}} / WhatsApp </h5>
                     <hr>
-                <div class="container m-2 p-2" >
+                <div class="container " >
                     <div class="form-group" wire:ignore>
                         <select    class="form-control"  id="mssg_id" wire:model="msg_id">
                             <option value=""> Seleccione  Mensaje : </option>

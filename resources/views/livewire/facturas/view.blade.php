@@ -229,7 +229,7 @@
                                            
                                            
                                             <button wire:click="msg_carga('{{ Str::upper($row->cliente->name,0,6) }}', '{{ Str::upper($row->placa) }}','{{ substr(Str::upper($row->service->name),0,26) }}','{{Str::upper($row->operarios->name)}}')" data-toggle="modal" data-target="#exampleMsg" type="button" title="Enviar un mensaje WhatsApp" class="btn btn-sm btn-outline-success">
-                                                 <i class="fa fa-phone text-center" aria-hidden="true"></i>
+                                                
                                                 Mensaje
                                                 </button>
                                         
