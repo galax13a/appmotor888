@@ -58,7 +58,7 @@
                        
                         <div class="form-group">
                             <label for="mensaje"></label>
-                            <textarea wire:model="msg_msg" class="form-control" id="msg_msg" rows="3" placeholder="Mensaje"></textarea>
+                            <textarea wire:model="msg_msg" class="form-control" id="msg_msg" rows="5" placeholder="Mensaje"></textarea>
                            
                             <div class="form-group m-2 p-2 text-center">
                                 <a href="https://api.whatsapp.com/send?phone=573124277758&amp;text={{$this->msg_msg}}" target="_blank">
