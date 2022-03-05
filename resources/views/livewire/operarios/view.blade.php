@@ -35,7 +35,7 @@
 								<th>Wsp</th>
 								<th>Status</th>
 								<th>Empresa Id</th>
-								<td>ACTIONS</td>
+								<td>ACTION</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,7 +47,7 @@
 								<td>{{ $row->wsp }}</td>
 								<td>
 									
-<div class="form-check form-switch ml-4">
+							<div class="form-check form-switch ml-4">
 								@if($row->status == 0)
 								<input class="form-check-input btn-danger" type="checkbox" role="switch" id="status" wire:click="ckeking({{$row->id}}, 1)" >
 								@elseif ($row->status == 1)
@@ -58,12 +58,8 @@
 								</td>
 								<td>{{ $row->empresa->name }}</td>
 								<td width="90">
-							
-									
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete Operario id {{$row->id}}? \nDeleted Operarios cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>  </a>   
-								
-								
+									<button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$row->id}})" class="btn btn-success p-1 ">✔️</button>
+							        <button onclick="confirm('Confirm Delete Mensaje id {{$row->id}}? \nDeleted Mensajes cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger p-1">➖</button>
 								</td>
 							@endforeach
 						</tbody>
