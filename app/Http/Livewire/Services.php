@@ -38,7 +38,6 @@ class Services extends Component
             'services' => Service::latest()
                         ->Where('empresa_id', Auth::user()->empresa_id)
 						->Where('name', 'LIKE', $keyWord)
-						->Where('value', 'LIKE', $keyWord)
 						->paginate(10)
            
         ]);
