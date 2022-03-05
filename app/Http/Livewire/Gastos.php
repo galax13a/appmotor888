@@ -31,7 +31,7 @@ class Gastos extends Component
             'gastos' => Gasto::latest()
                         ->Where('empresa_id', $this->empresa_id)
 						->Where('name', 'LIKE', $keyWord)
-						->paginate(10),
+						->paginate(50),
         ]);
     }
 	
