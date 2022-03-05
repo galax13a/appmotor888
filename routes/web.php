@@ -35,6 +35,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     
 
 //Route Hooks - Do not delete//
+	Route::view('admin/mensajes', 'livewire.mensajes.index')->middleware('auth');
 	Route::view('admin/cajas', 'livewire.cajas.index')->middleware('auth');
 	Route::view('admin/factury', 'livewire.facturas.index')->middleware('auth');
 	Route::view('admin/operarios', 'livewire.operarios.index')->middleware('auth');

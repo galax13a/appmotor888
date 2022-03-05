@@ -41,6 +41,9 @@
                     <ul class="navbar-nav mr-auto">
 						<!--Nav Bar Hooks - Do not delete!!-->
 						<li class="nav-item">
+                            <a href="{{ url('admin/mensajes') }}" class="nav-link"><i class="fa fa-comment text-success"></i> Msg</a> 
+                        </li>
+						<li class="nav-item">
                             <a href="{{ url('admin/cajas') }}" class="nav-link"><i class="fa fa-university text-warning"></i> Caja</a> 
                         </li>
 						<li class="nav-item">

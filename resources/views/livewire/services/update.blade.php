@@ -70,8 +70,8 @@
 <script>
 
         document.addEventListener('livewire:load', function(){
-            $('#carss_id').on('change', function(){
-              // alert('mensaje Editar 2.0  ' + this.value );
+            $('#msg_id').on('change', function(){
+               alert('mensaje Editar 2.0  ' + this.value );
                 //@this.set('cars_id', this.value)
             // $('#carss_id').append('selected')
              // $('#carss_id').append('<option value="5" selected >One</option>');

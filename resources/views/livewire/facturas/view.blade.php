@@ -149,6 +149,7 @@
                     @include('livewire.facturas.empresa')
                     @include('livewire.facturas.payment')
                     @include('livewire.facturas.star')
+                    @include('livewire.facturas.msg')
                    
             
                     <div class="table-responsive rounded" style="margin-top:-55px;">
@@ -198,7 +199,7 @@
                                             
                                             @if ($row->service->porcentaje == 100)
                                             <button type="button" class="btn btn-warning"> <strong> Free ❤ </strong></button>
-                                            @else x{{ $row->service->porcentaje }}
+                                            @else x{{ $row->service->porcentaje }}%
                                             @endif
                                         </td>
                                         <td>
@@ -226,14 +227,12 @@
                                              @else <p> Sin Contacto </p>
                                             @endif
                                            
-                                            <a href="https://api.whatsapp.com/send?phone=57{{ $row->cliente->wsp1 }}&text=Hola,%20Somos%20MotorBike!%20,%20%20%20%20Su%20vehiculo%20ya%20se%20encuentra%20en%20proceso%20de%20limpieza,%20no%20olvides%20calificar%20nuestro%20servicio,%20Le%20notificaremos%20cuando%20este%20listo%20%20su%20vehiculo%20!!!" 
-                                                target="_blank" >
-                                            <button type="button" title="Enviar un mensaje Whatsap" class="btn btn-sm btn-outline-success">
+                                           
+                                            <button wire:click="msg_carga('{{ Str::upper($row->cliente->name,0,6) }}', '{{ Str::upper($row->placa) }}','{{ substr(Str::upper($row->service->name),0,26) }}','{{Str::upper($row->operarios->name)}}')" data-toggle="modal" data-target="#exampleMsg" type="button" title="Enviar un mensaje WhatsApp" class="btn btn-sm btn-outline-success">
                                                  <i class="fa fa-phone text-center" aria-hidden="true"></i>
                                                 Mensaje
                                                 </button>
-                                               
-                                            </a>
+                                        
                                             
                                            
                                         </td>

@@ -12,6 +12,7 @@ use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 use App\Models\Caja;
 use App\Models\Gasto;
+use App\Models\Mensaje;
 
 
 class Facturas extends Component
@@ -28,6 +29,8 @@ class Facturas extends Component
 	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
 	public $calificar_id, $calificar_puntaje, $calificar_name, $calificar_name_servicio;
 	public $thema_factu = "light";
+	public $mensajes,$msg_id, $msg_contenido, $msg_msg, $msg_placa, $msg_cliente, $msg_operario, $msg_servicio;
+
 	public function updatingKeyWord()
 	{
 		$this->resetPage();
@@ -47,7 +50,13 @@ class Facturas extends Component
 		$calificar_name = null;
 		//$this->thema_factu = "light";
 		$this->filtro = true;
+	}
+	public function msg_carga($cliente, $placa, $servicio, $operario){ // para enviar mensages x la placa y cliente
 
+		$this->msg_placa = $placa;
+		$this->msg_cliente = $cliente;
+		$this->msg_servicio = $servicio;
+		$this->msg_operario = $operario;
 	}
 
 	public function cambiar_tema(){
@@ -263,7 +272,7 @@ class Facturas extends Component
 		$this->emit('combos');
 	}
 
-	public function render()
+	public function render()  // REnder                 Render   *** ******
 	{
 		$keyWord = '%' . $this->keyWord . '%';
 		//$this->fecha = date('Y-m-d'); 
@@ -281,6 +290,10 @@ class Facturas extends Component
 			->Where("empresa_id", Auth::user()->empresa_id)
 			->orderBy('mycars.name')
 			->get();
+
+		$this->mensajes = Mensaje::where('empresa_id', $this->userEmpresa)->where('status',1)->get();
+
+		if($this->msg_id > 0) $this->msg_contenido = $this->mensajes = Mensaje::where('id',$this->msg_id)->get();
 
 		$this->servicios = Service::where('empresa_id', $this->userEmpresa)->where('status',1)->get();
 
