@@ -251,22 +251,9 @@
                                           
                                         </td>
                                         <td width="90">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-info btn-sm dropdown-toggle"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Actions
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a data-toggle="modal" data-target="#updateModal"
-                                                        class="dropdown-item"
-                                                        wire:click="edit({{ $row->id }})"><i
-                                                            class="fa fa-edit"></i> Edit </a>
-                                                    <a class="dropdown-item"
-                                                        onclick="confirm('Confirm Delete Factura id {{ $row->id }}? \nDeleted Facturas cannot be recovered!')||event.stopImmediatePropagation()"
-                                                        wire:click="destroy({{ $row->id }})"><i
-                                                            class="fa fa-trash"></i> Delete </a>
-                                                </div>
-                                            </div>
+                                            <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$row->id}})" class="btn btn-success p-1 ">✔️</button>
+                                            <button onclick="confirm('Confirm Delete Factory id {{$row->id}}? \nDeleted Factory cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger p-1">➖</button>
+                                    
                                          
                                         </td>
                                 @endforeach

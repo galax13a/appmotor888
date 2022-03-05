@@ -63,12 +63,8 @@
 								<td>{{ $row->empresa->name }}</td>
 								<td width="90">
 									<button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$row->id}})" class="btn btn-success p-1 ">✔️</button>
-									
-										<button onclick="confirm('Confirm Delete Mensaje id {{$row->id}}? \nDeleted Mensajes cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger p-1">➖</button>
-								
-
-								
-								</td>
+							        <button onclick="confirm('Confirm Delete Mensaje id {{$row->id}}? \nDeleted Mensajes cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger p-1">➖</button>
+							</td>
 							@endforeach
 						</tbody>
 					</table>						
