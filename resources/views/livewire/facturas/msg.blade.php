@@ -53,7 +53,7 @@
                                 <a href="https://api.whatsapp.com/send?phone=57{{$this->msg_phone}}&amp;text={{$this->msg_msg}}" target="_blank">
                                     <button type="button" title="Enviar un mensaje Whatsap" class="btn btn-sm btn-outline-success">
                                          <i class="fa fa-phone text-center" aria-hidden="true"></i>
-                                       Enviar  Mensaje
+                                       Enviar  Mensaje {{$this->msg_phone}}
                                         </button>
                                        
                                     </a>
