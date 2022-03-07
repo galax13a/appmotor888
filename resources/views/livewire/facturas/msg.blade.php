@@ -24,35 +24,24 @@
                             @endforeach    
                         </select>
                         </div>
+                
                         @if ($this->msg_contenido)
                         @php
                             $this->msg_msg = $this->msg_contenido[0]->mensaje;
-                             
                             $sentence =  $this->msg_msg;
-                            
                             $search = "@placa";
                             $replace = $this->msg_placa;
-      
                             $new_sentence1 = str_replace($search, $replace, $sentence);
-
                             $search = "@cliente";
                             $replace = $this->msg_cliente;
-                            
                             $new_sentence = str_replace($search, $replace, $new_sentence1);
-
                             $search = "@operario";
                             $replace = $this->msg_operario;
-                            
                             $new_sentence = str_replace($search, $replace, $new_sentence);
-
                             $search = "@servicio";
                             $replace = $this->msg_servicio;
-                            
                             $new_sentence = str_replace($search, $replace, $new_sentence);
-
                             $this->msg_msg = $new_sentence;
-
-
                         @endphp
 
                        
@@ -61,7 +50,7 @@
                             <textarea wire:model="msg_msg" class="form-control" id="msg_msg" rows="5" placeholder="Mensaje"></textarea>
                            
                             <div class="form-group m-2 p-2 text-center">
-                                <a href="https://api.whatsapp.com/send?phone=573124277758&amp;text={{$this->msg_msg}}" target="_blank">
+                                <a href="https://api.whatsapp.com/send?phone=57{{$this->msg_phone}}&amp;text={{$this->msg_msg}}" target="_blank">
                                     <button type="button" title="Enviar un mensaje Whatsap" class="btn btn-sm btn-outline-success">
                                          <i class="fa fa-phone text-center" aria-hidden="true"></i>
                                        Enviar  Mensaje

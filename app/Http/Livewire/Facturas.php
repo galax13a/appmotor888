@@ -29,7 +29,7 @@ class Facturas extends Component
 	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
 	public $calificar_id, $calificar_puntaje, $calificar_name, $calificar_name_servicio;
 	public $thema_factu = "light";
-	public $mensajes,$msg_id, $msg_contenido, $msg_msg, $msg_placa, $msg_cliente, $msg_operario, $msg_servicio;
+	public $mensajes,$msg_id, $msg_contenido, $msg_msg, $msg_placa, $msg_cliente, $msg_operario, $msg_servicio, $msg_phone;
 
 	public function updatingKeyWord()
 	{
@@ -51,12 +51,13 @@ class Facturas extends Component
 		//$this->thema_factu = "light";
 		$this->filtro = true;
 	}
-	public function msg_carga($cliente, $placa, $servicio, $operario){ // para enviar mensages x la placa y cliente
+	public function msg_carga($cliente, $placa, $servicio, $operario, $phone){ // para enviar mensages x la placa y cliente
 
 		$this->msg_placa = $placa;
 		$this->msg_cliente = $cliente;
 		$this->msg_servicio = $servicio;
 		$this->msg_operario = $operario;
+		$this->msg_phone = $phone;
 	}
 
 	public function cambiar_tema(){
