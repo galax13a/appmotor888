@@ -47,6 +47,7 @@
                        
                         <div class="form-group">
                             <label for="mensaje"></label>
+                            <img class="img-responsive centrar " wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
                             <textarea wire:model="msg_msg" class="form-control" id="msg_msg" rows="5" placeholder="Mensaje"></textarea>
                            
                             <div class="form-group m-2 p-2 text-center">
@@ -58,13 +59,14 @@
                                        
                                     </a>
                             </div>
+                            
                         </div>
                         @endif
                         </div>
                   </div>
             </div>
         <div class="modal-footer">
-                <img class="img-responsive centrar " wire:loading src="/css/icons/save.gif" width="20%" height="20%"alt="" >
+                
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                
             </form>
