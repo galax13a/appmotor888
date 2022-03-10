@@ -81,7 +81,6 @@
                                 </div>
 																
 								<div class="col">
-                                  
                                     <button wire:click="save()"  type="button" class="btn btn-dark btn-sm bg-success"><i class="fa fa-plus-circle p-1 bg-success" ></i> Crear Factura</button>
                                 </div>
                                 @if (session()->has('message'))
@@ -90,17 +89,13 @@
                             @endif
                     
                               </div>
-                           
-
                         <div class="input-group input-group-lg ">
                             <input wire:model='keyWord' type="text" class="form-control input-lg bg-dark" name="search"
                                 id="search" placeholder="Buscar x Placa">
                                 <button type="button" class="btn btn-light m-1" wire:click="cambiar_tema()" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
-                               
-                        </div>
-                       
+                                <button id="tema" type="button" class="btn btn-warning m-1" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
+                            </div>
                     </div>
-
 
                     <div class="container m-2 p-1 ">
                         <div class="row">
@@ -119,26 +114,20 @@
                           <div class="col m-1">
                             <div class="input-group input-group-sm">
                                <input size="6" wire:model="daty" type="text" style="cursor: pointer;" title="Change Date" class="input-group-text lg bg-light text-bold text-green-400" id="daty" placeholder="Date">@error('daty') <span class="error text-danger">{{ $message }}</span> @enderror
-                             
                             </div>
                           </div>
 
                           <div class="col m-1">
-                              
                             <span  class="badge rounded-pill bg-danger p-2 text-light">  Facturacion de {{ $fecha}} </span>
-                       
                            </div>
                           <div class="col">
                             <span  class="badge rounded-pill bg-light text-dark p-2">  {{ $fecha_server}} </span>
-                          
                           </div>
-                      
                         </div>
                       </div>
 
                       <hr>
-                     
-
+           
                 </div>
 			
             </div>
@@ -150,10 +139,9 @@
                     @include('livewire.facturas.payment')
                     @include('livewire.facturas.star')
                     @include('livewire.facturas.msg')
-                   
             
                     <div class="table-responsive rounded" style="margin-top:-55px;">
-                        <table class="table table-bordered table-sm table-{{ $this->thema_factu}}">
+                        <table id="tabla_tema" class="table table-bordered table-sm {{ $this->thema_factu}}">
                             <thead class="thead ">
                                 <tr>
                                     <td>#</td>
@@ -215,8 +203,6 @@
                                                         wire:click="ckeking({{ $row->id }}, 0)">
                                                     <span class="badge bg-warning text-dark  p-1">Pagado!</span>
                                                 @endif
-
-                                                
                                             </div>
                                         </td>
                                         <td>{{ Str::upper($row->cliente->name,0,6) }}</td>
@@ -226,15 +212,11 @@
                                            <p> {{ $row->cliente->wsp1 }} </p>
                                              @else <p> Sin Contacto </p>
                                             @endif
-                                           
-                                           
+                                          
                                             <button wire:click="msg_carga('{{ Str::upper($row->cliente->name,0,6) }}', '{{ Str::upper($row->placa) }}','{{ substr(Str::upper($row->service->name),0,26) }}','{{Str::upper($row->operarios->name)}}',{{$row->cliente->wsp1 }})" data-toggle="modal" data-target="#exampleMsg" type="button" title="Enviar un mensaje WhatsApp" class="btn btn-sm btn-outline-success">
                                                  <i class="fa fa-phone text-center" aria-hidden="true"></i>
                                                 Mensaje
                                                 </button>
-                                        
-                                            
-                                           
                                         </td>
                                         <td>{{ substr(Str::upper($row->service->name),0,26) }}
                                             
@@ -248,24 +230,33 @@
                                                  <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             </a>
-                                          
                                         </td>
                                         <td width="90">
                                             <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$row->id}})" class="btn btn-success p-1 ">✔️</button>
                                             <button onclick="confirm('Confirm Delete Factory id {{$row->id}}? \nDeleted Factory cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger p-1">➖</button>
-                                    
-                                         
-                                        </td>
-                                @endforeach
+                               </td>
+                                      
                             </tbody>
+                            
+                         
+                    @endforeach
                         </table>
+                        
                         <hr>
                         {{ $facturas->links() }}
                     </div>
                 </div>
-
+                </div>
+        
 				<div class="container">
+                    @if (!empty($facturas->count()<=0))
+                   <div class="text-center text-capitalize m-2 p-4 ">
+                    <h3>Sin Facturas, Esperemos tener un buen dia de ventas Hoy {{$fecha}} <br> 😀 Motorbike , Feliz Dia 🤑 🙏</h3>
+                </div>
+                @endif
                     <div class="row">
+                       
+
                      @foreach ($empresa_totales as $empresa_total)
                       <div class="col order-last">
                         <button type="button" title="Hacer Cierre de caja" data-toggle="modal" data-target="#closefactura" class="btn btn-outline-info">
@@ -298,8 +289,6 @@
                         <button type="button"  class="btn btn-outline-danger" data-toggle="modal" data-target="#vistaModal" wire:click="get_nopayment()">  No Payment</button>
                          </strong>
                     </div>
-                      
-
                       @endforeach
 
                     </div>
@@ -313,12 +302,29 @@
 
 <script>
     document.addEventListener('livewire:load', function() {
-       
-     
+       let tema_color  = "table-light";
+       let color = "black";
 
 		$("#servicio_id").select2();
         $("#placa").select2();
 		$("#operario_id").select2();
+
+        $( "#tema" ).click(function() {
+            
+            if(color == "black"){
+                          $("#tabla_tema").removeClass("table-dark");
+                          color = "light";
+                          tema_color = "table-light";
+                          alert("if von");
+            }else  {
+                alert("else");
+                $("#tabla_tema").removeClass("table-light");
+                 color = "black";
+                 tema_color = "table-dark";
+            }
+
+            $("#tabla_tema").addClass(tema_color);
+        });    
 
         $("#mfecha").attr('value', "misfechas");
 
@@ -332,16 +338,6 @@
 		$("#operario_id").on("change", function() {
             @this.set('operario_id', this.value);
         })
-        
-       
-        $("#daty").on('keypress',function(e) {
-            if(e.which == 13) {
-               // alert('Change Date');
-                //@this.set('fecha', $("#daty").val());
-            }
-        });
-
-      
 
 		window.livewire.on('combos', () => {
 		//$('#exampleModal').modal('hide');
@@ -351,7 +347,7 @@
                 //alert('combos');
             });
 
-                $.noConflict();
+         $.noConflict();
                     
               $( "#daty" ).datepicker({
                                 dateFormat : 'yy-mm-dd',

@@ -28,7 +28,7 @@ class Facturas extends Component
     public  $array_nopayment, $nopayment, $contador ,$daty, $filtro, $contables, $btn_pay, $gasto_id;
 	public $data, $total_liquidar, $contable_service_name, $contable_service_id;
 	public $calificar_id, $calificar_puntaje, $calificar_name, $calificar_name_servicio;
-	public $thema_factu = "light";
+	public $thema_factu = "table-dark";
 	public $mensajes,$msg_id, $msg_contenido, $msg_msg, $msg_placa, $msg_cliente, $msg_operario, $msg_servicio, $msg_phone;
 
 	public function updatingKeyWord()
@@ -48,7 +48,6 @@ class Facturas extends Component
 		$this->calificar_id = 0;
 		$this->calificar_puntaje = 0;
 		$calificar_name = null;
-		//$this->thema_factu = "light";
 		$this->filtro = true;
 	}
 	public function msg_carga($cliente, $placa, $servicio, $operario, $phone){ // para enviar mensages x la placa y cliente
@@ -62,8 +61,8 @@ class Facturas extends Component
 
 	public function cambiar_tema(){
 		
-		if($this->thema_factu == "dark") $this->thema_factu = "light";
-		else $this->thema_factu = "dark";
+		if($this->thema_factu == "table-dark") $this->thema_factu = "table-light";
+		else $this->thema_factu = "table-dark";
 	}
 
 	public function getplaca($id)
