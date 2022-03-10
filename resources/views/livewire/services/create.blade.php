@@ -13,21 +13,21 @@
 				<form>
             <div class="form-group">
                 <label for="name">Name Service</label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="value">Valor</label>
-                <input wire:model="value" type="text" class="form-control" id="value" placeholder="Value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="value" type="text" class="form-control" id="value" placeholder="Value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="porcentaje">Porcentaje Operario % </label>
-                <input wire:model="porcentaje" type="text" class="form-control" id="porcentaje" placeholder="porcentaje">@error('porcentaje') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="porcentaje" type="text" class="form-control" id="porcentaje" placeholder="porcentaje">@error('porcentaje') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             
             
             <div class="form-group">
-                <label for="status"> Services Cars</label>
-            <select    class="form-control"  id="cars_id" wire:model="cars_id">
+                <label for="status"> Tipo de Cars</label>
+            <select    class="form-control"  id="cars_id" wire:model.defer="cars_id">
                 <option value=""> Seleccione  : </option>
                 @foreach ($cars as $car)
                 <option  value="{{ $car->id }}" > {{ Str::upper($car->name) }} </option>

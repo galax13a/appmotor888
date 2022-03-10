@@ -10,19 +10,13 @@
             </div>
            
            <div class="modal-body">
-
-           
 				<form>
-                   
                 <div class="form-group">
-                  
                     <label for="placa"></label>
-                    <input type="text" wire:model="placa_id" class="form-control capitalise" id="placa_id" placeholder="placa">@error('placa_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                    <input type="text" wire:model.defer="placa_id" class="form-control capitalise" id="placa_id" placeholder="placa">@error('placa_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 </div>
-          
 		  <div class="form-group">
-            
-                <select wire:model="cars_id"   class="form-control"  id="cars_id" >
+                <select wire:model.defer="cars_id"   class="form-control"  id="cars_id" >
                     <option value=""> type cars  : </option>
                     @foreach ($cars as $car)
                     <option  value="{{ $car->id }}" >{{  Str::upper($car->name) }} </option>

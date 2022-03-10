@@ -43,7 +43,7 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
 								<td>
-									<img src="/css/cars/bike{{$row->icon}}.svg " width="33" height="33"alt="">
+									<img src="/css/cars/bike{{$row->icon}}.png " width="33" height="33"alt="">
 									<strong>{{ ucfirst($row->name) }} - {{ ucfirst($row->empresa->name) }}</strong>
 									
 								</td>

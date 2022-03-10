@@ -266,8 +266,8 @@ class Facturas extends Component
 			'fecha' => $this->fecha
 		]);
 
-		session()->flash('message', 'Save Register ') . $idplaca;
-		//$this->resetInput();
+		session()->flash('message', 'Servicio Factory Guardado') . $idplaca;
+	
 		$this->placa = null;
 		$this->emit('combos');
 	}

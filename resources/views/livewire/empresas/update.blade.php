@@ -13,39 +13,39 @@
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
                 <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="nit"></label>
-                <input wire:model="nit" type="text" class="form-control" id="nit" placeholder="Nit">@error('nit') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="nit" type="text" class="form-control" id="nit" placeholder="Nit">@error('nit') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="dir"></label>
-                <input wire:model="dir" type="text" class="form-control" id="dir" placeholder="Dir">@error('dir') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="dir" type="text" class="form-control" id="dir" placeholder="Dir">@error('dir') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="tel"></label>
-                <input wire:model="tel" type="text" class="form-control" id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="tel" type="text" class="form-control" id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="logo"></label>
-                <input wire:model="logo" type="text" class="form-control" id="logo" placeholder="Logo">@error('logo') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="logo" type="text" class="form-control" id="logo" placeholder="Logo">@error('logo') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="img"></label>
-                <input wire:model="img" type="text" class="form-control" id="img" placeholder="Img">@error('img') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="img" type="text" class="form-control" id="img" placeholder="Img">@error('img') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp1"></label>
-                <input wire:model="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp2"></label>
-                <input wire:model="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="status"> Status</label>
-               <select wire:model="status" id="status" required="" name="status" class="form-control">
+               <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
                   <option  value="1"  select > Active </option> 
                   <option  value="0" > Desactive </option> 
                 </select>  

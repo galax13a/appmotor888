@@ -19,13 +19,13 @@
                             <strong>Desde</strong>
                                 <div class="input-group input-group-lg m-1 p-1">
                                 
-                                    <input autocomplete="off" wire:model='entre1' type="text" class="form-control input-lg" name="entre1"
+                                    <input autocomplete="off" wire:model.defer='entre1' type="text" class="form-control input-lg" name="entre1"
                                         id="entre1" placeholder="Buscar por Inicio">
                                 </div>
                                 <strong>Hasta</strong>
                                 <div class="input-group input-group-lg m-1">
                             
-                                    <input autocomplete="off" wire:model='entre2' type="text" class="form-control input-lg" name="entre2"
+                                    <input autocomplete="off" wire:model.defer='entre2' type="text" class="form-control input-lg" name="entre2"
                                         id="entre2" placeholder="Buscar por Fecha">
                                 </div>
                                 <button type="button"  wire:click.prevent="buscar()" title="Buscar x Fechas" class="btn btn-warning m-3">Buscar</button>
@@ -61,7 +61,7 @@
                             Valor :
                             <div class="form-group">
 
-                                <input wire:model="value" type="text" class="form-control" id="value"
+                                <input wire:model.defer="value" type="text" class="form-control" id="value"
                                     placeholder="value">@error('value') <span
                                     class="error text-danger">{{ $message }}</span> @enderror
                             </div>
@@ -69,8 +69,8 @@
                         <div class="col">
                             Description
                             <div class="form-group">
-                                <input wire:model="name" type="text" class="form-control" id="name"
-                                    placeholder="Describa">@error('name') <span
+                                <input wire:model.defer="name" type="text" class="form-control" id="name"
+                                    placeholder="Describa la nota de caja">@error('name') <span
                                     class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>

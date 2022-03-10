@@ -87,6 +87,7 @@ class Cajas extends Component
         $this->validate([
 		'value' => 'required',
 		'gastos_id' => 'required',
+        'value' => 'required|numeric'
         ]);
 
         Caja::create([ 
@@ -123,7 +124,7 @@ class Cajas extends Component
     {
         $this->validate([
 		'fecha' => 'required',
-		'valor' => 'required',
+		'value' => 'required|numeric',
 		'gastos_id' => 'required',
         ]);
 

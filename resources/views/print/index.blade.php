@@ -9,12 +9,12 @@
 
 <body>
     <div class="ticket">
-        <img src="/css/cars/bike{{$icon}}.svg" width="80" height="60"alt="Logotipo">
+        <img src="/css/cars/bike{{$icon}}.png" width="60" height="60"alt="Logotipo">
         <p class="centrado">TICKET DE VENTA 
             Placa/{{$placa}}
             <br>
             <br> {{ config('app.name', 'MotorBike') }}
-            <br>Nit: 0
+            <br>Nit: 0.0
             <br>{{$fecha}}</p>
         <table>
             <thead>
@@ -22,6 +22,7 @@
                     <th class="cantidad"></th>
                     <th class="producto">SERVICIO</th>
                     <th class="precio">$</th>
+                  
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +42,12 @@
                     <td class="precio">Cliente</td>
                 </tr>
                 <tr>
+                    <tr>
+                        <td class="cantidad">Iva</td>
+                        <td class="producto">0.0</td>
+                        <td class="precio"></td>
+                    </tr>
+                    <tr>
                     
                     <td class="cantidad"></td>
                     <td class="producto">TOTAL</td>
@@ -48,7 +55,7 @@
                 </tr>
             </tbody>
         </table>
-        <p class="centrado">¡Una vez entregado el servicio no nos hacemos responsables!
+        <p class="centrado">¡Una vez notificado del servicio no nos hacemos responsables!
             <br>  {{ config('app.url', 'Motorbike') }}</p>
             <p class="centrado">Gracias por su Compra!
         

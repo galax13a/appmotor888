@@ -18,31 +18,34 @@ class Services extends Component
     public $updateMode = false;
     public $titulo = 'info tirul2o';
     public $empresa_id;
-    public function  mount(){
-    $this->titulo = 'Create Service';
-       // $this->cars =  Carstype::pluck('id','name');
-    $this->empresa_id = Auth::user()->empresa_id;
-    $this->cars = Carstype::Where('empresa_id', $this->empresa_id)->get();
 
+    public function  mount(){
+        $this->titulo = 'Create Service';
+        $this->empresa_id = Auth::user()->empresa_id;
+        $this->cars = Carstype::Where('empresa_id', $this->empresa_id)->get();
     }
+
+    public function messages()
+        {
+            return [
+                'value.numeric' => 'el valor debe ser numero',
+                'porcentaje.numeric' => 'el porcentaje debe ser numerico',
+            ];
+        }
 
     public function updatingKeyWord(){
         $this->resetPage();
     }
     public function render()
     {
-
-      
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.services.view', [
             'services' => Service::latest()
                         ->Where('empresa_id', Auth::user()->empresa_id)
 						->Where('name', 'LIKE', $keyWord)
 						->paginate(50)
-           
         ]);
     
-
     }
 	
     public function cancel()
@@ -65,9 +68,9 @@ class Services extends Component
       
         $this->validate([
 		'name' => 'required',
-		'value' => 'required',
+		'value' => 'required|numeric',
 		'cars_id' => 'required',
-        'porcentaje' => 'required'
+        'porcentaje' => 'required|numeric'
         ]);
 
         Service::create([ 
@@ -112,10 +115,10 @@ class Services extends Component
         $this->emit('titulo');
         $this->validate([
 		'name' => 'required',
-		'value' => 'required',
+		'value' => 'required|numeric',
 		'status' => 'required',
 		'cars_id' => 'required',
-        'porcentaje' => 'required'
+        'porcentaje' => 'required|numeric'
         ]);
 
         if ($this->selected_id) {

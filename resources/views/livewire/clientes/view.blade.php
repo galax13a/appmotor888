@@ -40,7 +40,7 @@
 				@foreach ($mys_carros as $carros)
 					
 				<button type="button" class="btn btn-light  m-1" wire:click="menu({{$carros->id}},'{{$carros->name}}')">
-					<img src="/css/cars/bike{{$carros->icon}}.svg " class="shadown"  width="36" height="36" alt="">
+					<img src="/css/cars/bike{{$carros->icon}}.png " class="shadown"  width="36" height="36" alt="">
 					{{$carros->name}} <span class="badge bg-primary">{{$carros->cuantos}}</span>
 					
 				  </button>
@@ -82,7 +82,7 @@
 								<td>
 							
 								@foreach($this->getplaca($row->id) as $placa)
-										<span class="badge  btn btn-success "><img src="/css/cars/bike{{$placa->icon}}.svg " class="shadown"  width="36" height="36" alt="">	{{ Str::upper($placa->name) }}
+										<span class="badge  btn btn-success "><img src="/css/cars/bike{{$placa->icon}}.png " class="shadown"  width="36" height="36" alt="">	{{ Str::upper($placa->name) }}
 										<a class="btn btn-dark " onclick="confirm('Confirm Delete placa id {{$placa->name}}? \nDeleted placa cannot be recovered!')||event.stopImmediatePropagation()" wire:click="deleteplaca({{$placa->id}})"><i class="fa fa-times" title="Eliminar ({{$placa->name}})"></i>  </a>   
 										</span>
 								@endforeach

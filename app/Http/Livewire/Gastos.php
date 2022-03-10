@@ -55,7 +55,7 @@ class Gastos extends Component
 		'name' => 'required',
 		'empresa_id' => 'required',
         'natu' => 'required',
-        'value' => 'required'
+        'value' => 'required|numeric'
         ]);
 
         Gasto::create([ 
@@ -92,7 +92,7 @@ class Gastos extends Component
 		'name' => 'required',
 		'status' => 'required',
         'natu' => 'required',
-        'value' => 'required'
+        'value' => 'required|numeric'
         ]);
 
         if ($this->selected_id) {

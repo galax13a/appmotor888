@@ -13,19 +13,19 @@
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
                 <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp1"></label>
-                <input wire:model="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp2"></label>
-                <input wire:model="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="status"> Status</label>
-               <select wire:model="status" id="status" required="" name="status" class="form-control">
+               <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
                   <option  value="1"  select > Active </option> 
                   <option  value="0" > Desactive </option> 
                 </select>  
@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 <label for="Cumple2"></label>
-                <input wire:model="cumple2" type="text" class="form-control" id="cumple2" placeholder="Cumpleaños">@error('cumple') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="cumple2" type="text" class="form-control" id="cumple2" placeholder="Cumpleaños">@error('cumple') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group d-none">
@@ -55,7 +55,7 @@
 <script>
     document.addEventListener('livewire:load', function(){
               
-               $.noConflict();
+             
                     
                     $( "#cumple2" ).datepicker({
                                 dateFormat : 'yy-mm-dd',
@@ -69,5 +69,7 @@
                                 var thisDate = $(this).val();
                                  @this.set('cumple2', thisDate);
                             });
+
+                            $.noConflict();
        })
 </script>

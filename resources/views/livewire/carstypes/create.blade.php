@@ -12,20 +12,18 @@
 				<form>
             <div class="form-group">
                 <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
            
             <div class="form-group">
                 <label for="status"> Status</label>
-               <select wire:model="status" id="status" required="" name="status" class="form-control">
+               <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
                   <option  value="1"  select > Active </option> 
                   <option  value="0" > Desactive </option> 
                 </select>  
                       @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-<hr>
-                     
-
+            <hr>
                 </form>
             </div>
             <div class="modal-footer">

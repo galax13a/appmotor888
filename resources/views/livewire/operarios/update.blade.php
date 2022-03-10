@@ -13,20 +13,20 @@
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="dni">Dni</label>
-                <input wire:model="dni" type="text" class="form-control" id="dni" placeholder="Dni">@error('dni') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="dni" type="text" class="form-control" id="dni" placeholder="Dni">@error('dni') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp">Whatsap</label>
-                <input wire:model="wsp" type="text" class="form-control" id="wsp" placeholder="Wsp">@error('wsp') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp" type="text" class="form-control" id="wsp" placeholder="Wsp">@error('wsp') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
            
    <div class="form-group">
     <label for="status"> Status</label>
-   <select wire:model="status" id="status" required="" name="status" class="form-control">
+   <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
       <option  value="1"  select > Active </option> 
       <option  value="0" > Desactive </option> 
     </select>  

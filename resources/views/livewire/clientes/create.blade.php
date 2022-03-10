@@ -13,29 +13,24 @@
 				<form>
             <div class="form-group">
                 <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp1"></label>
-                <input wire:model="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="wsp2"></label>
-                <input wire:model="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-
-   
-
             <div class="form-group d-none">
                 <label for="status"></label>
-                <input wire:model="status" type="text" class="form-control hidden "  id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="status" type="text" class="form-control hidden "  id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group d-none">
                 <label for="empresa_id"></label>
-               
                 <input wire:model="empresa_id" value="55" type="text" class="form-control" id="empresa_id" placeholder="Empresa Id">@error('empresa_id') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -49,8 +44,6 @@
          document.addEventListener('livewire:load', function(){
                     @this.set('empresa_id', {{Auth::user()->empresa_id}});
                     $.noConflict();
-                    
-                  
             })
 </script>
 

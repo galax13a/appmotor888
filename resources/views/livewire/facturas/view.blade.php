@@ -172,7 +172,7 @@
                                                  <i class="btn btn-warning fa fa-star  " aria-hidden="true" data-toggle="modal" data-target="#exampleStar" wire:click="carga_voto({{$row->id}},'{{ substr(Str::upper($row->operarios->name),0,6) }}', {{$row->voto}},'{{ Str::upper($row->service->name) }}')">{{$row->voto}}</i>
                                          @endif
                                          
-                                    <img class=" btn-light p-1 rounded" src="/css/cars/bike{{ $row->service->carstype->icon }}.svg" width="33" height="33"alt="">
+                                    <img class=" btn-light p-1 rounded" src="/css/cars/bike{{ $row->service->carstype->icon }}.png" width="33" height="33"alt="">
                                     <strong>{{ Str::upper($row->placa) }}</strong>
                                            
                                         </td>
@@ -204,11 +204,9 @@
                                         <td>{{ Str::upper($row->cliente->name,0,6) }}</td>
                                         <td class="text-center">
                                             @if ($row->cliente->wsp1 > 0)
-                                           
                                            <p> {{ $row->cliente->wsp1 }} </p>
                                              @else <p> Sin Contacto </p>
                                             @endif
-                                          
                                             <button wire:click="msg_carga('{{ Str::upper($row->cliente->name,0,6) }}', '{{ Str::upper($row->placa) }}','{{ substr(Str::upper($row->service->name),0,26) }}','{{Str::upper($row->operarios->name)}}',{{$row->cliente->wsp1 }})" data-toggle="modal" data-target="#exampleMsg" type="button" title="Enviar un mensaje WhatsApp" class="btn btn-sm btn-outline-success">
                                                  <i class="fa fa-phone text-center" aria-hidden="true"></i>
                                                 Mensaje

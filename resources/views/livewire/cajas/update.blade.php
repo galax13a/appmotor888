@@ -13,19 +13,19 @@
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
                 <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="fecha"></label>
-                <input wire:model="fecha" type="text" class="form-control" id="fecha" placeholder="Fecha">@error('fecha') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="fecha" type="text" class="form-control" id="fecha" placeholder="Fecha">@error('fecha') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group d-none">
                 <label for="valor"></label>
-                <input wire:model="valor" type="text" class="form-control" id="valor" placeholder="Valor">@error('valor') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="valor" type="text" class="form-control" id="valor" placeholder="Valor">@error('valor') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="status"> Status</label>
-                <select wire:model="status" id="status" required="" name="status" class="form-control">
+                <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
                    <option  value="1"  select > Verificado </option> 
                    <option  value="0" > Sin verificar </option> 
                  </select>  

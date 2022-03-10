@@ -12,44 +12,35 @@
                 <form>
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
-                <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="name">Nombre del Servicio</label>
+                <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="value"></label>
-                <input wire:model="value" type="text" class="form-control" id="value" placeholder="Value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="value">Valor del Servicio</label>
+                <input wire:model.defer="value" type="text" class="form-control" id="value" placeholder="Value">@error('value') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <label for="porcentaje">Porcentaje Operario %</label>
-                <input wire:model="porcentaje" type="text" class="form-control" id="porcentaje" placeholder="porcentaje">@error('porcentaje') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model.defer="porcentaje" type="text" class="form-control" id="porcentaje" placeholder="porcentaje">@error('porcentaje') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
-                <label for="status"></label>
+                <label for="status">Status</label>
+                <select wire:model.defer="status" id="status" required="" name="status" class="form-control">
               
-                <select wire:model="status" id="status" required="" name="status" class="form-control">
-            
-                @if ($status == 0) 
                         <option  value="{{ $status}}" > Desactivar </option> 
                         <option  value="1" > Activar </option> 
                   
-                  @elseif ($status == 1) 
-                  <option  value="{{ $status}}" >Activar</option> 
-                  <option  value="0" > Desactivar </option> 
-                  @endif
-                    
                   </select>
  </div>
           
             @foreach($cars as $row)
-               @if ($row->id == $cars_id ) 
-                <h4>  {{$row->name}}</h4>
-                  @endif
+           
             @endforeach
            
             <div class="form-group" >
-            
+                <label for="tipo"> Tipo de carro</label>
             <select class="form-control" name ="carss_id" id="carss_id" wire:model="cars_id">
            
                 @foreach ($cars as $car)
