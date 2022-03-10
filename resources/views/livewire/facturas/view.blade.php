@@ -30,12 +30,8 @@
                               </div>
                         </div>
 
-                      
-                      
-                      
                         <div class="container-fluid bg-secondary border  rounded ">
                           
-
                         <div class="container lg bg-secondary m-2 p-1 ">
                             <div class="row align-items-start  m-1 ">
                               <div class="row">
@@ -92,7 +88,7 @@
                         <div class="input-group input-group-lg ">
                             <input wire:model='keyWord' type="text" class="form-control input-lg bg-dark" name="search"
                                 id="search" placeholder="Buscar x Placa">
-                                <button type="button" class="btn btn-light m-1" wire:click="cambiar_tema()" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light m-1 d-none" wire:click="cambiar_tema()" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
                                 <button id="tema" type="button" class="btn btn-warning m-1" ><i class="fa fa-adjust" aria-hidden="true"></i></button>
                             </div>
                     </div>
