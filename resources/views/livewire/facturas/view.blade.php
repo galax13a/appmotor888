@@ -302,28 +302,25 @@
 
 <script>
     document.addEventListener('livewire:load', function() {
-       let tema_color  = "table-light";
-       let color = "black";
-
-		$("#servicio_id").select2();
+        $("#servicio_id").select2();
         $("#placa").select2();
 		$("#operario_id").select2();
 
+       let tema_color  = "table-light";
+       let color = "black";
         $( "#tema" ).click(function() {
             
             if(color == "black"){
                           $("#tabla_tema").removeClass("table-dark");
                           color = "light";
-                          tema_color = "table-light";
-                          alert("if von");
+                          tema_color = "table-light";                         
             }else  {
                 alert("else");
                 $("#tabla_tema").removeClass("table-light");
                  color = "black";
                  tema_color = "table-dark";
             }
-
-            $("#tabla_tema").addClass(tema_color);
+             $("#tabla_tema").addClass(tema_color);
         });    
 
         $("#mfecha").attr('value', "misfechas");
