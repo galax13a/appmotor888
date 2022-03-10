@@ -315,7 +315,7 @@
                           color = "light";
                           tema_color = "table-light";                         
             }else  {
-                alert("else");
+                
                 $("#tabla_tema").removeClass("table-light");
                  color = "black";
                  tema_color = "table-dark";
