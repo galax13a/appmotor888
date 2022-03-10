@@ -313,12 +313,16 @@
             if(color == "black"){
                           $("#tabla_tema").removeClass("table-dark");
                           color = "light";
-                          tema_color = "table-light";                         
+                          tema_color = "table-light";    
+                          @this.set('thema_factu', "table-light");
+
             }else  {
                 
                 $("#tabla_tema").removeClass("table-light");
                  color = "black";
                  tema_color = "table-dark";
+                 @this.set('thema_factu', "table-dark");
+
             }
              $("#tabla_tema").addClass(tema_color);
         });    
