@@ -16,7 +16,11 @@
 							<button wire:click="menu(0, 'Todos los Cars')" type="button" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i>
 								<span class="badge bg-light bold">{{ $this->mis_clientes()[0]->cuantos }}</span> Clientes 
 								@All
-								
+							</button>
+						</div>
+						<div class="input-group input-group-lg p-2">
+							<button type="button" wire:click="filtro_adss()" class="btn btn-info"><i class="fa fa-car" aria-hidden="true"></i>
+								<span class="badge bg-light bold"></span> Crear Campañas 
 							</button>
 						</div>
 						<div class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#exampleModal">
@@ -30,9 +34,10 @@
 				
 				<div class="card-body">
 					@include('livewire.clientes.update')
-						@include('livewire.clientes.create')
-					
-						@include('livewire.clientes.addmycars')
+					@include('livewire.clientes.create')
+					@include('livewire.clientes.addmycars')
+					@include('livewire.facturas.msg')
+
 				<div class="table-responsive">
 			
 			<div class="container m-2 p-2">
@@ -47,11 +52,7 @@
 
 				@endforeach
 
-
-
 			</div>
-
-
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
 							<tr> 
@@ -87,7 +88,19 @@
 										</span>
 								@endforeach
 							</td>
-								<td><strong>{{ $row->wsp1 }}</strong></td>
+								<td><strong>{{ $row->wsp1 }}</strong>
+								@if ($this->filtro_ads > 0)
+							<br>
+							@if (!empty($row->wsp1>0))
+						
+								<button wire:click="msg_carga('{{ Str::upper($row->name,0,26) }}', '{{ Str::upper($row->cumple) }}',{{ substr(Str::upper($row->wsp1),0,26) }})" data-toggle="modal" data-target="#exampleMsg" type="button" title="Enviar un mensaje WhatsApp" class="btn btn-sm btn-outline-success">
+									<i class="fa fa-phone text-center" aria-hidden="true"></i>
+								   Mensaje
+								</button>
+								@endif
+
+								@endif
+								</td>
 								<td><strong>{{ $row->cumple }}</strong></td>
 							
 							<td>
@@ -119,24 +132,20 @@
 					<button type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#miModal">Open Modal</button>
 
   <!-- Modal -->
-  <div class="modal fade" id="miModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-			
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         
-        </div>
-       
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+					<div class="modal fade" id="miModal" role="dialog">
+						<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+						
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

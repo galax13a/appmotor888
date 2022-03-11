@@ -10,6 +10,7 @@ use App\Models\Carstype;
 use App\Models\Mycar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Mensaje;
 
 class Clientes extends Component
 {
@@ -23,17 +24,22 @@ class Clientes extends Component
     public $placa_id, $cars_id, $placa_busca;
     public $mys_carros, $cumple,$cumple2;
     public $key_car, $nuevo_clientes;
+    public $filtro_ads;
+    public $mensajes,$msg_id, $msg_contenido, $msg_msg, $msg_placa, $msg_cliente, $msg_cumple, $msg_servicio, $msg_phone, $msg_operario;
 
 
     public function updatingKeyWord(){
         $this->resetPage();
     }
 
+   
     public function mount(){
 
         $this->userEmpresa = Auth::user()->empresa_id;
         $key_car = 0;
         $this->nuevo_clientes = null;
+        $this->filtro_ads = 0;
+        $this->wsp2 = 0;
     }
 
     public function getplaca($id){
@@ -51,8 +57,6 @@ class Clientes extends Component
 
     public function mis_clientes(){
 
-        //SELECT COUNT(`clientes`.`id`) as cuantos from clientes where clientes.empresa_id = 1;
-
         return DB::table('clientes')
                 ->select(DB::raw("COUNT(clientes.id) as cuantos"))
                 ->where('clientes.empresa_id', Auth::user()->empresa_id)
@@ -60,17 +64,17 @@ class Clientes extends Component
                 ->get();
 
     }
+    public function filtro_adss(){
+        $this->filtro_ads = 1;
+    }
     public function menu($id,$name) {
 
         $this->key_car = $id;
         $this->resetPage();
-       session()->flash('message', 'Cambiado a :  '  . $name);
-     
+        session()->flash('message', 'Cambiado a '  . $name);
     }
 
     public function get_mycars() {
-
-
           return  DB::table('carstypes')
 			->join('mycars', 'mycars.carstypes_id', '=', 'carstypes.id')
 			->select(DB::raw("COUNT(carstypes.name) as cuantos, carstypes.name, carstypes.icon as icon, carstypes.id"))
@@ -81,7 +85,14 @@ class Clientes extends Component
 			->get();
     }
 
-   
+    public function msg_carga($cliente, $cumple, $phone){ // para enviar mensages x la placa y cliente
+
+		
+		$this->msg_cliente = $cliente;
+		$this->msg_phone = $phone;
+        $this->cumple  = $cumple;
+	}
+
     public function render()
     { 
 		$keyWord = '%'.$this->keyWord .'%';
@@ -89,9 +100,12 @@ class Clientes extends Component
       
         $this->cars = Carstype::Where('empresa_id', $this->userEmpresa)->get();
         $this->userEmpresa = Auth::user()->empresa_id;
-
         $this->mys_carros = $this->get_mycars();
 
+        $this->mensajes = Mensaje::where('empresa_id', $this->userEmpresa)->where('status',1)->get();
+        if($this->msg_id > 0) $this->msg_contenido = $this->mensajes = Mensaje::where('id',$this->msg_id)->get();
+    
+    
         if($this->key_car == 0){
          
             return view('livewire.clientes.view', [
@@ -126,8 +140,6 @@ class Clientes extends Component
                 ->paginate(50)
             ]);
         }
-        
-
      
     }
 	
@@ -145,11 +157,19 @@ class Clientes extends Component
 		$this->status = null;
 		//$this->empresa_id = null;
     }
-
+    public function messages()
+    {
+        return [
+            'wsp1.numeric' => 'el wsp de ser numero',
+            'wsp2.numeric' => 'el wsp de ser numero',
+        ];
+    }
     public function store()
     {
         $this->validate([
-		'name' => 'required'
+		'name' => 'required',
+        'wsp1' => 'numeric',
+        'wsp2' => 'numeric'
         ]);
 
         Cliente::create([ 
@@ -175,6 +195,8 @@ class Clientes extends Component
 		$this->wsp2 = $record-> wsp2;
 		$this->status = $record-> status;
         $this->cumple2 = $record-> cumple;
+
+        if($this->wsp2 <=0) $this->wsp2 = 0;
 		//$this->empresa_id = $record-> empresa_id;
 		
         $this->updateMode = true;
@@ -184,7 +206,9 @@ class Clientes extends Component
     {
         $this->validate([
 		'name' => 'required',
-		'status' => 'required'
+		'status' => 'required',
+        'wsp1' => 'numeric',
+        'wsp2' => 'numeric'
         ]);
 
         if ($this->selected_id) {

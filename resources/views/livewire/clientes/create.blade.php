@@ -12,15 +12,15 @@
            <div class="modal-body">
 				<form>
             <div class="form-group">
-                <label for="name"></label>
+                <label for="name">Name Cliente</label>
                 <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="wsp1"></label>
+                <label for="wsp1">Numero WhatsApp 1</label>
                 <input wire:model.defer="wsp1" type="text" class="form-control" id="wsp1" placeholder="Wsp1">@error('wsp1') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="wsp2"></label>
+                <label for="wsp2">Numero WhatsApp 2</label>
                 <input wire:model.defer="wsp2" type="text" class="form-control" id="wsp2" placeholder="Wsp2">@error('wsp2') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group d-none">
