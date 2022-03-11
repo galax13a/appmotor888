@@ -50,7 +50,7 @@
                      
                       <div class="col">
                         <button type="button" class="btn btn-light">  
-                          <img src="/css/cars/bike{{$service->icon}}.svg " width="33" height="33"alt="">
+                          <img src="/css/cars/bike{{$service->icon}}.png " width="33" height="33"alt="">
                                            
                           {{ Str::upper($service->cars)}}
                         </button>
