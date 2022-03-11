@@ -18,7 +18,7 @@
            
              ?>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td><img src="/css/cars/bike{{$row->icon}}.svg " class="shadown p-2"  width="36" height="36" alt=""><strong>{{ Str::upper($row->name) }}</strong> </td>
+            <td><img src="/css/cars/bike{{$row->icon}}.png " class="shadown p-2"  width="36" height="36" alt=""><strong>{{ Str::upper($row->name) }}</strong> </td>
             <td><strong> $ {{number_format($row->value,0)}} </strong></td>
             <td><strong> $ {{number_format($row->empresa,0)}} </strong></td>
 

@@ -16,7 +16,7 @@
                $this->data_total = $row->total + $this->data_total;
         ?>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td><img src="/css/cars/bike{{$row->icon}}.svg " class="shadown"  width="36" height="36" alt=""></td>
+            <td><img src="/css/cars/bike{{$row->icon}}.png " class="shadown"  width="36" height="36" alt=""></td>
             <td><strong>{{ Str::upper($row->name) }}</strong> </td>
             <td> <strong> $ {{number_format($row->total,0)}} </strong></td>
           
