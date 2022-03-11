@@ -220,7 +220,7 @@
                                             {{ $row->fecha }} 
                                             <a href="{{ url('/imprimir/') }}/333/{{Str::upper($row->operarios->name)}}/{{ Str::upper($row->service->name) }}/{{ Str::upper($row->placa) }}/{{ number_format($row->value, 0) }}/{{ Str::substr($row->cliente->name,0,6) }}/{{ $row->service->carstype->icon }}" 
                                                 target="_blank" >
-                                            <button type="button" title="imprimir servicio" class="btn btn-sm @if($this->thema_factu=="light")btn-outline-dark @else btn-outline-light @endif">
+                                            <button type="button" title="imprimir servicio" class="btn btn-sm @if($this->thema_factu=="table-light")btn-outline-dark @else btn-outline-light @endif">
                                                  <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             </a>
