@@ -34,7 +34,7 @@ class Carstypes extends Component
             'carstypes' => Carstype::latest()
                         ->Where('empresa_id', Auth::user()->empresa_id)
 						->Where('name', 'LIKE', $keyWord)
-						->paginate(10),
+						->paginate(30),
         ]);
     }
 	
