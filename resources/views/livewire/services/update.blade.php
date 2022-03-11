@@ -35,15 +35,13 @@
                   </select>
  </div>
           
-            @foreach($cars as $row)
-           
-            @endforeach
            
             <div class="form-group" >
                 <label for="tipo"> Tipo de carro</label>
             <select class="form-control" name ="carss_id" id="carss_id" wire:model="cars_id">
            
-                @foreach ($cars as $car)
+               
+                 @foreach ($cars as $car)
                  <option  value="{{ $car->id }}" >{{ $car->name }} </option>   
                  @endforeach    
             </select>

@@ -19,6 +19,7 @@ class Cajas extends Component
     public $fecha_serve, $gastos, $userEmpresa, $value, $id_gasto;
     public $total_gasto, $total_ingreso, $total_caja;
     public $entre1, $entre2, $buscar;
+    public $data_contable;
 
     public function mount()
 	{
@@ -27,7 +28,7 @@ class Cajas extends Component
 		$this->fecha_serve = date('Y-m-d'); //strftime("Hoy es %A y son las %H:%M");
         $this->value = 0;
         $this->keyWord = $this->fecha_serve;
-       // $this->entre2 = $this->fecha_serve;
+        $this->data_contable = Gasto::Where('empresa_id', $this->userEmpresa)->get(); 
 
     }
 
@@ -141,7 +142,8 @@ class Cajas extends Component
 
             $this->resetInput();
             $this->updateMode = false;
-			session()->flash('message', 'Caja Successfully updated.');
+			session()->flash('message', 'Caja Successfully actualizado.');
+            $this->value = 0;
         }
     }
 

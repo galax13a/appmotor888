@@ -31,14 +31,16 @@
                                 <button type="button"  wire:click.prevent="buscar()" title="Buscar x Fechas" class="btn btn-warning m-3">Buscar</button>
                                 <img wire:loading src="/css/icons/save.gif" width="30%" height="30%"alt="" >
                             </div>
+
+                            @if (session()->has('message'))
+                            <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
+                                {{ session('message') }} </div>
+                        @endif
                     </div>
                 </div>
                 <hr>
-                
-                @if (session()->has('message'))
-                    <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
-                        {{ session('message') }} </div>
-                @endif
+             
+              
                 <div id="contaner" class="container">
                     <div class="row">
                         <div class="col">
