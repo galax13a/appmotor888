@@ -63,7 +63,8 @@ class Clientes extends Component
     public function menu($id,$name) {
 
         $this->key_car = $id;
-       session()->flash('message', 'Cambiado a '  . $name);
+        $this->resetPage();
+       session()->flash('message', 'Cambiado a :  '  . $name);
      
     }
 
@@ -82,7 +83,7 @@ class Clientes extends Component
 
    
     public function render()
-    {
+    { 
 		$keyWord = '%'.$this->keyWord .'%';
         $placa_busca = '%'.$this->placa_busca .'%';
       
